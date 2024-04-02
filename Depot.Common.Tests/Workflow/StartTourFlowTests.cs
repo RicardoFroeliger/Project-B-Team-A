@@ -30,8 +30,8 @@ public class StartTourFlowTests
     }
     
     [DataRow(null, false, null)] // Ticketnumber is null
+    [DataRow((long)2948105735, false, Localization.Rondleiding_Vol)] // Ticket is valid, but tour is full
     [DataRow(8105723946, true, Localization.Ticket_niet_in_reserveringen)] // Ticket can be added to non-full tour
-    [DataRow(2948105735, false, Localization.Rondleiding_Vol)]
     [DataTestMethod]
     public void TestAddTicket(long? ticketNumber, bool expectedReturn, string? expectedMsg)
     {
