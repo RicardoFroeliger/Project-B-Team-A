@@ -98,5 +98,7 @@
         public const string Uw_rondleiding_is_gereserveerd = "Uw rondleiding is gereserveerd.";
         public const string Ticket_zit_al_in_uw_groep = "Dit ticket is al toegevoegd aan uw groep";
         public const string Ticket_is_toegevoegd = "Ticket toegevoegd.";
+        public const string Tickets_gescand = "Tickets gescand:";
+        public const string Van_de = "van de";
     }
 }

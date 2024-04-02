@@ -138,6 +138,7 @@ class Program
 
         while (create.TicketNumbers.Count < create.TicketAmount)
         {
+            Console.WriteLine($"{Localization.Tickets_gescand} {create.TicketNumbers.Count} {Localization.Van_de} {create.TicketAmount}");
             var ticketNumber = UserInput.GetNumber(Localization.Scan_uw_ticket, min: 1);
             if (ticketNumber == null)
             {
