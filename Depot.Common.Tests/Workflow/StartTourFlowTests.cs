@@ -6,14 +6,14 @@ namespace Depot.Common.Tests.Workflow;
 [TestClass]
 public class StartTourFlowTests
 {
-    private DepotContext? depotContext;
+    private DepotContext depotContext = new DepotContext();
     private StartTourFlow? startTourFlow;
 
     [TestInitialize]
     public void TestInitialize()
     {
         // Arrange
-        depotContext = new DepotContext();
+        depotContext.Purge(); // BIG OOF
         depotContext.LoadContext();
         startTourFlow = new StartTourFlow(depotContext, 1);
     }
@@ -28,7 +28,7 @@ public class StartTourFlowTests
         Assert.IsTrue(valid);
         Assert.IsTrue(startTourFlow.Tour!.Departed);
     }
-    
+
     [DataRow(null, false, null)] // Ticketnumber is null
     [DataRow((long)2948105735, false, Localization.Rondleiding_Vol)] // Ticket is valid, but tour is full
     [DataRow(8105723946, true, Localization.Ticket_niet_in_reserveringen)] // Ticket can be added to non-full tour
