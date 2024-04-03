@@ -26,11 +26,11 @@ public class CreateToursFlow : Workflow
         return true;
     }
 
-    public bool SetBeginTime(TimeSpan? beginTime) => SetProperty(() => { BeginTime = beginTime; }, beginTime);
-    public bool SetEndTime(TimeSpan? endTime) => SetProperty(() => { EndTime = endTime; }, endTime);
-    public bool SetBeginDate(DateTime? beginDate) => SetProperty(() => { BeginDate = beginDate; }, beginDate);
-    public bool SetEndDate(DateTime? endDate) => SetProperty(() => { EndDate = endDate; }, endDate);
-    public bool SetInterval(int? interval) => SetProperty(() => { Interval = interval; }, interval);
+    public bool SetBeginTime(TimeSpan? beginTime) => SetProperty(() => BeginTime = beginTime, beginTime);
+    public bool SetEndTime(TimeSpan? endTime) => SetProperty(() => EndTime = endTime, endTime);
+    public bool SetBeginDate(DateTime? beginDate) => SetProperty(() => BeginDate = beginDate, beginDate);
+    public bool SetEndDate(DateTime? endDate) => SetProperty(() => EndDate = endDate, endDate);
+    public bool SetInterval(int? interval) => SetProperty(() => Interval = interval, interval);
 
     public bool SetBeginAndEndDateByDays(int daysInTheFuture)
     {
