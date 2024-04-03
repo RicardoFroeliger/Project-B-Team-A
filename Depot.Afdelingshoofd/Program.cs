@@ -92,10 +92,10 @@ class Program
 
     private static void ViewTours()
     {
-        var today = DateTime.Now;
+        var today = DateTime.Now.Date;
 
-        var todaysTours = depotContext.Tours.Where(t => t.Start > today)
-            .OrderBy(q => q.Start).Take(5).ToList();
+        var todaysTours = depotContext.Tours.Where(t => t.Start.Date == today)
+            .OrderBy(q => q.Start).ToList();
         foreach (var tour in todaysTours)
         {
             Console.WriteLine($"{Localization.Rondleiding_om} {tour.Start.ToString("HH:mm")}.");
