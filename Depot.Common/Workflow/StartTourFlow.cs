@@ -39,20 +39,21 @@ namespace Depot.Common.Workflow
 
             if (Tour!.RegisteredTickets.Contains(ticketNumber.Value))
             {
+                message = Localization.Ticket_bevestigd;
                 ConfirmedTickets.Add(ticketNumber.Value);
             }
             else if (Tour!.RegisteredTickets.Count < Globals.Maximum_places)
             {
                 message = Localization.Ticket_niet_in_reserveringen;
                 Tour!.RegisteredTickets.Add(ticketNumber.Value);
+                ConfirmedTickets.Add(ticketNumber.Value);
                 Context.SaveChanges();
             }
-
-            if (Tour!.RegisteredTickets.Count >= Globals.Maximum_places)
+            else if (Tour!.RegisteredTickets.Count >= Globals.Maximum_places)
             {
                 message = Localization.Rondleiding_Vol;
+                return false;
             }
-
             return true;
         }
 
