@@ -16,6 +16,8 @@ namespace Depot.DAL
         public const string GroupsPath = "Groups.json";
         public const string TicketsPath = "Tickets.json";
 
+        public bool IsLoaded { get; private set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseInMemoryDatabase(databaseName: "Depot");
@@ -31,11 +33,32 @@ namespace Depot.DAL
 
         public async void LoadContext()
         {
+            if (IsLoaded)
+            {
+                return;
+            }
+
             LoadJson(Users, UsersPath);
             LoadJson(Tours, ToursPath);
             LoadJson(Groups, GroupsPath);
             LoadJson(Tickets, TicketsPath);
+
+            IsLoaded = true;
+
             await SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Do not run this in production, this is for testing purposes only.
+        /// </summary>
+        public void Purge()
+        {
+            Users.RemoveRange(Users);
+            Tours.RemoveRange(Tours);
+            Groups.RemoveRange(Groups);
+            Tickets.RemoveRange(Tickets);
+
+            IsLoaded = false;
         }
 
         public override int SaveChanges()

@@ -64,6 +64,7 @@
         public const string Ticket_hoort_niet_bij_deze_rondleiding = "Dit ticket heeft geen reservering op deze rondleiding.";
         public const string Ticket_verwijderd = "Ticket verwijderd.";
         public const string Ticket_toegevoegd = "Ticket toegevoegd.";
+        public const string Ticket_bevestigd = "Ticked bevestigd.";
         public const string Ticket_al_geregistreerd = "Dit ticket is al geregistreerd voor een rondleiding.";
         public const string Alle_ticketnummers = "Alle ticketnummers:";
         public const string Start_Rondleiding = "Start deze rondleiding";
