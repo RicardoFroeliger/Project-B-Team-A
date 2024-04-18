@@ -2,6 +2,7 @@
 using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
+using Common.Services.Interfaces;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
@@ -14,34 +15,34 @@ namespace Kiosk_Spectre
         public static bool ShowMenu { get; set; } = true;
         public static Ticket? Ticket { get; set; }
         public static ServiceProvider ServiceProvider { get; set; }
-        public static LocalizationService Localization { get; set; }
-        public static TourService TourService { get; set; }
-        public static PromptService Prompts { get; set; }
-        public static SettingsService SettingsService { get; set; }
+        public static ILocalizationService Localization { get; set; }
+        public static ITourService TourService { get; set; }
+        public static IPromptService Prompts { get; set; }
+        public static ISettingsService SettingsService { get; set; }
 
         static void Main(string[] args)
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<DepotContext>()
-                .AddSingleton<LocalizationService>()
-                .AddSingleton<SettingsService>()
-                .AddSingleton<PromptService>()
-                .AddSingleton<TicketService>()
-                .AddSingleton<TourService>()
-                .AddSingleton<GroupService>()
-                .AddSingleton<UserService>()
+                .AddSingleton<ILocalizationService, LocalizationService>()
+                .AddSingleton<ISettingsService, SettingsService>()
+                .AddSingleton<IPromptService, PromptService>()
+                .AddSingleton<ITicketService, TicketService>()
+                .AddSingleton<ITourService, TourService>()
+                .AddSingleton<IGroupService, GroupService>()
+                .AddSingleton<IUserService, UserService>()
                 .AddTransient<CancelReservationFlow>()
                 .AddTransient<CreateReservationFlow>()
                 .AddTransient<ModifyReservationFlow>()
                 .BuildServiceProvider();
 
             // Get services
-            Localization = ServiceProvider.GetService<LocalizationService>()!;
-            Prompts = ServiceProvider.GetService<PromptService>()!;
-            TourService = ServiceProvider.GetService<TourService>()!;
-            SettingsService = ServiceProvider.GetService<SettingsService>()!;
-            var TicketService = ServiceProvider.GetService<TicketService>()!;
+            Localization = ServiceProvider.GetService<ILocalizationService>()!;
+            Prompts = ServiceProvider.GetService<IPromptService>()!;
+            TourService = ServiceProvider.GetService<ITourService>()!;
+            SettingsService = ServiceProvider.GetService<ISettingsService>()!;
+            var TicketService = ServiceProvider.GetService<ITicketService>()!;
 
             // Setup context
             ServiceProvider.GetService<DepotContext>()!.LoadContext();
@@ -104,7 +105,6 @@ namespace Kiosk_Spectre
 
         public static void TourReservation()
         {
-            var tourService = ServiceProvider.GetService<TourService>();
             var flow = ServiceProvider.GetService<CreateReservationFlow>()!;
 
             // Set ticket into flow

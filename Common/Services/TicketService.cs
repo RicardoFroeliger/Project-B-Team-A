@@ -1,14 +1,15 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
+using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class TicketService : BaseService
+    public class TicketService : BaseService, ITicketService
     {
-        public SettingsService Settings { get; }
-        private LocalizationService Localization { get; }
+        public ISettingsService Settings { get; }
+        private ILocalizationService Localization { get; }
 
-        public TicketService(DepotContext context, SettingsService settings, LocalizationService localization)
+        public TicketService(DepotContext context, ISettingsService settings, ILocalizationService localization)
             : base(context)
         {
             Localization = localization;
@@ -32,7 +33,5 @@ namespace Common.Services
         {
             return Context.Tickets.Find(ticketNumber);
         }
-
-
     }
 }

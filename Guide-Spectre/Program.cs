@@ -3,6 +3,7 @@ using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
+using Common.Services.Interfaces;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
@@ -16,30 +17,30 @@ namespace Guide_Spectre
         public static bool ShowSubMenu { get; set; } = false;
         public static User User { get; set; }
         public static ServiceProvider ServiceProvider { get; set; }
-        public static LocalizationService Localization { get; set; }
-        public static PromptService Prompts { get; set; }
+        public static ILocalizationService Localization { get; set; }
+        public static IPromptService Prompts { get; set; }
 
         static void Main(string[] args)
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<DepotContext>()
-                .AddSingleton<LocalizationService>()
-                .AddSingleton<SettingsService>()
-                .AddSingleton<PromptService>()
-                .AddSingleton<TicketService>()
-                .AddSingleton<TourService>()
-                .AddSingleton<GroupService>()
-                .AddSingleton<UserService>()
+                .AddSingleton<ILocalizationService, LocalizationService>()
+                .AddSingleton<ISettingsService, SettingsService>()
+                .AddSingleton<IPromptService, PromptService>()
+                .AddSingleton<ITicketService, TicketService>()
+                .AddSingleton<ITourService, TourService>()
+                .AddSingleton<IGroupService, GroupService>()
+                .AddSingleton<IUserService, UserService>()
                 .AddTransient<RemoveTicketTourGuideFlow>()
                 .AddTransient<AddTicketTourGuideFlow>()
                 .AddTransient<StartTourGuideFlow>()
                 .BuildServiceProvider();
 
             // Get services
-            Localization = ServiceProvider.GetService<LocalizationService>()!;
-            Prompts = ServiceProvider.GetService<PromptService>()!;
-            var userService = ServiceProvider.GetService<UserService>()!;
+            Localization = ServiceProvider.GetService<ILocalizationService>()!;
+            Prompts = ServiceProvider.GetService<IPromptService>()!;
+            var userService = ServiceProvider.GetService<IUserService>()!;
 
             // Setup context
             ServiceProvider.GetService<DepotContext>()!.LoadContext();
@@ -66,8 +67,8 @@ namespace Guide_Spectre
 
         public static NavigationChoice GuideMenu()
         {
-            var tourService = ServiceProvider.GetService<TourService>()!;
-            var settingsService = ServiceProvider.GetService<SettingsService>()!;
+            var tourService = ServiceProvider.GetService<ITourService>()!;
+            var settingsService = ServiceProvider.GetService<ISettingsService>()!;
 
             var options = new List<NavigationChoice>() { };
             var maxSpots = settingsService.GetValueAsInt("Max_capacity_per_tour")!.Value;
@@ -96,7 +97,7 @@ namespace Guide_Spectre
 
         public static NavigationChoice TourMenu(Tour tour)
         {
-            var settingsService = ServiceProvider.GetService<SettingsService>()!;
+            var settingsService = ServiceProvider.GetService<ISettingsService>()!;
             var maxSpots = settingsService.GetValueAsInt("Max_capacity_per_tour")!.Value;
 
             var ruleHeader = new Rule(Localization.Get("Guide_view_tour_title"));
@@ -181,7 +182,7 @@ namespace Guide_Spectre
         private static void GuideAddTicket(Tour tour)
         {
             AnsiConsole.Clear();
-            var settingsService = ServiceProvider.GetService<SettingsService>()!;
+            var settingsService = ServiceProvider.GetService<ISettingsService>()!;
             var flow = ServiceProvider.GetService<AddTicketTourGuideFlow>()!;
 
             // Set tour into flow
@@ -223,7 +224,7 @@ namespace Guide_Spectre
         private static void GuideStartTour(Tour tour)
         {
             AnsiConsole.Clear();
-            var settingsService = ServiceProvider.GetService<SettingsService>()!;
+            var settingsService = ServiceProvider.GetService<ISettingsService>()!;
             var flow = ServiceProvider.GetService<StartTourGuideFlow>()!;
 
             // Set tour into flow

@@ -1,17 +1,16 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
+using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class GroupService : BaseService
+    public class GroupService : BaseService, IGroupService
     {
-        public SettingsService Settings { get; }
-        private LocalizationService Localization { get; }
+        public ISettingsService Settings { get; }
 
-        public GroupService(DepotContext context, SettingsService settings, LocalizationService localization)
+        public GroupService(DepotContext context, ISettingsService settings)
             : base(context)
         {
-            Localization = localization;
             Settings = settings;
         }
 
@@ -22,13 +21,13 @@ namespace Common.Services
             return Context.Groups.FirstOrDefault(group => group.GroupTickets.Contains(ticketNumber));
         }
 
-        internal void DeleteGroup(Group group)
+        public void DeleteGroup(Group group)
         {
             Context.Groups.Remove(group);
             Context.SaveChanges();
         }
 
-        internal void AddGroup(Group group)
+        public void AddGroup(Group group)
         {
             Context.Groups.Add(group);
             Context.SaveChanges();

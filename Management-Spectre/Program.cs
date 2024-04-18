@@ -3,6 +3,7 @@ using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
+using Common.Services.Interfaces;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
@@ -14,30 +15,30 @@ namespace Management_Spectre
         public static bool Running { get; set; } = true;
         public static bool ShowMenu { get; set; } = true;
         public static User? User { get; set; }
-        public static ServiceProvider ServiceProvider { get; set; }
-        public static LocalizationService Localization { get; set; }
-        public static PromptService Prompts { get; set; }
+        public static IServiceProvider ServiceProvider { get; set; }
+        public static ILocalizationService Localization { get; set; }
+        public static IPromptService Prompts { get; set; }
 
         static void Main(string[] args)
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<DepotContext>()
-                .AddSingleton<LocalizationService>()
-                .AddSingleton<SettingsService>()
-                .AddSingleton<PromptService>()
-                .AddSingleton<TicketService>()
-                .AddSingleton<TourService>()
-                .AddSingleton<GroupService>()
-                .AddSingleton<UserService>()
+                .AddSingleton<ILocalizationService, LocalizationService>()
+                .AddSingleton<ISettingsService, SettingsService>()
+                .AddSingleton<IPromptService, PromptService>()
+                .AddSingleton<ITicketService, TicketService>()
+                .AddSingleton<ITourService, TourService>()
+                .AddSingleton<IGroupService, GroupService>()
+                .AddSingleton<IUserService, UserService>()
                 .AddTransient<CreateUserFlow>()
                 .AddTransient<CreateTourScheduleFlow>()
                 .BuildServiceProvider();
 
             // Get services
-            Localization = ServiceProvider.GetService<LocalizationService>()!;
-            Prompts = ServiceProvider.GetService<PromptService>()!;
-            var userService = ServiceProvider.GetService<UserService>()!;
+            Localization = ServiceProvider.GetService<ILocalizationService>()!;
+            Prompts = ServiceProvider.GetService<IPromptService>()!;
+            var userService = ServiceProvider.GetService<IUserService>()!;
 
             // Setup context
             ServiceProvider.GetService<DepotContext>()!.LoadContext();
@@ -77,7 +78,7 @@ namespace Management_Spectre
 
         private static void ViewUsers()
         {
-            var userService = ServiceProvider.GetService<UserService>()!;
+            var userService = ServiceProvider.GetService<IUserService>()!;
 
             var currentUsers = userService.GetAllUsers();
 
@@ -131,7 +132,7 @@ namespace Management_Spectre
 
         private static void ViewTours()
         {
-            var tourService = ServiceProvider.GetService<TourService>()!;
+            var tourService = ServiceProvider.GetService<ITourService>()!;
 
             var start = Prompts.AskDate("View_tour_start_date", "View_tour_more_dates");
             var end = Prompts.AskDate("Create_tour_flow_end_date", "Create_tour_flow_more_dates", startDate: start);
@@ -160,7 +161,7 @@ namespace Management_Spectre
 
         private static void PlanTour(DateTime? start = null, DateTime? end = null)
         {
-            var tourService = ServiceProvider.GetService<TourService>()!;
+            var tourService = ServiceProvider.GetService<ITourService>()!;
             var flow = ServiceProvider.GetService<CreateTourScheduleFlow>()!;
 
             if (!flow.SetDateSpan(start, end).Success)

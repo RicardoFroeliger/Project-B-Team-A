@@ -1,16 +1,17 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
+using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
     public class Workflow
     {
-        public LocalizationService Localization { get; }
+        public ILocalizationService Localization { get; }
         public DepotContext Context { get; }
-        public TicketService TicketService { get; }
+        public ITicketService TicketService { get; }
 
-        public Workflow(DepotContext context, LocalizationService localizationService, TicketService ticketService)
+        public Workflow(DepotContext context, ILocalizationService localizationService, ITicketService ticketService)
         {
             Context = context;
             Localization = localizationService;

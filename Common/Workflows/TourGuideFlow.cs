@@ -1,16 +1,17 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
+using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
     public class TourGuideFlow : Workflow
     {
-        public TourService TourService { get; set; }
+        public ITourService TourService { get; set; }
         public Tour? Tour { get; private set; }
         public Dictionary<int, bool> TicketBuffer { get; private set; } = new Dictionary<int, bool>();
 
-        public TourGuideFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService)
+        public TourGuideFlow(DepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService)
             : base(context, localizationService, ticketService)
         {
             TourService = tourService;

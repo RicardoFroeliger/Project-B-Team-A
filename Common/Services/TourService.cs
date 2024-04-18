@@ -1,17 +1,16 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
+using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class TourService : BaseService
+    public class TourService : BaseService, ITourService
     {
-        public SettingsService Settings { get; }
-        private LocalizationService Localization { get; }
+        public ISettingsService Settings { get; }
 
-        public TourService(DepotContext context, SettingsService settings, LocalizationService localization)
+        public TourService(DepotContext context, ISettingsService settings)
             : base(context)
         {
-            Localization = localization;
             Settings = settings;
         }
 

@@ -2,20 +2,21 @@
 using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
+using Common.Services.Interfaces;
 using Spectre.Console;
 
 namespace Common.Services
 {
-    public class PromptService : BaseService
+    public class PromptService : BaseService, IPromptService
     {
-        public SettingsService Settings { get; }
-        public LocalizationService Localization { get; }
-        public TicketService TicketService { get; }
-        public TourService TourService { get; }
-        public UserService UserService { get; }
+        public ISettingsService Settings { get; }
+        public ILocalizationService Localization { get; }
+        public ITicketService TicketService { get; }
+        public ITourService TourService { get; }
+        public IUserService UserService { get; }
 
-        public PromptService(DepotContext context, SettingsService settings, LocalizationService localizationService,
-            TicketService ticketService, TourService tourService, UserService userService)
+        public PromptService(DepotContext context, ISettingsService settings, ILocalizationService localizationService,
+            ITicketService ticketService, ITourService tourService, IUserService userService)
             : base(context)
         {
             Localization = localizationService;

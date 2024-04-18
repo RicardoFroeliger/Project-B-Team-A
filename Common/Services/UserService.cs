@@ -1,15 +1,16 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
+using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class UserService : BaseService
+    public class UserService : BaseService, IUserService
     {
-        public SettingsService Settings { get; }
-        private LocalizationService Localization { get; }
+        public ISettingsService Settings { get; }
+        private ILocalizationService Localization { get; }
 
-        public UserService(DepotContext context, SettingsService settings, LocalizationService localization)
+        public UserService(DepotContext context, ISettingsService settings, ILocalizationService localization)
             : base(context)
         {
             Localization = localization;

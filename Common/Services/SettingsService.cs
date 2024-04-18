@@ -1,8 +1,9 @@
 ﻿using Common.DAL;
+using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class SettingsService : BaseService
+    public class SettingsService : BaseService, ISettingsService
     {
         public SettingsService(DepotContext context) : base(context) { }
 
