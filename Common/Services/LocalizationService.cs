@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using Common.DAL;
+﻿using Common.DAL;
 using Common.DAL.Models;
 
 namespace Common.Services
@@ -47,7 +40,7 @@ namespace Common.Services
             }
 
             if (stringValue.Contains(locale))
-                stringValue = $"Id: {translation.Id} | {stringValue}"; 
+                stringValue = $"Id: {translation.Id} | {stringValue}";
 
             return stringValue;
         }

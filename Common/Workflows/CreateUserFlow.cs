@@ -2,13 +2,6 @@
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Workflows
 {
@@ -18,7 +11,7 @@ namespace Common.Workflows
         private string Username { get; set; }
         private Role Role { get; set; }
 
-        public CreateUserFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, UserService userService) 
+        public CreateUserFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, UserService userService)
             : base(context, localizationService, ticketService)
         {
             UserService = userService;

@@ -1,11 +1,11 @@
-﻿using Common.DAL;
+﻿using Common.Choices;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Choices;
+using Common.Enums;
 using Common.Services;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
-using Common.Enums;
 
 namespace Management_Spectre
 {
@@ -141,7 +141,7 @@ namespace Management_Spectre
             var currentPlanningTable = new Table();
             currentPlanningTable.AddColumn(Localization.Get("View_tour_date_column"));
             currentPlanningTable.AddColumn(Localization.Get("View_tour_time_column"));
-            
+
             foreach (var (date, tours) in currentPlanning)
                 currentPlanningTable.AddRow($"[green]{date.ToString("dd/MM/yyyy")}[/]", string.Join(", ", tours.Select(tour => $"[blue]{tour.Start.ToString("hh\\:mm")}[/]")));
 

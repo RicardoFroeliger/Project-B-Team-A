@@ -1,6 +1,6 @@
-﻿using Common.DAL;
+﻿using Common.Choices;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Choices;
 using Common.Services;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
@@ -193,7 +193,7 @@ namespace Kiosk_Spectre
 
             // Choose a tour
             var tour = Prompts.AskTour("Modification_flow_ask_tour", "Modification_flow_more_tours", flow.Group!.GroupTickets.Count);
-            
+
             var setTourResult = flow.SetTour(tour);
             if (!setTourResult.Success)
             {

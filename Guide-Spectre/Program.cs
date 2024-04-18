@@ -1,11 +1,11 @@
-﻿using Common.DAL;
+﻿using Common.Choices;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Choices;
+using Common.Enums;
 using Common.Services;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
-using Common.Enums;
 
 namespace Guide_Spectre
 {

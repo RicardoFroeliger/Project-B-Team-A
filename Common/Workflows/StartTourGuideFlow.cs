@@ -1,13 +1,6 @@
 ﻿using Common.DAL;
-using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Workflows
 {
@@ -32,7 +25,7 @@ namespace Common.Workflows
                 return validation;
 
             if (!Tour!.RegisteredTickets.Contains(ticketNumber) && !extra)
-                    return (false, Localization.Get("Flow_ticket_not_in_tour"));
+                return (false, Localization.Get("Flow_ticket_not_in_tour"));
 
             if (TicketBuffer.Keys.ToList().Contains(ticketNumber))
                 return (false, Localization.Get("Flow_ticket_already_added_to_list"));

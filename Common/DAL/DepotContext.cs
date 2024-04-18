@@ -1,7 +1,6 @@
-﻿using System.Text.Json;
-using Common.DAL.Models;
-using Common.Services;
+﻿using Common.DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace Common.DAL
 {
@@ -40,7 +39,7 @@ namespace Common.DAL
 
         public async void LoadContext()
         {
-            if(_isLoaded) return;
+            if (_isLoaded) return;
 
             LoadJson(Users, UsersPath);
             LoadJson(Tours, ToursPath);

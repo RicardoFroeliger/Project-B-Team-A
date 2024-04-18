@@ -8,7 +8,7 @@ namespace Common.Services
         public SettingsService Settings { get; }
         private LocalizationService Localization { get; }
 
-        public TicketService(DepotContext context, SettingsService settings, LocalizationService localization) 
+        public TicketService(DepotContext context, SettingsService settings, LocalizationService localization)
             : base(context)
         {
             Localization = localization;

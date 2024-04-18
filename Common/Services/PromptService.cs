@@ -1,14 +1,8 @@
-﻿using Common.DAL;
+﻿using Common.Choices;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Choices;
-using Common.Services;
-using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Enums;
+using Spectre.Console;
 
 namespace Common.Services
 {
@@ -186,7 +180,8 @@ namespace Common.Services
                 new TextPrompt<string>(Localization.Get("Ask_username"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_username"))
-                    .Validate(username =>{
+                    .Validate(username =>
+                    {
                         return ValidationResult.Success();
                     }));
         }

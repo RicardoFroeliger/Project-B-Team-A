@@ -1,13 +1,6 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Workflows
 {
@@ -16,7 +9,7 @@ namespace Common.Workflows
         private SettingsService SettingsService { get; }
         private GroupService GroupService { get; }
 
-        public AddTicketTourGuideFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService, SettingsService settingsService, GroupService groupService) 
+        public AddTicketTourGuideFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService, SettingsService settingsService, GroupService groupService)
             : base(context, localizationService, ticketService, tourService)
         {
             SettingsService = settingsService;

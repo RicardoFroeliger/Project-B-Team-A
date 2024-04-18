@@ -1,13 +1,6 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Common.Workflows
 {
@@ -59,9 +52,10 @@ namespace Common.Workflows
 
         public override (bool Succeeded, string Message) Commit()
         {
-            var group = new Group() { 
-                GroupOwnerId = GroupTickets.First().Id, 
-                GroupTickets = GroupTickets.Select(t => t.Id).ToList() 
+            var group = new Group()
+            {
+                GroupOwnerId = GroupTickets.First().Id,
+                GroupTickets = GroupTickets.Select(t => t.Id).ToList()
             };
 
             Context.Groups.Add(group);

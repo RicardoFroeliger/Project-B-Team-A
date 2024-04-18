@@ -1,13 +1,6 @@
 ﻿using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Workflows
 {
@@ -109,8 +102,8 @@ namespace Common.Workflows
                         planning.Add(new Tour() { Start = date.Add(time), RegisteredTickets = new List<int>() });
             else
                 return (false, Localization.Get("Flow_no_planning_to_commit"));
-            
-            if(ToursToDispose.Any())
+
+            if (ToursToDispose.Any())
                 Context.Tours.RemoveRange(ToursToDispose);
 
             Context.Tours.AddRange(planning);

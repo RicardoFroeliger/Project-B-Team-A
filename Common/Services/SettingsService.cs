@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.DAL;
+﻿using Common.DAL;
 
 namespace Common.Services
 {
@@ -19,6 +14,6 @@ namespace Common.Services
         public string? GetValue(string setting)
         {
             return Context.Settings.FirstOrDefault(s => s.Key == setting)?.Value;
-        }   
+        }
     }
 }
