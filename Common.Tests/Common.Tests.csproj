@@ -10,17 +10,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Choices\**" />
+    <Compile Remove="DAL\**" />
+    <Compile Remove="Enums\**" />
+    <Compile Remove="Json\**" />
+    <EmbeddedResource Remove="Choices\**" />
+    <EmbeddedResource Remove="DAL\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="Json\**" />
+    <None Remove="Choices\**" />
+    <None Remove="DAL\**" />
+    <None Remove="Enums\**" />
+    <None Remove="Json\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
     <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Json\" />
-    <Folder Include="Enums\" />
-    <Folder Include="DAL\" />
-    <Folder Include="Choices\" />
   </ItemGroup>
 
 </Project>
