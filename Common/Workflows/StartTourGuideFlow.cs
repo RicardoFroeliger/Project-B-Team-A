@@ -1,17 +1,19 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.Enums;
 using Common.Services;
+using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
     public class StartTourGuideFlow : TourGuideFlow
     {
-        private SettingsService SettingsService { get; }
-        private UserService UserService { get; }
+        private ISettingsService SettingsService { get; }
+        private IUserService UserService { get; }
         public FlowStep Step { get; set; } = FlowStep.ScanRegistration;
         public int GuideId { get; private set; }
 
-        public StartTourGuideFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService, SettingsService settingsService, UserService userService)
+        public StartTourGuideFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, ISettingsService settingsService, IUserService userService)
             : base(context, localizationService, ticketService, tourService)
         {
             SettingsService = settingsService;

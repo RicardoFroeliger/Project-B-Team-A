@@ -1,4 +1,5 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
 
@@ -9,7 +10,7 @@ namespace Common.Workflows
         public List<Ticket> GroupTickets { get; } = new List<Ticket>();
         public Tour? Tour { get; private set; }
 
-        public CreateReservationFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService)
+        public CreateReservationFlow(IDepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService)
             : base(context, localizationService, ticketService, tourService)
         {
         }

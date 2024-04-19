@@ -1,4 +1,5 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
 
@@ -16,7 +17,7 @@ namespace Common.Workflows
         private List<Tour> ToursToDispose { get; set; } = new List<Tour>();
         private bool Regenerate { get; set; } = true;
 
-        public CreateTourScheduleFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, SettingsService settingsService)
+        public CreateTourScheduleFlow(IDepotContext context, LocalizationService localizationService, TicketService ticketService, SettingsService settingsService)
             : base(context, localizationService, ticketService)
         {
             SettingsService = settingsService;

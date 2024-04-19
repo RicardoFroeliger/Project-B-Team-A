@@ -1,14 +1,16 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
+using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
     public class RemoveTicketTourGuideFlow : TourGuideFlow
     {
-        private GroupService GroupService { get; }
+        private IGroupService GroupService { get; }
 
-        public RemoveTicketTourGuideFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, TourService tourService, GroupService groupService)
+        public RemoveTicketTourGuideFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, IGroupService groupService)
             : base(context, localizationService, ticketService, tourService)
         {
             GroupService = groupService;

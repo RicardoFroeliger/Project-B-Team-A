@@ -1,17 +1,19 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
+using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
     public class CreateUserFlow : Workflow
     {
-        private UserService UserService { get; }
+        private IUserService UserService { get; }
         private string Username { get; set; }
         private Role Role { get; set; }
 
-        public CreateUserFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService, UserService userService)
+        public CreateUserFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, IUserService userService)
             : base(context, localizationService, ticketService)
         {
             UserService = userService;

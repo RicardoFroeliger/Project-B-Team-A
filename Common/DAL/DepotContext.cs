@@ -1,10 +1,11 @@
-﻿using Common.DAL.Models;
+﻿using Common.DAL.Interfaces;
+using Common.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace Common.DAL
 {
-    public class DepotContext : DbContext
+    public class DepotContext : DbContext, IDepotContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Tour> Tours { get; set; }
@@ -71,6 +72,11 @@ namespace Common.DAL
         }
 
         public override int SaveChanges()
+        {
+            return SaveLocalChanges();
+        }
+
+        public int SaveLocalChanges()
         {
             int changes = base.SaveChanges();
 

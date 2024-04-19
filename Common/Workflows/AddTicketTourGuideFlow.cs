@@ -1,4 +1,5 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
 using Common.Services.Interfaces;
@@ -10,7 +11,7 @@ namespace Common.Workflows
         private ISettingsService SettingsService { get; }
         private IGroupService GroupService { get; }
 
-        public AddTicketTourGuideFlow(DepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, ISettingsService settingsService, IGroupService groupService)
+        public AddTicketTourGuideFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, ISettingsService settingsService, IGroupService groupService)
             : base(context, localizationService, ticketService, tourService)
         {
             SettingsService = settingsService;

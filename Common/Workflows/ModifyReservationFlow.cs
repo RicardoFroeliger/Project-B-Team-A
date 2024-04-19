@@ -1,18 +1,20 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
+using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
     public class ModifyReservationFlow : ReservationFlow
     {
-        private GroupService GroupService { get; }
+        private IGroupService GroupService { get; }
         public Tour? Tour { get; private set; }
         public Tour? NewTour { get; private set; }
         public Group? Group { get; private set; }
 
-        public ModifyReservationFlow(DepotContext context, LocalizationService localizationService, TicketService ticketService,
-            TourService tourService, GroupService groupService)
+        public ModifyReservationFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService,
+            ITourService tourService, IGroupService groupService)
             : base(context, localizationService, ticketService, tourService)
         {
             GroupService = groupService;

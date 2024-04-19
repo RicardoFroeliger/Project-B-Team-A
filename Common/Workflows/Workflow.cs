@@ -1,4 +1,5 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
 using Common.Services.Interfaces;
@@ -8,10 +9,10 @@ namespace Common.Workflows
     public class Workflow
     {
         public ILocalizationService Localization { get; }
-        public DepotContext Context { get; }
+        public IDepotContext Context { get; }
         public ITicketService TicketService { get; }
 
-        public Workflow(DepotContext context, ILocalizationService localizationService, ITicketService ticketService)
+        public Workflow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService)
         {
             Context = context;
             Localization = localizationService;
@@ -20,7 +21,7 @@ namespace Common.Workflows
 
         public virtual (bool Succeeded, string Message) Commit()
         {
-            Context.SaveChanges();
+            Context.SaveLocalChanges();
 
             return (true, Localization.Get("Commit_successful"));
         }

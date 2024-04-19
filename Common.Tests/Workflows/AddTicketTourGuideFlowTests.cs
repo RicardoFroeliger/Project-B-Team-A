@@ -1,4 +1,5 @@
 using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
 using Common.Services.Interfaces;
@@ -10,7 +11,7 @@ namespace Common.Tests.Workflows
     [TestClass]
     public class AddTicketTourGuideFlowTests
     {
-        private Mock<DepotContext> _contextMock;
+        private Mock<IDepotContext> _contextMock;
         private Mock<ILocalizationService> _localizationServiceMock;
         private Mock<ITicketService> _ticketServiceMock;
         private Mock<ITourService> _tourServiceMock;
@@ -21,7 +22,7 @@ namespace Common.Tests.Workflows
         [TestInitialize]
         public void TestInitialize()
         {
-            _contextMock = new Mock<DepotContext>();
+            _contextMock = new Mock<IDepotContext>();
             _settingsServiceMock = new Mock<ISettingsService>();
             _localizationServiceMock = new Mock<ILocalizationService>();
             _ticketServiceMock = new Mock<ITicketService>();
@@ -46,6 +47,7 @@ namespace Common.Tests.Workflows
             // Set up mocks for dependencies  
             _ticketServiceMock.Setup(x => x.GetTicket(testTicketNumber))
                 .Returns(new Ticket() { Id = testTicketNumber, ValidOn = DateTime.Today });
+
             _ticketServiceMock.Setup(x => x.ValidateTicketNumber(testTicketNumber))
                 .Returns((true, ""));
 
@@ -55,19 +57,28 @@ namespace Common.Tests.Workflows
             _settingsServiceMock.Setup(x => x.GetValueAsInt("Max_capacity_per_tour"))
                 .Returns(13);
 
+            _contextMock.Setup(x => x.SaveLocalChanges()).Returns(1);
+
             // Assume that Localization.Get always returns a valid message  
             _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))
                 .Returns("Test message");
 
             // Act  
-            _addTicketTourGuideFlow.SetTour(new Tour() { });
-            var result = _addTicketTourGuideFlow.AddTicket(testTicketNumber);
+            var addTour = _addTicketTourGuideFlow.SetTour(new Tour() { });
+            var addTicket = _addTicketTourGuideFlow.AddTicket(testTicketNumber);
+            var beforeTicketBuffer = _addTicketTourGuideFlow.TicketBuffer.ToList();
+            var commit = _addTicketTourGuideFlow.Commit();
+            var afterTicketBuffer = _addTicketTourGuideFlow.TicketBuffer.ToList();
 
             // Assert  
             // Since we've set up the mocks to return values indicating a valid ticket,  
             // the method should return success  
-            Assert.IsTrue(result.Success);
-            Assert.IsTrue(_addTicketTourGuideFlow.TicketBuffer.Count == 1);
+            Assert.IsTrue(addTour.Success);
+            Assert.IsTrue(addTicket.Success);
+            Assert.IsTrue(beforeTicketBuffer.Count == 1);
+            Assert.IsTrue(commit.Succeeded);
+            Assert.IsTrue(afterTicketBuffer.Count == 0);
+            Assert.IsTrue(_addTicketTourGuideFlow.Tour!.RegisteredTickets.Count == 1);
         }
     }
 }
