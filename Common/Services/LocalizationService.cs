@@ -7,12 +7,9 @@ namespace Common.Services
 {
     public class LocalizationService : BaseService, ILocalizationService
     {
-        public ISettingsService Settings { get; }
-
-        public LocalizationService(IDepotContext context, ISettingsService settings)
+        public LocalizationService(IDepotContext context)
             : base(context)
         {
-            Settings = settings;
         }
 
         public string Get(string key, string locale = "nl-NL", List<string>? replacementStrings = null)
