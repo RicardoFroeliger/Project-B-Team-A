@@ -1,7 +1,7 @@
 namespace Common.Tests.Workflows
 {
     [TestClass]
-    public class CreateReservationFlowTests
+    public class CancelReservationFlowTests
     {
         [TestMethod]
         public void TestMethod1()
