@@ -1,4 +1,4 @@
-﻿using Common.DAL;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services.Interfaces;
 
@@ -8,7 +8,7 @@ namespace Common.Services
     {
         public ISettingsService Settings { get; }
 
-        public GroupService(DepotContext context, ISettingsService settings)
+        public GroupService(IDepotContext context, ISettingsService settings)
             : base(context)
         {
             Settings = settings;
@@ -24,13 +24,13 @@ namespace Common.Services
         public void DeleteGroup(Group group)
         {
             Context.Groups.Remove(group);
-            Context.SaveChanges();
+            Context.SaveLocalChanges();
         }
 
         public void AddGroup(Group group)
         {
             Context.Groups.Add(group);
-            Context.SaveChanges();
+            Context.SaveLocalChanges();
         }
     }
 }

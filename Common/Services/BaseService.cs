@@ -1,12 +1,13 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 
 namespace Common.Services
 {
     public class BaseService
     {
-        public DepotContext Context { get; }
+        public IDepotContext Context { get; }
 
-        public BaseService(DepotContext context)
+        public BaseService(IDepotContext context)
         {
             Context = context;
         }
