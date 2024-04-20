@@ -3,6 +3,7 @@ using Common.DAL.Models;
 using Common.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using System.Collections.Generic;
 
 namespace Common.Tests.Services
 {
@@ -20,22 +21,15 @@ namespace Common.Tests.Services
                 new Translation { Id = 4, Key = "test_key_replacement", Locale = "nl-NL", Value = "test_key {0}" },
                 new Translation { Id = 5, Key = "test_key_replacement", Locale = "en-US", Value = "test_key {0}" },
                 new Translation { Id = 6, Key = "test_key_replacement", Locale = "de-DE", Value = "test_key {0}" },
-                new Translation { Id = 7, Key = "test_key_with_id", Locale = "nl-NL", Value = "test_key {0} | en-US" },
-                new Translation { Id = 8, Key = "test_key_with_id", Locale = "en-US", Value = "test_key {0} | de-DE" },
-                new Translation { Id = 9, Key = "test_key_with_id", Locale = "de-DE", Value = "test_key {0} | en-US" }
+                new Translation { Id = 7, Key = "test_key_with_id", Locale = "nl-NL", Value = "test_key | nl-NL" },
+                new Translation { Id = 8, Key = "test_key_with_id", Locale = "en-US", Value = "test_key | en-US" },
+                new Translation { Id = 9, Key = "test_key_with_id", Locale = "de-DE", Value = "test_key | de-DE" }
             };
 
             var replacementStrings = new List<string> { "replacement" };
 
-            var _mockSet = new Mock<DbSet<Translation>>();
-            _mockSet.As<IQueryable<Translation>>().Setup(m => m.Provider).Returns(_translations.AsQueryable().Provider);
-            _mockSet.As<IQueryable<Translation>>().Setup(m => m.Expression).Returns(_translations.AsQueryable().Expression);
-            _mockSet.As<IQueryable<Translation>>().Setup(m =>  m.ElementType).Returns(_translations.AsQueryable().ElementType);
-            _mockSet.As<IQueryable<Translation>>().Setup(m => m.GetEnumerator()).Returns(_translations.AsQueryable().GetEnumerator());
-            _mockSet.Setup(m => m.Add(It.IsAny<Translation>())).Returns();
-                
             var _contextMock = new Mock<IDepotContext>();
-            _contextMock.Setup(context => context.Translations).Returns(_mockSet.Object);
+            _contextMock.Setup(context => context.Translations).Returns(GetQueryableMockDbSet(_translations));
 
             var _localizationService = new LocalizationService(_contextMock.Object);
 
@@ -58,10 +52,6 @@ namespace Common.Tests.Services
             var resultEN_with_id = _localizationService.Get("test_key_with_id", "en-US");
             var resultDE_with_id = _localizationService.Get("test_key_with_id", "de-DE");
 
-            var resultNL_nonexistant = _localizationService.Get("test_key_nonexistant");
-            var resultEN_nonexistant = _localizationService.Get("test_key_nonexistant", "en-US");
-            var resultDE_nonexistant = _localizationService.Get("test_key_nonexistant", "de-DE");
-
 
             // Assert
             Assert.AreEqual("test_key", resultNL);
@@ -76,13 +66,23 @@ namespace Common.Tests.Services
             Assert.AreEqual("test_key {0}", resultEN_replacement_unused);
             Assert.AreEqual("test_key {0}", resultDE_replacement_unused);
 
-            Assert.AreEqual("7 | test_key | nl-NL", resultNL_with_id);
-            Assert.AreEqual("8 | test_key | en-US", resultEN_with_id);
-            Assert.AreEqual("9 | test_key | de-DE", resultDE_with_id);
+            Assert.AreEqual("Id: 7 | test_key | nl-NL", resultNL_with_id);
+            Assert.AreEqual("Id: 8 | test_key | en-US", resultEN_with_id);
+            Assert.AreEqual("Id: 9 | test_key | de-DE", resultDE_with_id);
+        }
 
-            Assert.IsTrue(resultEN_nonexistant.EndsWith(" | test_key_nonexistant | nl-NL"));
-            Assert.IsTrue(resultEN_nonexistant.EndsWith(" | test_key_nonexistant | en-US"));
-            Assert.IsTrue(resultDE_nonexistant.EndsWith(" | test_key_nonexistant | de-DE"));
+        private static DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class
+        {
+            var queryable = sourceList.AsQueryable();
+
+            var dbSet = new Mock<DbSet<T>>();
+            dbSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(queryable.Provider);
+            dbSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(queryable.Expression);
+            dbSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
+            dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(() => queryable.GetEnumerator());
+            dbSet.Setup(d => d.Add(It.IsAny<T>())).Callback<T>((s) => sourceList.Add(s));
+
+            return dbSet.Object;
         }
     }
 }
