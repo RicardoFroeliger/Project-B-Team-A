@@ -6,5 +6,6 @@
         public List<int> RegisteredTickets { get; set; } = new List<int>();
         public bool Departed { get; set; } = false;
         public int GuideId { get; set; } = 0;
+        public int PlannedGuideId { get; set; } = 0;
     }
 }
