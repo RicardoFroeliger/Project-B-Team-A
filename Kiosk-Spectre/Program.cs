@@ -10,7 +10,7 @@ using Spectre.Console;
 
 namespace Kiosk_Spectre
 {
-    internal class Program
+    public static class Program
     {
         public static bool Running { get; set; } = true;
         public static bool ShowMenu { get; set; } = true;
@@ -21,7 +21,7 @@ namespace Kiosk_Spectre
         public static IPromptService Prompts { get; set; }
         public static ISettingsService SettingsService { get; set; }
 
-        static void Main(string[] args)
+        public static void Main()
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
@@ -73,6 +73,7 @@ namespace Kiosk_Spectre
             var options = new List<NavigationChoice>() {
                 new(Localization.Get("Kiosk_reservation"), TourReservation),
                 new(Localization.Get("Kiosk_close"), () => { CloseMenu(); }),
+                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
             };
 
             // Menu for reservation
@@ -85,6 +86,7 @@ namespace Kiosk_Spectre
                 new(Localization.Get("Kiosk_modification"), TourModification),
                 new(Localization.Get("Kiosk_cancellation"), TourCancellation),
                 new(Localization.Get("Kiosk_close"), () => { CloseMenu(); }),
+                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
             };
 
             // Menu for modification of a reservation

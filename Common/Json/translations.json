@@ -802,5 +802,11 @@
     "Value": "Wilt u de gebruiker [green]definitief aanmaken[/]?",
     "Locale": "nl-NL",
     "Id": 134
+  },
+  {
+    "Key": "Global_exit",
+    "Value": "[bold red]Programma sluiten[/]",
+    "Locale": "nl-NL",
+    "Id": 135
   }
 ]

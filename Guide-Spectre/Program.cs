@@ -11,7 +11,7 @@ using Spectre.Console;
 
 namespace Guide_Spectre
 {
-    internal class Program
+    public static class Program
     {
         public static bool Running { get; set; } = true;
         public static bool ShowMenu { get; set; } = false;
@@ -21,7 +21,7 @@ namespace Guide_Spectre
         public static ILocalizationService Localization { get; set; }
         public static IPromptService Prompts { get; set; }
 
-        static void Main(string[] args)
+        public static void Main()
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
@@ -92,6 +92,7 @@ namespace Guide_Spectre
             }
 
             options.Add(new(Localization.Get("Guide_close"), () => { CloseMenu(); }));
+            options.Add(new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }));
 
             return Prompts.GetMenu("Guide_title", "Guide_menu_more_options", options, User);
         }
