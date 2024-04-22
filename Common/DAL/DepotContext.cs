@@ -32,6 +32,7 @@ namespace Common.DAL
         {
             modelBuilder.Entity<User>().HasKey(b => b.Id);
             modelBuilder.Entity<Ticket>().HasKey(b => b.Id);
+            modelBuilder.Entity<Schedule>().HasKey(b => b.Id);
             modelBuilder.Entity<Tour>().HasKey(b => b.Id);
             modelBuilder.Entity<Group>().HasKey(b => b.Id);
             modelBuilder.Entity<Translation>().HasKey(b => b.Id);

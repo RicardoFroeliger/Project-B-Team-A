@@ -1,4 +1,5 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services.Interfaces;
 
@@ -8,7 +9,7 @@ namespace Common.Services
     {
         public ISettingsService Settings { get; }
 
-        public TourService(DepotContext context, ISettingsService settings)
+        public TourService(IDepotContext context, ISettingsService settings)
             : base(context)
         {
             Settings = settings;

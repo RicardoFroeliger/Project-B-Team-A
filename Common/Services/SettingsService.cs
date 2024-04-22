@@ -1,11 +1,12 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.Services.Interfaces;
 
 namespace Common.Services
 {
     public class SettingsService : BaseService, ISettingsService
     {
-        public SettingsService(DepotContext context) : base(context) { }
+        public SettingsService(IDepotContext context) : base(context) { }
 
         public int? GetValueAsInt(string setting)
         {

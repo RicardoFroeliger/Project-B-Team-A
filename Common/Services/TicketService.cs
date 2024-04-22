@@ -1,4 +1,5 @@
 ﻿using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services.Interfaces;
 
@@ -9,7 +10,7 @@ namespace Common.Services
         public ISettingsService Settings { get; }
         private ILocalizationService Localization { get; }
 
-        public TicketService(DepotContext context, ISettingsService settings, ILocalizationService localization)
+        public TicketService(IDepotContext context, ISettingsService settings, ILocalizationService localization)
             : base(context)
         {
             Localization = localization;

@@ -1,5 +1,6 @@
 ﻿using Common.Choices;
 using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
@@ -23,7 +24,7 @@ namespace Management_Spectre
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
-                .AddSingleton<DepotContext>()
+                .AddSingleton<IDepotContext, DepotContext>()
                 .AddSingleton<ILocalizationService, LocalizationService>()
                 .AddSingleton<ISettingsService, SettingsService>()
                 .AddSingleton<IPromptService, PromptService>()
@@ -41,7 +42,7 @@ namespace Management_Spectre
             var userService = ServiceProvider.GetService<IUserService>()!;
 
             // Setup context
-            ServiceProvider.GetService<DepotContext>()!.LoadContext();
+            ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).LoadContext();
 
             // Menu loop
             while (Running)

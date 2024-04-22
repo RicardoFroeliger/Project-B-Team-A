@@ -1,5 +1,6 @@
 ﻿using Common.Choices;
 using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services.Interfaces;
@@ -15,7 +16,7 @@ namespace Common.Services
         public ITourService TourService { get; }
         public IUserService UserService { get; }
 
-        public PromptService(DepotContext context, ISettingsService settings, ILocalizationService localizationService,
+        public PromptService(IDepotContext context, ISettingsService settings, ILocalizationService localizationService,
             ITicketService ticketService, ITourService tourService, IUserService userService)
             : base(context)
         {

@@ -1,5 +1,6 @@
 ﻿using Common.Choices;
 using Common.DAL;
+using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services;
 using Common.Services.Interfaces;
@@ -24,7 +25,7 @@ namespace Kiosk_Spectre
         {
             // Setup services
             ServiceProvider = new ServiceCollection()
-                .AddSingleton<DepotContext>()
+                .AddSingleton<IDepotContext, DepotContext>()
                 .AddSingleton<ILocalizationService, LocalizationService>()
                 .AddSingleton<ISettingsService, SettingsService>()
                 .AddSingleton<IPromptService, PromptService>()
@@ -45,7 +46,7 @@ namespace Kiosk_Spectre
             var TicketService = ServiceProvider.GetService<ITicketService>()!;
 
             // Setup context
-            ServiceProvider.GetService<DepotContext>()!.LoadContext();
+            ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).LoadContext();
 
             // Menu loop
             while (Running)
