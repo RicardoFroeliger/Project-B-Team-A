@@ -115,7 +115,7 @@ namespace Common.Services
         {
             var minutes = startTime;
             var timeChoices = new List<TimeChoice>();
-            while (minutes < 1440)
+            while (minutes <= 1440)
             {
                 minutes = Math.Min(1440, minutes);
                 timeChoices.Add(new TimeChoice(new TimeSpan(0, minutes, 0)));
@@ -151,7 +151,7 @@ namespace Common.Services
             int maxCapacity = Settings.GetValueAsInt("Max_capacity_per_tour")!.Value;
 
             var tourChoices = TourService.GetToursForToday(minimumCapacity, recentTours, upcomingTours)
-                .Select(tour => new TourChoice(Localization.Get("Select_tour_item", replacementStrings: new() { tour.Start.ToString("HH:mm"), $"({tour.RegisteredTickets.Count}/{maxCapacity})[/]" }), tour));
+                .Select(tour => new TourChoice(Localization.Get("Select_tour_item", replacementStrings: new() { tour.Start.ToString("HH:mm"), $"[green]({tour.RegisteredTickets.Count}/{maxCapacity})[/]" }), tour));
 
             var choice = AnsiConsole.Prompt(
                 new SelectionPrompt<TourChoice>()

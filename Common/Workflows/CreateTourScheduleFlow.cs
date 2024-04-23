@@ -77,7 +77,7 @@ namespace Common.Workflows
             {
                 var times = new List<TimeSpan>();
 
-                for (var time = StartTime; time.Add(TimeSpan.FromMinutes(SettingsService.GetValueAsInt("Tour_duration")!.Value)) < EndTime; time = time.Add(TimeSpan.FromMinutes(Interval)))
+                for (var time = StartTime; time.Add(TimeSpan.FromMinutes(SettingsService.GetValueAsInt("Tour_duration")!.Value)) <= EndTime; time = time.Add(TimeSpan.FromMinutes(Interval)))
                     times.Add(time);
 
                 Planning.Add(date, times);
