@@ -54,8 +54,7 @@ namespace Guide_Spectre
                 User = userService.GetUser(userpass)!;
                 AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
 
-                if (hasAccess.Valid)
-                    ShowMenu = true;
+                ShowMenu = hasAccess.Valid;
 
                 while (ShowMenu)
                     GuideMenu().NavigationAction();

@@ -52,8 +52,7 @@ namespace Management_Spectre
                 User = userService.GetUser(userpass)!;
                 AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
 
-                if (hasAccess.Valid)
-                    ShowMenu = true;
+                ShowMenu = hasAccess.Valid;
 
                 while (ShowMenu)
                     ManagementMenu().NavigationAction();
@@ -64,24 +63,13 @@ namespace Management_Spectre
 
         public static NavigationChoice ManagementMenu()
         {
-            var options = new List<NavigationChoice>() {
-                new(Localization.Get("Management_plan_tours_today"), () => { PlanTour(DateTime.Today); }),
-                new(Localization.Get("Management_plan_tours_tomorrow"), () => { PlanTour(DateTime.Today.AddDays(1)); }),
-                new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
-                new(Localization.Get("Management_view_tours"), ViewTours),
-                new(Localization.Get("Management_user_creation"), CreateUser),
-                new(Localization.Get("Management_user_schedule"), CreateSchedule),
-                new(Localization.Get("Management_view_users"), ViewUsers),
+            var options = new List<NavigationChoice>()
+            {
+                new(Localization.Get("Management_planning"), () => { PlanningMenu().NavigationAction(); }),
+                new(Localization.Get("Management_users"), () => { UsersMenu().NavigationAction(); }),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
                 new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
             };
-            /*var options = new List<NavigationChoice>()
-            {
-                new(Localization.Get("Management_planning"), () => { PlanningMenu(); }),
-                new(Localization.Get("Management_users"), () => { UsersMenu(); }),
-                new(Localization.Get("Management_close"), () => { CloseMenu(); }),
-                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
-            };*/
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
         }
@@ -89,10 +77,9 @@ namespace Management_Spectre
         private static NavigationChoice UsersMenu()
         {
             var options = new List<NavigationChoice>() {
-                new(Localization.Get("Management_plan_tours_today"), () => { PlanTour(DateTime.Today); }),
-                new(Localization.Get("Management_plan_tours_tomorrow"), () => { PlanTour(DateTime.Today.AddDays(1)); }),
-                new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
-                new(Localization.Get("Management_view_tours"), ViewTours),
+                new(Localization.Get("Management_user_creation"), CreateUser),
+                new(Localization.Get("Management_user_schedule"), CreateSchedule),
+                new(Localization.Get("Management_view_users"), ViewUsers),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
             };
 
@@ -102,9 +89,10 @@ namespace Management_Spectre
         private static NavigationChoice PlanningMenu()
         {
             var options = new List<NavigationChoice>() {
-                new(Localization.Get("Management_user_creation"), CreateUser),
-                new(Localization.Get("Management_user_schedule"), CreateSchedule),
-                new(Localization.Get("Management_view_users"), ViewUsers),
+                new(Localization.Get("Management_plan_tours_today"), () => { PlanTour(DateTime.Today); }),
+                new(Localization.Get("Management_plan_tours_tomorrow"), () => { PlanTour(DateTime.Today.AddDays(1)); }),
+                new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
+                new(Localization.Get("Management_view_tours"), ViewTours),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
             };
 
@@ -184,7 +172,7 @@ namespace Management_Spectre
             currentPlanningTable.AddColumn(Localization.Get("View_tour_time_column"));
 
             foreach (var (date, tours) in currentPlanning)
-                currentPlanningTable.AddRow($"[green]{date.ToString("dd/MM/yyyy")}[/]", string.Join(", ", tours.Select(tour => $"[blue]{tour.Start.ToString("hh\\:mm")}[/]")));
+                currentPlanningTable.AddRow($"[green]{date.ToString("dd/MM/yyyy")}[/]", string.Join(", ", tours.Select(tour => $"[blue]{tour.Start.ToString("HH\\:mm")}[/]")));
 
             var currentPlanningHeader = new Rule(Localization.Get("View_tour_current_planning"));
             currentPlanningHeader.Justification = Justify.Left;
