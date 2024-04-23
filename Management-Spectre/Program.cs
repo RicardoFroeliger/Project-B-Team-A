@@ -64,13 +64,24 @@ namespace Management_Spectre
 
         public static NavigationChoice ManagementMenu()
         {
-            var options = new List<NavigationChoice>()
+            var options = new List<NavigationChoice>() {
+                new(Localization.Get("Management_plan_tours_today"), () => { PlanTour(DateTime.Today); }),
+                new(Localization.Get("Management_plan_tours_tomorrow"), () => { PlanTour(DateTime.Today.AddDays(1)); }),
+                new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
+                new(Localization.Get("Management_view_tours"), ViewTours),
+                new(Localization.Get("Management_user_creation"), CreateUser),
+                new(Localization.Get("Management_user_schedule"), CreateSchedule),
+                new(Localization.Get("Management_view_users"), ViewUsers),
+                new(Localization.Get("Management_close"), () => { CloseMenu(); }),
+                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
+            };
+            /*var options = new List<NavigationChoice>()
             {
                 new(Localization.Get("Management_planning"), () => { PlanningMenu(); }),
                 new(Localization.Get("Management_users"), () => { UsersMenu(); }),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
                 new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
-            };
+            };*/
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
         }
