@@ -10,6 +10,8 @@ namespace Common.Services.Interfaces
         int AskTicketNumber();
         int AskTicketNumberOrUserpass();
         int AskUserpass();
+        List<DayOfWeek> AskSchedule();
+        User AskUser(List<User> options);
         DateTime AskDate(string titleTranslationKey, string moreOptionsTranslationKey, int dateRange = 31, DateTime? startDate = null);
         TimeSpan AskTime(string titleTranslationKey, string moreOptionsTranslationKey, int timeInterval = 30, int startTime = 0);
         NavigationChoice GetMenu(string titleTranslationKey, string moreOptionsTranslationKey, List<NavigationChoice> navigationChoices, User? user = null);

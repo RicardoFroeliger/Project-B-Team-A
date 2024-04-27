@@ -19,14 +19,18 @@ namespace Common.Workflows
             UserService = userService;
         }
 
-        public void SetUsername(string username)
+        public (bool Succeeded, string Message) SetUsername(string username)
         {
             Username = username;
+
+            return (true, "");
         }
 
-        public void SetRole(Role role)
+        public (bool Succeeded, string Message) SetRole(Role role)
         {
             Role = role;
+
+            return (true, "");
         }
 
         public override (bool Succeeded, string Message) Commit()

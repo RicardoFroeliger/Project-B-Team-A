@@ -51,6 +51,11 @@ namespace Common.Services
             return [.. Context.Users];
         }
 
+        public List<User> GetUsersOfRole(Role role)
+        {
+            return Context.Users.Where(user => user.Role == (int)role).ToList();
+        }
+
         public void AddUser(User user)
         {
             user.Id = Context.Users.OrderByDescending(u => u.Id).First().Id + 100;

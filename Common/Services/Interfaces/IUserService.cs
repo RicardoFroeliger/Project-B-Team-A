@@ -10,6 +10,7 @@ namespace Common.Services.Interfaces
         (bool Valid, string Message) ValidateUserForRole(User? user, Role allowedRole);
         User? GetUser(int userpass);
         List<User> GetAllUsers();
+        List<User> GetUsersOfRole(Role role);
         void AddUser(User user);
     }
 }

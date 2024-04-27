@@ -1,32 +1,75 @@
 [
-    {
-        "Role": 1,
-        "Name": "Jeroen",
-        "Id": 1000100
-    },
-    {
-        "Role": 1,
-        "Name": "Nina",
-        "Id": 1000200
-    },
-    {
-        "Role": 1,
-        "Name": "Marijn",
-        "Id": 1000300
-    },
-    {
-        "Role": 1,
-        "Name": "Salih",
-        "Id": 1000400
-    },
-    {
-        "Role": 2,
-        "Name": "Frans",
-        "Id": 1000500
-    },
-    {
-        "Role": 2,
-        "Name": "Team-A",
-        "Id": 1000600
-    }
+  {
+    "Role": 1,
+    "Name": "Jeroen",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "03:00:00",
+        "EndTime": "10:00:00",
+        "Id": 1
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "03:00:00",
+        "EndTime": "08:00:00",
+        "Id": 2
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "03:00:00",
+        "EndTime": "04:00:00",
+        "Id": 3
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "06:00:00",
+        "EndTime": "18:00:00",
+        "Id": 4
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 5
+      }
+    ],
+    "Id": 1000100
+  },
+  {
+    "Role": 1,
+    "Name": "Nina",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000200
+  },
+  {
+    "Role": 1,
+    "Name": "Marijn",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000300
+  },
+  {
+    "Role": 1,
+    "Name": "Salih",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000400
+  },
+  {
+    "Role": 2,
+    "Name": "Frans",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000500
+  },
+  {
+    "Role": 2,
+    "Name": "Team-A",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000600
+  }
 ]

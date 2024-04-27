@@ -27,6 +27,36 @@ namespace Common.Services
             Settings = settings;
         }
 
+        public List<DayOfWeek> AskSchedule()
+        {
+            return AnsiConsole.Prompt(
+                new MultiSelectionPrompt<WorkdayChoice>()
+                    .Title(Localization.Get("Ask_schedule_title"))
+                    .NotRequired() // Not required to have a workday
+                    .PageSize(7)
+                    .InstructionsText(Localization.Get("Ask_schedule_instructions"))
+                    .AddChoices([
+                        new WorkdayChoice(Localization.Get("Day_Monday"), DayOfWeek.Monday),
+                        new WorkdayChoice(Localization.Get("Day_Tuesday"), DayOfWeek.Tuesday),
+                        new WorkdayChoice(Localization.Get("Day_Wednesday"), DayOfWeek.Wednesday),
+                        new WorkdayChoice(Localization.Get("Day_Thursday"), DayOfWeek.Thursday),
+                        new WorkdayChoice(Localization.Get("Day_Friday"), DayOfWeek.Friday),
+                        new WorkdayChoice(Localization.Get("Day_Saturday"), DayOfWeek.Saturday),
+                        new WorkdayChoice(Localization.Get("Day_Sunday"), DayOfWeek.Sunday)
+                    ])).Select(q => q.Day).ToList();
+        }
+
+        public User AskUser(List<User> options)
+        {
+            var choice = AnsiConsole.Prompt(
+               new SelectionPrompt<UserChoice>()
+                   .Title(Localization.Get("Ask_user_title"))
+                   .PageSize(10)
+                    .MoreChoicesText(Localization.Get("Ask_user_more_choices"))
+                   .AddChoices(options.Select(q => new UserChoice(q.Name, q))));
+            return choice.User;
+        }
+
         public int AskNumber(string questionKey, string validationErrorKey, int? min = null, int? max = null)
         {
             return AnsiConsole.Prompt(

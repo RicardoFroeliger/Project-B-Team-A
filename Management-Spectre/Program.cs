@@ -33,6 +33,7 @@ namespace Management_Spectre
                 .AddSingleton<IGroupService, GroupService>()
                 .AddSingleton<IUserService, UserService>()
                 .AddTransient<CreateUserFlow>()
+                .AddTransient<CreateUserPlanningFlow>()
                 .AddTransient<CreateTourScheduleFlow>()
                 .BuildServiceProvider();
 
@@ -74,18 +75,6 @@ namespace Management_Spectre
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
         }
 
-        private static NavigationChoice UsersMenu()
-        {
-            var options = new List<NavigationChoice>() {
-                new(Localization.Get("Management_user_creation"), CreateUser),
-                new(Localization.Get("Management_user_schedule"), CreateSchedule),
-                new(Localization.Get("Management_view_users"), ViewUsers),
-                new(Localization.Get("Management_close"), () => { CloseMenu(); }),
-            };
-
-            return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
-        }
-
         private static NavigationChoice PlanningMenu()
         {
             var options = new List<NavigationChoice>() {
@@ -99,9 +88,52 @@ namespace Management_Spectre
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
         }
 
+        private static NavigationChoice UsersMenu()
+        {
+            var options = new List<NavigationChoice>() {
+                new(Localization.Get("Management_user_creation"), CreateUser),
+                new(Localization.Get("Management_user_schedule"), CreateSchedule),
+                new(Localization.Get("Management_view_users"), ViewUsers),
+                new(Localization.Get("Management_close"), () => { CloseMenu(); }),
+            };
+
+            return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
+        }
+
         private static void CreateSchedule()
         {
-            throw new NotImplementedException();
+            var userService = ServiceProvider.GetService<IUserService>()!;
+            var flow = ServiceProvider.GetService<CreateUserPlanningFlow>()!;
+
+            var user = Prompts.AskUser(userService.GetUsersOfRole(Role.Guide));
+
+            if (!flow.SetUser(user).Succeeded)
+            {
+                CloseMenu(flow.SetUser(user).Message, false);
+                return;
+            }
+
+            var weekdays = Prompts.AskSchedule();
+
+            foreach (var day in weekdays)
+            {
+                AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
+                var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
+                var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: startTime.Minutes);
+
+                flow.SetPlanningDay(day, startTime, endTime);
+            }
+
+            // Commit the flow.
+            if (Prompts.AskConfirmation("Create_user_planning_flow_ask_confirmation"))
+            {
+                var commitResult = flow.Commit();
+                CloseMenu(commitResult.Message, false);
+                return;
+            }
+
+            flow.Rollback();
+            CloseMenu(closeMenu: false);
         }
 
         private static void ViewUsers()
