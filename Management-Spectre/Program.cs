@@ -1,4 +1,5 @@
-﻿using Common.Choices;
+﻿using Common;
+using Common.Choices;
 using Common.DAL;
 using Common.DAL.Interfaces;
 using Common.DAL.Models;
@@ -51,7 +52,7 @@ namespace Management_Spectre
                 var userpass = Prompts.AskUserpass();
                 var hasAccess = userService.ValidateUserForRole(userpass, Role.Manager);
                 User = userService.GetUser(userpass)!;
-                AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
+                ConsoleWrapper.Console.Clear(); // Clear the console after the ticket has been scanned
 
                 ShowMenu = hasAccess.Valid;
 
@@ -117,7 +118,7 @@ namespace Management_Spectre
 
             foreach (var day in weekdays)
             {
-                AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
+                ConsoleWrapper.Console.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
                 var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
                 var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: startTime.Minutes);
 
@@ -160,10 +161,10 @@ namespace Management_Spectre
 
             var currentUsersHeader = new Rule(Localization.Get("View_user_current_users"));
             currentUsersHeader.Justification = Justify.Left;
-            AnsiConsole.Write(currentUsersHeader);
-            AnsiConsole.Write(currentPlanningTable);
+            ConsoleWrapper.Console.Write(currentUsersHeader);
+            ConsoleWrapper.Console.Write(currentPlanningTable);
 
-            AnsiConsole.WriteLine(Localization.Get("View_user_press_any_key_to_continue"));
+            ConsoleWrapper.Console.WriteLine(Localization.Get("View_user_press_any_key_to_continue"));
 
             Console.ReadKey();
 
@@ -208,10 +209,10 @@ namespace Management_Spectre
 
             var currentPlanningHeader = new Rule(Localization.Get("View_tour_current_planning"));
             currentPlanningHeader.Justification = Justify.Left;
-            AnsiConsole.Write(currentPlanningHeader);
-            AnsiConsole.Write(currentPlanningTable);
+            ConsoleWrapper.Console.Write(currentPlanningHeader);
+            ConsoleWrapper.Console.Write(currentPlanningTable);
 
-            AnsiConsole.WriteLine(Localization.Get("View_tour_press_any_key_to_continue"));
+            ConsoleWrapper.Console.WriteLine(Localization.Get("View_tour_press_any_key_to_continue"));
 
             Console.ReadKey();
 
@@ -252,8 +253,8 @@ namespace Management_Spectre
 
             var newPlanningHeader = new Rule(Localization.Get("Create_tour_flow_new_planning"));
             newPlanningHeader.Justification = Justify.Left;
-            AnsiConsole.Write(newPlanningHeader);
-            AnsiConsole.Write(newPlanning);
+            ConsoleWrapper.Console.Write(newPlanningHeader);
+            ConsoleWrapper.Console.Write(newPlanning);
 
             var currentPlanning = tourService.GetToursForTimespan(flow.StartDate, flow.EndDate);
 
@@ -266,8 +267,8 @@ namespace Management_Spectre
 
             var oldPlanningHeader = new Rule(Localization.Get("Create_tour_flow_old_planning"));
             oldPlanningHeader.Justification = Justify.Left;
-            AnsiConsole.Write(oldPlanningHeader);
-            AnsiConsole.Write(oldPlanning);
+            ConsoleWrapper.Console.Write(oldPlanningHeader);
+            ConsoleWrapper.Console.Write(oldPlanning);
 
             if (currentPlanning.Any() && Prompts.AskConfirmation("Create_tour_flow_overwrite_current_confirmation"))
                 flow.DisposePlanning(currentPlanning);
@@ -297,12 +298,12 @@ namespace Management_Spectre
         private static void CloseMenu(string? message = null, bool closeMenu = true)
         {
             if (message != null)
-                AnsiConsole.MarkupLine(message);
+                ConsoleWrapper.Console.MarkupLine(message);
 
-            AnsiConsole.MarkupLine(Localization.Get("Management_close_message"));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Management_close_message"));
             Thread.Sleep(2000);
 
-            AnsiConsole.Clear();
+            ConsoleWrapper.Console.Clear();
             ShowMenu = !closeMenu;
             return;
         }
