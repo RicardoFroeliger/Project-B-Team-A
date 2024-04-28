@@ -119,7 +119,7 @@ namespace Management_Spectre
             {
                 AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
                 var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
-                var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: startTime.Minutes);
+                var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: (int)startTime.TotalMinutes);
 
                 flow.SetPlanningDay(day, startTime, endTime);
             }
@@ -233,7 +233,7 @@ namespace Management_Spectre
             }
 
             var startTime = Prompts.AskTime("Create_tour_flow_start_time", "Create_tour_flow_more_times");
-            var endTime = Prompts.AskTime("Create_tour_flow_end_time", "Create_tour_flow_more_times", startTime: startTime.Minutes);
+            var endTime = Prompts.AskTime("Create_tour_flow_end_time", "Create_tour_flow_more_times", startTime: (int)startTime.TotalMinutes);
 
             flow.SetTimeSpan(startTime, endTime);
 
