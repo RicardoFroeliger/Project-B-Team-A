@@ -922,5 +922,17 @@
     "Value": "Wilt u de het rooster voor deze gebruiker [green]opslaan[/]?",
     "Locale": "nl-NL",
     "Id": 154
+  },
+  {
+    "Key": "Create_user_planning_flow_hours",
+    "Value": "[blue]{0}[/] - [blue]{1}[/] ",
+    "Locale": "nl-NL",
+    "Id": 155
+  },
+  {
+    "Key": "Create_user_planning_flow_ask_repeat_hours",
+    "Value": "Wil je de start en eind tijd hetzelfde maken voor alle werkdagen?",
+    "Locale": "nl-NL",
+    "Id": 156
   }
 ]

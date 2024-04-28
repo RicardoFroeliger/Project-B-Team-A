@@ -115,14 +115,32 @@ namespace Management_Spectre
 
             var weekdays = Prompts.AskSchedule();
 
-            foreach (var day in weekdays)
+
+            if (Prompts.AskConfirmation("Create_user_planning_flow_ask_repeat_hours"))
             {
-                AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
                 var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
                 var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: (int)startTime.TotalMinutes);
+                
+                foreach (var day in weekdays)
+                {
+                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
+                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
+                    flow.SetPlanningDay(day, startTime, endTime);
+                }
+            } 
+            else
+            {
+                foreach (var day in weekdays)
+                {
+                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
+                    var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
+                    var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: (int)startTime.TotalMinutes);
+                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
 
-                flow.SetPlanningDay(day, startTime, endTime);
+                    flow.SetPlanningDay(day, startTime, endTime);
+                }
             }
+            
 
             // Commit the flow.
             if (Prompts.AskConfirmation("Create_user_planning_flow_ask_confirmation"))
@@ -262,7 +280,7 @@ namespace Management_Spectre
             oldPlanning.AddColumn(Localization.Get("Create_tour_flow_time_column"));
 
             foreach (var (date, tours) in currentPlanning)
-                oldPlanning.AddRow($"[green]{date.ToString("dd/MM/yyyy")}[/]", string.Join(", ", tours.Select(tour => $"[blue]{tour.Start.ToString("hh\\:mm")}[/]")));
+                oldPlanning.AddRow($"[green]{date.ToString("dd/MM/yyyy")}[/]", string.Join(", ", tours.Select(tour => $"[blue]{tour.Start.ToString("HH\\:mm")}[/]")));
 
             var oldPlanningHeader = new Rule(Localization.Get("Create_tour_flow_old_planning"));
             oldPlanningHeader.Justification = Justify.Left;
