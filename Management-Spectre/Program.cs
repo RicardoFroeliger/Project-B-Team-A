@@ -68,8 +68,22 @@ namespace Management_Spectre
             {
                 new(Localization.Get("Management_planning"), () => { PlanningMenu().NavigationAction(); }),
                 new(Localization.Get("Management_users"), () => { UsersMenu().NavigationAction(); }),
+                new(Localization.Get("Management_export_import"), () => { ExportImportMenu().NavigationAction(); }),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
                 new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
+            };
+
+            return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
+        }
+
+        private static NavigationChoice ExportImportMenu()
+        {
+            var options = new List<NavigationChoice>() {
+                new(Localization.Get("Management_Import_tour_data"), () => { ImportTourData(); }),
+                new(Localization.Get("Management_export_tour_data"), () => { ExportTourData(); }),
+                new(Localization.Get("Management_Import_planning"), () => { ImportPlanning(); }),
+                new(Localization.Get("Management_export_planning"), () => { ExportPlanning(); }),
+                new(Localization.Get("Management_close"), () => { CloseMenu(); }),
             };
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
@@ -98,6 +112,22 @@ namespace Management_Spectre
             };
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
+        }
+
+        private static void ImportTourData(){
+
+        }
+
+        private static void ExportTourData(){
+
+        }
+        
+        private static void ImportPlanning(){
+
+        }
+
+        private static void ExportPlanning(){
+
         }
 
         private static void CreateSchedule()

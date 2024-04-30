@@ -13,6 +13,7 @@ namespace Common.DAL
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Translation> Translations { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<DataSet> DataSets { get; set; }
 
         private bool _isLoaded { get; set; }
 
@@ -22,6 +23,7 @@ namespace Common.DAL
         public const string TicketsPath = @"Json\Tickets.json";
         public const string TranslationsPath = @"Json\Translations.json";
         public const string SettingsPath = @"Json\Settings.json";
+        public const string DataSetsPath = @"Json\DataSets.json";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +39,8 @@ namespace Common.DAL
             modelBuilder.Entity<Group>().HasKey(b => b.Id);
             modelBuilder.Entity<Translation>().HasKey(b => b.Id);
             modelBuilder.Entity<Setting>().HasKey(b => b.Id);
+            modelBuilder.Entity<DataSet>().HasKey(b => b.Id);
+            modelBuilder.Entity<DataEntry>().HasKey(b => b.Id);
         }
 
         public async void LoadContext()
@@ -49,6 +53,7 @@ namespace Common.DAL
             LoadJson(Tickets, TicketsPath);
             LoadJson(Translations, TranslationsPath);
             LoadJson(Settings, SettingsPath);
+            LoadJson(DataSets, DataSetsPath);
 
             _isLoaded = true;
 
@@ -68,6 +73,7 @@ namespace Common.DAL
             Tickets.RemoveRange(Tickets);
             Translations.RemoveRange(Translations);
             Settings.RemoveRange(Settings);
+            DataSets.RemoveRange(DataSets);
 
             _isLoaded = false;
         }
@@ -87,6 +93,7 @@ namespace Common.DAL
             File.WriteAllText(GroupsPath, JsonSerializer.Serialize(Groups.ToList()));
             File.WriteAllText(TranslationsPath, JsonSerializer.Serialize(Translations.ToList()));
             File.WriteAllText(SettingsPath, JsonSerializer.Serialize(Settings.ToList()));
+            File.WriteAllText(DataSets, JsonSerializer.Serialize(DataSets.ToList()));
 
             return changes;
         }
