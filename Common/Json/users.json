@@ -164,5 +164,157 @@
     "Enabled": true,
     "Planning": [],
     "Id": 1000600
+  },
+  {
+    "Role": 1,
+    "Name": "Sil",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 21
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 22
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 23
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 24
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 25
+      }
+    ],
+    "Id": 1000700
+  },
+  {
+    "Role": 1,
+    "Name": "Ricardo",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 26
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 27
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 28
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 29
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 30
+      }
+    ],
+    "Id": 1000800
+  },
+  {
+    "Role": 1,
+    "Name": "Joey",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 31
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 32
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 33
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 34
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 35
+      }
+    ],
+    "Id": 1000900
+  },
+  {
+    "Role": 1,
+    "Name": "Thomas",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 36
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 37
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 38
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 39
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 40
+      }
+    ],
+    "Id": 1001000
   }
 ]
