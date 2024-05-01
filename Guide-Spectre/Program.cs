@@ -53,7 +53,7 @@ namespace Guide_Spectre
                 var userpass = Prompts.AskUserpass();
                 var hasAccess = userService.ValidateUserForRole(userpass, Role.Guide);
                 User = userService.GetOne(userpass)!;
-                AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
+                ConsoleWrapper.Console.Clear(); // Clear the console after the ticket has been scanned
 
                 ShowMenu = hasAccess.Valid;
 
@@ -104,13 +104,13 @@ namespace Guide_Spectre
 
             var ruleHeader = new Rule(Localization.Get("Guide_view_tour_title"));
             ruleHeader.Justification = Justify.Left;
-            AnsiConsole.Write(ruleHeader);
+            ConsoleWrapper.Console.Write(ruleHeader);
 
             var start = tour.Start.ToString("HH:mm");
             var state = tour.Departed ? Localization.Get("Tour_departed") : Localization.Get("Tour_not_departed");
             var registered = $"[{GetColor(tour.RegisteredTickets.Count, maxSpots)}]({tour.RegisteredTickets.Count}/{maxSpots})[/]";
 
-            AnsiConsole.MarkupLine(Localization.Get("Guide_view_tour_description", replacementStrings: new() { start, state, registered }));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Guide_view_tour_description", replacementStrings: new() { start, state, registered }));
 
             var ruleTickets = new Rule(Localization.Get("Guide_view_tour_tickets"));
             ruleTickets.Justification = Justify.Left;

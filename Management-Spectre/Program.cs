@@ -186,8 +186,8 @@ namespace Management_Spectre
 
             var tableHeader = new Rule(Localization.Get("Import_tour_data_flow_preview_header"));
             tableHeader.Justification = Justify.Left;
-            AnsiConsole.Write(tableHeader);
-            AnsiConsole.Write(previewTable);
+            ConsoleWrapper.Console.Write(tableHeader);
+            ConsoleWrapper.Console.Write(previewTable);
 
             // Commit the flow.
             if (Prompts.AskConfirmation("Import_tour_data_flow_ask_confirmation"))
@@ -265,14 +265,13 @@ namespace Management_Spectre
 
             if (Prompts.AskConfirmation("Create_user_planning_flow_ask_repeat_hours"))
             {
-                ConsoleWrapper.Console.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
                 var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
                 var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: (int)startTime.TotalMinutes);
 
                 foreach (var day in weekdays)
                 {
-                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
-                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
+                    ConsoleWrapper.Console.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
+                    ConsoleWrapper.Console.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
                     flow.SetPlanningDay(day, startTime, endTime);
                 }
             }
@@ -280,10 +279,10 @@ namespace Management_Spectre
             {
                 foreach (var day in weekdays)
                 {
-                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
+                    ConsoleWrapper.Console.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
                     var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
                     var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: (int)startTime.TotalMinutes);
-                    AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
+                    ConsoleWrapper.Console.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
 
                     flow.SetPlanningDay(day, startTime, endTime);
                 }

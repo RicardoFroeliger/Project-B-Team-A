@@ -226,7 +226,7 @@ namespace Common.Services
 
         public string AskFilePath(string titleTranslationKey)
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new SelectionPrompt<string>().Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
                     .MoreChoicesText(Localization.Get("Ask_file_more_choices"))
