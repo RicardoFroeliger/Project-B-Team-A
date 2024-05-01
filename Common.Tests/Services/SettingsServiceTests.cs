@@ -31,7 +31,7 @@ namespace Common.Tests.Services
                 new Setting { Key = "TestKey", Value = "123" }
             };
 
-            _mockContext.Setup(x => x.Settings).ReturnsDbSet(settings);
+            _mockContext.Setup(x => x.GetDbSet<Setting>()).ReturnsDbSet(settings);
 
             // Act
             var result = _service.GetValueAsInt("TestKey");
@@ -49,7 +49,7 @@ namespace Common.Tests.Services
                 new Setting { Key = "TestKey", Value = "TestValue" }
             };
 
-            _mockContext.Setup(x => x.Settings).ReturnsDbSet(settings);
+            _mockContext.Setup(x => x.GetDbSet<Setting>()).ReturnsDbSet(settings);
 
             // Act
             var result = _service.GetValue("TestKey");
