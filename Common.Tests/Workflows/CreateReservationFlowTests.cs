@@ -3,6 +3,7 @@ using Common.DAL.Models;
 using Common.Services.Interfaces;
 using Common.Workflows;
 using Moq;
+using Moq.EntityFrameworkCore;
 
 namespace Common.Tests.Workflows
 {
@@ -23,6 +24,7 @@ namespace Common.Tests.Workflows
             _localizationServiceMock = new Mock<ILocalizationService>();
             _ticketServiceMock = new Mock<ITicketService>();
             _tourServiceMock = new Mock<ITourService>();
+            _groupServiceMock = new Mock<IGroupService>();
 
 
             _createReservationFlow = new CreateReservationFlow(
@@ -45,6 +47,10 @@ namespace Common.Tests.Workflows
                 GroupTickets = new List<int>() { testTicketNumber }
             };
 
+            _contextMock.Setup(x => x.GetDbSet<Ticket>()).ReturnsDbSet(new List<Ticket>());
+            _contextMock.Setup(x => x.GetDbSet<Tour>()).ReturnsDbSet(new List<Tour>());
+            _contextMock.Setup(x => x.GetDbSet<Group>()).ReturnsDbSet(new List<Group>());
+
             // Set up mocks for dependencies  
             _ticketServiceMock.Setup(x => x.GetOne(testTicketNumber))
                 .Returns(new Ticket() { Id = testTicketNumber });
@@ -55,7 +61,7 @@ namespace Common.Tests.Workflows
             _tourServiceMock.Setup(x => x.GetTourForTicket(testTicketNumber))
                 .Returns((Tour)null);
 
-            _groupServiceMock.Setup(x => x.AddOne(group));
+            _groupServiceMock.Setup(x => x.AddOne(group)).Returns(group);
 
             // Assume that Localization.Get always returns a valid message  
             _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))

@@ -11,8 +11,6 @@ namespace Common.Services
         public ISettingsService Settings { get; }
         private ILocalizationService Localization { get; }
 
-        private DbSet<User> Users => Context.GetDbSet<User>()!;
-
         public UserService(IDepotContext context, ISettingsService settings, ILocalizationService localization)
             : base(context)
         {
@@ -22,7 +20,7 @@ namespace Common.Services
 
         public (bool Valid, string Message) ValidateUserpass(int userpass)
         {
-            var user = Users.FirstOrDefault(user => user.Id == userpass);
+            var user = Table.FirstOrDefault(user => user.Id == userpass);
 
             if (user == null)
                 return new(false, Localization.Get("User_does_not_exist"));
@@ -45,12 +43,12 @@ namespace Common.Services
 
         public List<User> GetUsersOfRole(Role role)
         {
-            return Users.Where(user => user.Role == (int)role).ToList();
+            return Table.Where(user => user.Role == (int)role).ToList();
         }
 
         public override User AddOne(User user)
         {
-            user.Id = Users.OrderByDescending(u => u.Id).First().Id + 100;
+            user.Id = Table.OrderByDescending(u => u.Id).First().Id + 100;
             return base.AddOne(user);
         }
     }
