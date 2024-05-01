@@ -37,7 +37,7 @@ namespace Common.Tests.Service
             mockDbSet.As<IQueryable<Group>>().Setup(m => m.Expression).Returns(queryableGroups.Expression);
             mockDbSet.As<IQueryable<Group>>().Setup(m => m.ElementType).Returns(queryableGroups.ElementType);
             mockDbSet.As<IQueryable<Group>>().Setup(m => m.GetEnumerator()).Returns(queryableGroups.GetEnumerator());
-            _contextMock.Setup(c => c.Groups).Returns(mockDbSet.Object);
+            _contextMock.Setup(c => c.GetDbSet<Group>()!).Returns(mockDbSet.Object);
 
             return group;
         }

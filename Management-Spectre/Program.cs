@@ -32,9 +32,14 @@ namespace Management_Spectre
                 .AddSingleton<ITourService, TourService>()
                 .AddSingleton<IGroupService, GroupService>()
                 .AddSingleton<IUserService, UserService>()
+                .AddSingleton<IDataSetService, DataSetService>()
                 .AddTransient<CreateUserFlow>()
                 .AddTransient<CreateUserPlanningFlow>()
                 .AddTransient<CreateTourScheduleFlow>()
+                .AddTransient<ExportScheduleFlow>()
+                .AddTransient<ExportTourDataFlow>()
+                .AddTransient<ImportScheduleFlow>()
+                .AddTransient<ImportTourDataFlow>()
                 .BuildServiceProvider();
 
             // Get services
@@ -50,7 +55,7 @@ namespace Management_Spectre
             {
                 var userpass = Prompts.AskUserpass();
                 var hasAccess = userService.ValidateUserForRole(userpass, Role.Manager);
-                User = userService.GetUser(userpass)!;
+                User = userService.GetOne(userpass)!;
                 AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
 
                 ShowMenu = hasAccess.Valid;
@@ -114,19 +119,99 @@ namespace Management_Spectre
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
         }
 
-        private static void ImportTourData(){
+        private static void ImportTourData()
+        {
+            var flow = ServiceProvider.GetService<ImportTourDataFlow>()!;
+
+            var setUserResult = flow.SetUser(User);
+            if (!setUserResult.Succeeded)
+            {
+                CloseMenu(setUserResult.Message, false);
+                return;
+            }
+
+            if (Directory.GetFiles("Csv").Count() <= 0)
+            {
+                CloseMenu(Localization.Get("Import_tour_data_flow_no_files_to_import"), false);
+                return;
+            }
+
+            var setFilePathResult = flow.SetFilePath(Prompts.AskFilePath("Import_tour_data_flow_file_path"));
+            if (!setFilePathResult.Succeeded)
+            {
+                CloseMenu(setFilePathResult.Message, false);
+                return;
+            }
+
+            flow.CreatePreview();
+
+            var previewTable = new Table();
+            foreach (var column in flow.Preview[0])
+                previewTable.AddColumn(column);
+
+            foreach (var row in flow.Preview.Skip(1))
+                previewTable.AddRow(row);
+
+
+            var tableHeader = new Rule(Localization.Get("Import_tour_data_flow_preview_header"));
+            tableHeader.Justification = Justify.Left;
+            AnsiConsole.Write(tableHeader);
+            AnsiConsole.Write(previewTable);
+
+            // Commit the flow.
+            if (Prompts.AskConfirmation("Import_tour_data_flow_ask_confirmation"))
+            {
+                var commitResult = flow.Commit();
+                CloseMenu(commitResult.Message, false);
+                return;
+            }
+
+            flow.Rollback();
+            CloseMenu(closeMenu: false);
+        }
+
+        private static void ExportTourData()
+        {
+            var flow = ServiceProvider.GetService<ExportTourDataFlow>()!;
+
+            var setUserResult = flow.SetUser(User);
+            if (!setUserResult.Succeeded)
+            {
+                CloseMenu(setUserResult.Message, false);
+                return;
+            }
+
+            var start = Prompts.AskDate("Export_tour_data_flow_start_date", "Export_tour_data_flow_more_dates", historical: true, dateRange: 60);
+            var end = Prompts.AskDate("Export_tour_data_flow_end_date", "Export_tour_data_flow_more_dates", historical: true, dateRange: 60, startDate: start);
+
+            var setDateSpanResult = flow.SetDateSpan(start, end);
+            if (!setDateSpanResult.Succeeded)
+            {
+                CloseMenu(setDateSpanResult.Message, false);
+                return;
+            }
+
+            flow.CreatePreview();
+
+            // Commit the flow.
+            if (Prompts.AskConfirmation("Export_tour_data_flow_ask_confirmation"))
+            {
+                var commitResult = flow.Commit();
+                CloseMenu(commitResult.Message, false);
+                return;
+            }
+
+            flow.Rollback();
+            CloseMenu(closeMenu: false);
+        }
+
+        private static void ImportPlanning()
+        {
 
         }
 
-        private static void ExportTourData(){
-
-        }
-        
-        private static void ImportPlanning(){
-
-        }
-
-        private static void ExportPlanning(){
+        private static void ExportPlanning()
+        {
 
         }
 
@@ -137,9 +222,10 @@ namespace Management_Spectre
 
             var user = Prompts.AskUser(userService.GetUsersOfRole(Role.Guide));
 
-            if (!flow.SetUser(user).Succeeded)
+            var setUserResult = flow.SetUser(user);
+            if (!setUserResult.Succeeded)
             {
-                CloseMenu(flow.SetUser(user).Message, false);
+                CloseMenu(setUserResult.Message, false);
                 return;
             }
 
@@ -150,14 +236,14 @@ namespace Management_Spectre
             {
                 var startTime = Prompts.AskTime("Create_user_planning_flow_start_time", "Create_user_planning_flow_more_times");
                 var endTime = Prompts.AskTime("Create_user_planning_flow_end_time", "Create_user_planning_flow_more_times", startTime: (int)startTime.TotalMinutes);
-                
+
                 foreach (var day in weekdays)
                 {
                     AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_day", replacementStrings: new() { day.ToString() }));
                     AnsiConsole.MarkupLine(Localization.Get("Create_user_planning_flow_hours", replacementStrings: new() { startTime.ToString("hh\\:mm"), endTime.ToString("hh\\:mm") }));
                     flow.SetPlanningDay(day, startTime, endTime);
                 }
-            } 
+            }
             else
             {
                 foreach (var day in weekdays)
@@ -170,7 +256,7 @@ namespace Management_Spectre
                     flow.SetPlanningDay(day, startTime, endTime);
                 }
             }
-            
+
 
             // Commit the flow.
             if (Prompts.AskConfirmation("Create_user_planning_flow_ask_confirmation"))
@@ -188,7 +274,7 @@ namespace Management_Spectre
         {
             var userService = ServiceProvider.GetService<IUserService>()!;
 
-            var currentUsers = userService.GetAllUsers();
+            var currentUsers = userService.GetAll();
 
             var currentPlanningTable = new Table();
             currentPlanningTable.AddColumn(Localization.Get("View_user_id_column"));

@@ -1,46 +1,100 @@
-using Common.DAL;
 using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Enums;
-using Common.Services;
 using Common.Services.Interfaces;
+using System.Globalization;
 
 namespace Common.Workflows
 {
     public class ImportTourDataFlow : Workflow
     {
-        private IUserService UserService { get; }
+        private IDataSetService DataSetService { get; }
 
-        public ImportTourDataFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, IUserService userService)
+        private User? User { get; set; }
+
+        private string? FilePath { get; set; }
+
+        public List<string[]> Preview { get; private set; } = new List<string[]>();
+
+        public ImportTourDataFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, IDataSetService dataSetService)
             : base(context, localizationService, ticketService)
         {
-            UserService = userService;
+            DataSetService = dataSetService;
+        }
+
+        public (bool Succeeded, string Message) CreatePreview()
+        {
+            if (string.IsNullOrWhiteSpace(FilePath))
+                return (false, Localization.Get("flow_invalid_file_path"));
+
+            string line;
+            using (StreamReader reader = new StreamReader(FilePath))
+                while ((line = reader.ReadLine()!) != null)
+                    Preview.Add(line.Split(';'));
+
+            return (true, Localization.Get("flow_preview_created"));
         }
 
         public override (bool Succeeded, string Message) Commit()
         {
-            var tuples = new List<Tuple<DateTime, int>>();
+            if (User == null)
+                return (false, Localization.Get("flow_invalid_user"));
 
-            using (StreamReader reader = new StreamReader($"{DateTime.Today.ToShortDateString()} dataset {start.ToShortDateString()} to {end.ToShortDateString()}.csv"))
+            if (Preview.Count() < 1)
+                return (false, Localization.Get("flow_no_preview_data"));
+
+            var dataEntries = new List<DataEntry>();
+
+            var times = Preview[0].Skip(1).Select(TimeSpan.Parse).ToArray();
+
+            foreach (var row in Preview.Skip(1))
             {
-                string line;
-                var times = reader.ReadLine().Split(';').Skip(1).Select(TimeSpan.Parse).ToArray();
+                var date = DateTime.ParseExact(row[0], "d-M-yyyy", CultureInfo.InvariantCulture);
 
-                while ((line = reader.ReadLine()) != null)
+                for (int i = 0; i < times.Length; i++)
                 {
-                    var parts = line.Split(';');
-                    var date = DateTime.Parse(parts[0]);
-
-                    for (int i = 0; i < times.Length; i++)
-                    {
-                        var count = int.Parse(parts[i + 1]);
-                        var dateTime = date + times[i];
-                        tuples.Add(Tuple.Create(dateTime, count));
-                    }
+                    var count = int.Parse(row[i + 1]);
+                    var dateTime = date + times[i];
+                    dataEntries.Add(new DataEntry() { TourStart = dateTime, Entries = count });
                 }
             }
 
+            var dataSet = new DataSet()
+            {
+                Entries = dataEntries,
+                CreatorId = User.Id,
+                CreatorName = User.Name,
+                CreationDate = DateTime.Now,
+                From = dataEntries.OrderBy(q => q.TourStart).First().TourStart,
+                To = dataEntries.OrderByDescending(q => q.TourStart).First().TourStart
+            };
+
+            var duplicateSet = DataSetService.GetByFromToDate(dataSet.From, dataSet.To);
+            if (duplicateSet != null)
+                return (false, Localization.Get("flow_duplicate_set"));
+
+            DataSetService.AddOne(dataSet);
+
             return base.Commit();
+        }
+
+        public (bool Succeeded, string Message) SetUser(User? user)
+        {
+            if (user == null)
+                return (false, Localization.Get("flow_invalid_user"));
+
+            User = user;
+
+            return (true, Localization.Get("flow_set_valid"));
+        }
+
+        public (bool Succeeded, string Message) SetFilePath(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+                return (false, Localization.Get("flow_invalid_file_path"));
+
+            FilePath = filePath;
+
+            return (true, Localization.Get("flow_set_valid"));
         }
     }
 }

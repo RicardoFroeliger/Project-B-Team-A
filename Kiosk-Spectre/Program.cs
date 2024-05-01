@@ -53,7 +53,7 @@ namespace Kiosk_Spectre
             {
                 var ticketNumber = Prompts.AskTicketNumber();
 
-                Ticket = TicketService.GetTicket(ticketNumber)!; // Ticket can't be null here due to validation
+                Ticket = TicketService.GetOne(ticketNumber)!; // Ticket can't be null here due to validation
                 AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
 
                 while (ShowMenu)

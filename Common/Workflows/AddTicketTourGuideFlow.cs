@@ -1,7 +1,5 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 
 namespace Common.Workflows
@@ -58,7 +56,7 @@ namespace Common.Workflows
                 return (false, Localization.Get("Flow_no_tickets_to_add"));
 
             foreach (int ticket in TicketBuffer.Keys)
-                GroupService.AddGroup(new Group() { GroupOwnerId = ticket, GroupTickets = new() { ticket } });
+                GroupService.AddOne(new Group() { GroupOwnerId = ticket, GroupTickets = new() { ticket } });
 
             TicketBuffer.Keys.ToList().ForEach(t => Tour!.RegisteredTickets.Add(t));
 

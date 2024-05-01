@@ -51,7 +51,7 @@ namespace Guide_Spectre
             {
                 var userpass = Prompts.AskUserpass();
                 var hasAccess = userService.ValidateUserForRole(userpass, Role.Guide);
-                User = userService.GetUser(userpass)!;
+                User = userService.GetOne(userpass)!;
                 AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
 
                 ShowMenu = hasAccess.Valid;

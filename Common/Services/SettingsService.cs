@@ -1,10 +1,10 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
+using Common.DAL.Models;
 using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class SettingsService : BaseService, ISettingsService
+    public class SettingsService : BaseService<Setting>, ISettingsService
     {
         public SettingsService(IDepotContext context) : base(context) { }
 
@@ -15,7 +15,7 @@ namespace Common.Services
 
         public string? GetValue(string setting)
         {
-            return Context.Settings.FirstOrDefault(s => s.Key == setting)?.Value;
+            return Table.FirstOrDefault(s => s.Key == setting)?.Value;
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 
 namespace Common.Workflows
@@ -68,7 +66,7 @@ namespace Common.Workflows
                     if (deleteGroup) // Delete my group
                     {
                         group.GroupTickets.ForEach(ticket => Tour!.RegisteredTickets.Remove(ticket));
-                        GroupService.DeleteGroup(group);
+                        GroupService.RemoveOne(group);
                     }
                     else // Delete my group, but keep them in the tour as individuals
                     {
@@ -77,9 +75,9 @@ namespace Common.Workflows
                         group.GroupTickets.Remove(ticketNumber);
                         foreach (int ticket in group.GroupTickets)
                         {
-                            GroupService.AddGroup(new Group() { GroupOwnerId = ticket, GroupTickets = new() { ticket } });
+                            GroupService.AddOne(new Group() { GroupOwnerId = ticket, GroupTickets = new() { ticket } });
                         }
-                        GroupService.DeleteGroup(group);
+                        GroupService.RemoveOne(group);
                     }
                 }
                 else // I am in a group, remove me from the group and tour

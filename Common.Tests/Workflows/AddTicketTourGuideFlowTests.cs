@@ -1,7 +1,5 @@
-using Common.DAL;
 using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 using Common.Workflows;
 using Moq;
@@ -45,7 +43,7 @@ namespace Common.Tests.Workflows
             int testTicketNumber = 13548424;
 
             // Set up mocks for dependencies  
-            _ticketServiceMock.Setup(x => x.GetTicket(testTicketNumber))
+            _ticketServiceMock.Setup(x => x.GetOne(testTicketNumber))
                 .Returns(new Ticket() { Id = testTicketNumber, ValidOn = DateTime.Today });
 
             _ticketServiceMock.Setup(x => x.ValidateTicketNumber(testTicketNumber))
@@ -57,7 +55,7 @@ namespace Common.Tests.Workflows
             _settingsServiceMock.Setup(x => x.GetValueAsInt("Max_capacity_per_tour"))
                 .Returns(13);
 
-            _contextMock.Setup(x => x.SaveLocalChanges()).Returns(1);
+            _contextMock.Setup(x => x.SaveChanges()).Returns(1);
 
             // Assume that Localization.Get always returns a valid message  
             _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))

@@ -1,7 +1,4 @@
-﻿
-using Common.DAL.Models;
-
-namespace Common.Choices
+﻿namespace Common.Choices
 {
     public class WorkdayChoice
     {

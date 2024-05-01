@@ -1,11 +1,10 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class LocalizationService : BaseService, ILocalizationService
+    public class LocalizationService : BaseService<Translation>, ILocalizationService
     {
         public LocalizationService(IDepotContext context)
             : base(context)
@@ -19,7 +18,7 @@ namespace Common.Services
                 return string.Empty;
             }
 
-            var translation = Context.Translations.FirstOrDefault(t => t.Key.ToLower() == key.ToLower() && t.Locale == locale);
+            var translation = Table.FirstOrDefault(t => t.Key.ToLower() == key.ToLower() && t.Locale == locale);
 
             bool useReplacementString = true;
             if (translation == null)
@@ -56,9 +55,10 @@ namespace Common.Services
             for (int i = 0; i < replacementStrings?.Count; i++)
                 translation.Value += $" | {{{i}}} = {replacementStrings[i]}";
 
-            var entry = Context.Translations.Add(translation);
+            var entry = Table.Add(translation);
 
-            Context.SaveLocalChanges();
+            Context.SaveChanges();
+
             return entry.Entity;
         }
     }

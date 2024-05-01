@@ -1,6 +1,4 @@
 ﻿using Common.Choices;
-using Common.DAL;
-using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services.Interfaces;
@@ -8,7 +6,7 @@ using Spectre.Console;
 
 namespace Common.Services
 {
-    public class PromptService : BaseService, IPromptService
+    public class PromptService : IPromptService
     {
         public ISettingsService Settings { get; }
         public ILocalizationService Localization { get; }
@@ -16,9 +14,8 @@ namespace Common.Services
         public ITourService TourService { get; }
         public IUserService UserService { get; }
 
-        public PromptService(IDepotContext context, ISettingsService settings, ILocalizationService localizationService,
+        public PromptService(ISettingsService settings, ILocalizationService localizationService,
             ITicketService ticketService, ITourService tourService, IUserService userService)
-            : base(context)
         {
             Localization = localizationService;
             TicketService = ticketService;
@@ -125,10 +122,10 @@ namespace Common.Services
                     }));
         }
 
-        public DateTime AskDate(string titleTranslationKey, string moreOptionsTranslationKey, int dateRange = 31, DateTime? startDate = null)
+        public DateTime AskDate(string titleTranslationKey, string moreOptionsTranslationKey, int dateRange = 31, DateTime? startDate = null, bool historical = false)
         {
             var start = startDate ?? DateTime.Today.Date;
-            var dateChoices = Enumerable.Range(0, dateRange).Select(offset => new DateChoice(start.AddDays(offset)));
+            var dateChoices = Enumerable.Range(0, dateRange).Select(offset => new DateChoice(start.AddDays(historical ? -offset : offset)));
 
             var choice = AnsiConsole.Prompt(
                 new SelectionPrompt<DateChoice>()
@@ -225,6 +222,15 @@ namespace Common.Services
                     .Title(Localization.Get("Ask_role"))
                     .PageSize(10)
                     .AddChoices(Role.Guide, Role.Manager));
+        }
+
+        public string AskFilePath(string titleTranslationKey)
+        {
+            return AnsiConsole.Prompt(
+                new SelectionPrompt<string>().Title(Localization.Get(titleTranslationKey))
+                    .PageSize(10)
+                    .MoreChoicesText(Localization.Get("Ask_file_more_choices"))
+                    .AddChoices(Directory.GetFiles("Csv")));
         }
     }
 }
