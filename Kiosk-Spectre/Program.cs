@@ -1,4 +1,5 @@
-﻿using Common.Choices;
+﻿using Common;
+using Common.Choices;
 using Common.DAL;
 using Common.DAL.Interfaces;
 using Common.DAL.Models;
@@ -54,7 +55,7 @@ namespace Kiosk_Spectre
                 var ticketNumber = Prompts.AskTicketNumber();
 
                 Ticket = TicketService.GetOne(ticketNumber)!; // Ticket can't be null here due to validation
-                AnsiConsole.Clear(); // Clear the console after the ticket has been scanned
+                ConsoleWrapper.Console.Clear(); // Clear the console after the ticket has been scanned
 
                 while (ShowMenu)
                 {
@@ -96,12 +97,12 @@ namespace Kiosk_Spectre
         private static void CloseMenu(string? message = null, bool closeMenu = true)
         {
             if (message != null)
-                AnsiConsole.MarkupLine(message);
+                ConsoleWrapper.Console.MarkupLine(message);
 
-            AnsiConsole.MarkupLine(Localization.Get("Kiosk_close_message"));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Kiosk_close_message"));
             Thread.Sleep(2000);
 
-            AnsiConsole.Clear();
+            ConsoleWrapper.Console.Clear();
             ShowMenu = !closeMenu;
             return;
         }
@@ -126,7 +127,7 @@ namespace Kiosk_Spectre
             table.Title(Localization.Get("Reservation_flow_title"));
             table.AddColumn(Localization.Get("Reservation_flow_ticket_column"));
             table.AddRow($"# [green]{flow.GroupTickets.Last().Id}[/]");
-            AnsiConsole.Write(table);
+            ConsoleWrapper.Console.Write(table);
 
             // Ask for the amount of people to make a reservation for
             var ticketAmount = Prompts.AskNumber("Flow_reservation_people_amount", "Flow_reservation_Invalid_people_amount", 1, maxCapacity);
@@ -143,20 +144,20 @@ namespace Kiosk_Spectre
                 var addTicketResult = flow.AddTicket(Prompts.AskTicketNumber());
                 if (!addTicketResult.Success)
                 {
-                    AnsiConsole.MarkupLine(addTicketResult.Message);
+                    ConsoleWrapper.Console.MarkupLine(addTicketResult.Message);
                     continue;
                 }
 
                 table.AddRow($"# [green]{flow.GroupTickets.Last().Id}[/]");
-                AnsiConsole.Clear();
+                ConsoleWrapper.Console.Clear();
 
-                AnsiConsole.Write(table);
-                AnsiConsole.MarkupLine($"{Localization.Get("Flow_reservation_people_amount")} [green]{ticketAmount}[/]");
+                ConsoleWrapper.Console.Write(table);
+                ConsoleWrapper.Console.MarkupLine($"{Localization.Get("Flow_reservation_people_amount")} [green]{ticketAmount}[/]");
             }
 
             var tour = Prompts.AskTour("Reservation_flow_ask_tour", "Reservation_flow_more_tours", ticketAmount);
             flow.SetTour(tour);
-            AnsiConsole.MarkupLine(Localization.Get("Reservation_flow_selected_tour", replacementStrings: new() { $"{tour.Start.ToString("HH:mm")}" }));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Reservation_flow_selected_tour", replacementStrings: new() { $"{tour.Start.ToString("HH:mm")}" }));
 
             // Commit the flow.
             if (Prompts.AskConfirmation("Reservation_flow_ask_confirmation"))
@@ -171,7 +172,7 @@ namespace Kiosk_Spectre
         public static void TourModification()
         {
             var flow = ServiceProvider.GetService<ModifyReservationFlow>()!;
-            AnsiConsole.MarkupLine(Localization.Get("Modification_flow_title"));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Modification_flow_title"));
 
             var setTicketResult = flow.SetTicket(Ticket);
             if (!setTicketResult.Success)
@@ -180,7 +181,7 @@ namespace Kiosk_Spectre
                 return;
             }
 
-            AnsiConsole.MarkupLine(Localization.Get("Modification_flow_selected_tour", replacementStrings: new() { $"{flow.Tour!.Start.ToString("HH:mm")}" }));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Modification_flow_selected_tour", replacementStrings: new() { $"{flow.Tour!.Start.ToString("HH:mm")}" }));
 
             if (!Prompts.AskConfirmation("Modification_flow_ask_confirmation"))
             {
@@ -204,7 +205,7 @@ namespace Kiosk_Spectre
                 return;
             }
 
-            AnsiConsole.MarkupLine(Localization.Get("Modification_flow_selected_new_tour", replacementStrings: new() { $"{tour.Start.ToString("HH:mm")}" }));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Modification_flow_selected_new_tour", replacementStrings: new() { $"{tour.Start.ToString("HH:mm")}" }));
 
             // Commit the flow.
             if (Prompts.AskConfirmation("Modification_flow_ask_confirmation"))
@@ -219,7 +220,7 @@ namespace Kiosk_Spectre
         public static void TourCancellation()
         {
             var flow = ServiceProvider.GetService<CancelReservationFlow>()!;
-            AnsiConsole.MarkupLine(Localization.Get("Cancellation_flow_title"));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Cancellation_flow_title"));
 
             var setTicketResult = flow.SetTicket(Ticket);
             if (!setTicketResult.Success)
@@ -228,7 +229,7 @@ namespace Kiosk_Spectre
                 return;
             }
 
-            AnsiConsole.MarkupLine(Localization.Get("Cancellation_flow_selected_tour", replacementStrings: new() { $"{flow.Tour!.Start.ToString("HH:mm")}" }));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Cancellation_flow_selected_tour", replacementStrings: new() { $"{flow.Tour!.Start.ToString("HH:mm")}" }));
 
             if (Prompts.AskConfirmation("Cancellation_flow_ask_confirmation"))
             {

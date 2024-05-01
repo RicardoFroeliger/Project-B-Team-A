@@ -26,7 +26,7 @@ namespace Common.Services
 
         public List<DayOfWeek> AskSchedule()
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new MultiSelectionPrompt<WorkdayChoice>()
                     .Title(Localization.Get("Ask_schedule_title"))
                     .NotRequired() // Not required to have a workday
@@ -45,7 +45,7 @@ namespace Common.Services
 
         public User AskUser(List<User> options)
         {
-            var choice = AnsiConsole.Prompt(
+            var choice = ConsoleWrapper.Console.Prompt(
                new SelectionPrompt<UserChoice>()
                    .Title(Localization.Get("Ask_user_title"))
                    .PageSize(10)
@@ -56,7 +56,7 @@ namespace Common.Services
 
         public int AskNumber(string questionKey, string validationErrorKey, int? min = null, int? max = null)
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new TextPrompt<int>(Localization.Get(questionKey))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get(validationErrorKey))
@@ -74,7 +74,7 @@ namespace Common.Services
 
         public int AskTicketNumber()
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new TextPrompt<int>(Localization.Get("Scan_ticket"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_ticket_number"))
@@ -89,7 +89,7 @@ namespace Common.Services
 
         public int AskTicketNumberOrUserpass()
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new TextPrompt<int>(Localization.Get("Scan_ticket_or_userpass"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_ticket_number_or_userpass"))
@@ -109,7 +109,7 @@ namespace Common.Services
 
         public int AskUserpass()
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new TextPrompt<int>(Localization.Get("Scan_userpass"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_userpass"))
@@ -127,7 +127,7 @@ namespace Common.Services
             var start = startDate ?? DateTime.Today.Date;
             var dateChoices = Enumerable.Range(0, dateRange).Select(offset => new DateChoice(start.AddDays(historical ? -offset : offset)));
 
-            var choice = AnsiConsole.Prompt(
+            var choice = ConsoleWrapper.Console.Prompt(
                 new SelectionPrompt<DateChoice>()
                     .Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
@@ -149,7 +149,7 @@ namespace Common.Services
                 minutes += timeInterval;
             }
 
-            var choice = AnsiConsole.Prompt(
+            var choice = ConsoleWrapper.Console.Prompt(
                 new SelectionPrompt<TimeChoice>()
                     .Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
@@ -165,7 +165,7 @@ namespace Common.Services
             if (user != null)
                 replacementList = new() { user.Name, Localization.Get(((Role)user.Role).ToString()) };
 
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new SelectionPrompt<NavigationChoice>()
                     .Title(Localization.Get(titleTranslationKey, replacementStrings: replacementList))
                     .PageSize(10)
@@ -180,7 +180,7 @@ namespace Common.Services
             var tourChoices = TourService.GetToursForToday(minimumCapacity, recentTours, upcomingTours)
                 .Select(tour => new TourChoice(Localization.Get("Select_tour_item", replacementStrings: new() { tour.Start.ToString("HH:mm"), $"[green]({tour.RegisteredTickets.Count}/{maxCapacity})[/]" }), tour));
 
-            var choice = AnsiConsole.Prompt(
+            var choice = ConsoleWrapper.Console.Prompt(
                 new SelectionPrompt<TourChoice>()
                     .Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
@@ -192,7 +192,7 @@ namespace Common.Services
 
         public bool AskConfirmation(string titleTranslationKey)
         {
-            var choice = AnsiConsole.Prompt(
+            var choice = ConsoleWrapper.Console.Prompt(
                new SelectionPrompt<BoolChoice>()
                    .Title(Localization.Get(titleTranslationKey))
                    .PageSize(10)
@@ -205,7 +205,7 @@ namespace Common.Services
 
         public string AskUsername()
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new TextPrompt<string>(Localization.Get("Ask_username"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_username"))
@@ -217,7 +217,7 @@ namespace Common.Services
 
         public Role AskRole()
         {
-            return AnsiConsole.Prompt(
+            return ConsoleWrapper.Console.Prompt(
                 new SelectionPrompt<Role>()
                     .Title(Localization.Get("Ask_role"))
                     .PageSize(10)

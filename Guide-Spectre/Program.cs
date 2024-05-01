@@ -1,4 +1,5 @@
-﻿using Common.Choices;
+﻿using Common;
+using Common.Choices;
 using Common.DAL;
 using Common.DAL.Interfaces;
 using Common.DAL.Models;
@@ -113,14 +114,14 @@ namespace Guide_Spectre
 
             var ruleTickets = new Rule(Localization.Get("Guide_view_tour_tickets"));
             ruleTickets.Justification = Justify.Left;
-            AnsiConsole.Write(ruleTickets);
+            ConsoleWrapper.Console.Write(ruleTickets);
             if (tour.RegisteredTickets.Any())
-                AnsiConsole.Write(new Columns(tour.RegisteredTickets.Select(ticket => new Text(ticket.ToString(), new Style(Color.Green))).ToList()));
+                ConsoleWrapper.Console.Write(new Columns(tour.RegisteredTickets.Select(ticket => new Text(ticket.ToString(), new Style(Color.Green))).ToList()));
             else
-                AnsiConsole.MarkupLine(Localization.Get("Guide_view_tour_no_tickets"));
+                ConsoleWrapper.Console.MarkupLine(Localization.Get("Guide_view_tour_no_tickets"));
 
             var emptyRule = new Rule();
-            AnsiConsole.Write(emptyRule);
+            ConsoleWrapper.Console.Write(emptyRule);
 
             var options = new List<NavigationChoice>() {
                 new(Localization.Get("Guide_start_tour"), () => { GuideStartTour(tour); }),
@@ -134,7 +135,7 @@ namespace Guide_Spectre
 
         private static void GuideRemoveTicket(Tour tour)
         {
-            AnsiConsole.Clear();
+            ConsoleWrapper.Console.Clear();
             var flow = ServiceProvider.GetService<RemoveTicketTourGuideFlow>()!;
 
             // Set tour into flow
@@ -146,7 +147,7 @@ namespace Guide_Spectre
                 return;
             }
 
-            AnsiConsole.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Remove_ticket_flow_title", "Remove_ticket_flow_current_column", "Remove_ticket_flow_ticket_remove_column", "blue", "red"));
+            ConsoleWrapper.Console.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Remove_ticket_flow_title", "Remove_ticket_flow_current_column", "Remove_ticket_flow_ticket_remove_column", "blue", "red"));
 
             while (flow.Tour.RegisteredTickets.Any())
             {
@@ -160,9 +161,9 @@ namespace Guide_Spectre
 
                 flow.RemoveTicket(ticketNumber, deleteGroup);
 
-                AnsiConsole.Clear();
+                ConsoleWrapper.Console.Clear();
 
-                AnsiConsole.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Add_ticket_flow_title", "Add_ticket_flow_ticket_current_column", "Add_ticket_flow_ticket_add_column", "blue", "red"));
+                ConsoleWrapper.Console.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Add_ticket_flow_title", "Add_ticket_flow_ticket_current_column", "Add_ticket_flow_ticket_add_column", "blue", "red"));
 
                 if (!flow.Tour.RegisteredTickets.Any() || !Prompts.AskConfirmation("Remove_ticket_flow_ask_more_tickets"))
                     break;
@@ -182,7 +183,7 @@ namespace Guide_Spectre
 
         private static void GuideAddTicket(Tour tour)
         {
-            AnsiConsole.Clear();
+            ConsoleWrapper.Console.Clear();
             var settingsService = ServiceProvider.GetService<ISettingsService>()!;
             var flow = ServiceProvider.GetService<AddTicketTourGuideFlow>()!;
 
@@ -195,15 +196,15 @@ namespace Guide_Spectre
                 return;
             }
 
-            AnsiConsole.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Add_ticket_flow_title", "Add_ticket_flow_ticket_current_column", "Add_ticket_flow_ticket_add_column", "blue", "green"));
+            ConsoleWrapper.Console.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Add_ticket_flow_title", "Add_ticket_flow_ticket_current_column", "Add_ticket_flow_ticket_add_column", "blue", "green"));
 
             while (flow.Tour.RegisteredTickets.Count < settingsService.GetValueAsInt("Max_capacity_per_tour")!.Value)
             {
                 var ticketNumber = Prompts.AskTicketNumber();
                 flow.AddTicket(ticketNumber);
-                AnsiConsole.Clear();
+                ConsoleWrapper.Console.Clear();
 
-                AnsiConsole.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Add_ticket_flow_title", "Add_ticket_flow_ticket_current_column", "Add_ticket_flow_ticket_add_column", "blue", "green"));
+                ConsoleWrapper.Console.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Add_ticket_flow_title", "Add_ticket_flow_ticket_current_column", "Add_ticket_flow_ticket_add_column", "blue", "green"));
 
                 if (flow.Tour.RegisteredTickets.Count >= settingsService.GetValueAsInt("Max_capacity_per_tour")!.Value
                     || !Prompts.AskConfirmation("Add_ticket_flow_ask_more_tickets"))
@@ -224,7 +225,7 @@ namespace Guide_Spectre
 
         private static void GuideStartTour(Tour tour)
         {
-            AnsiConsole.Clear();
+            ConsoleWrapper.Console.Clear();
             var settingsService = ServiceProvider.GetService<ISettingsService>()!;
             var flow = ServiceProvider.GetService<StartTourGuideFlow>()!;
 
@@ -237,12 +238,12 @@ namespace Guide_Spectre
                 return;
             }
 
-            AnsiConsole.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Start_tour_flow_title", "Start_tour_flow_ticket_todo_column", "Start_tour_flow_ticket_done_column", "blue", "green"));
+            ConsoleWrapper.Console.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Start_tour_flow_title", "Start_tour_flow_ticket_todo_column", "Start_tour_flow_ticket_done_column", "blue", "green"));
 
             // Scan registered tickets
             ScanTickets(flow, flow.Tour.RegisteredTickets.Count, FlowStep.ScanRegistration);
 
-            AnsiConsole.MarkupLine(Localization.Get("Start_tour_flow_scan_extra"));
+            ConsoleWrapper.Console.MarkupLine(Localization.Get("Start_tour_flow_scan_extra"));
 
             // Scan extra tickets
             ScanTickets(flow, settingsService.GetValueAsInt("Max_capacity_per_tour")!.Value, FlowStep.ScanExtra);
@@ -276,13 +277,13 @@ namespace Guide_Spectre
 
                 if (!response.Success)
                 {
-                    AnsiConsole.WriteLine(response.Message);
+                    ConsoleWrapper.Console.WriteLine(response.Message);
                     Thread.Sleep(2000);
                 }
 
-                AnsiConsole.Clear();
+                ConsoleWrapper.Console.Clear();
 
-                AnsiConsole.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Start_tour_flow_title", "Start_tour_flow_ticket_todo_column", "Start_tour_flow_ticket_done_column", "blue", "green"));
+                ConsoleWrapper.Console.Write(GenerateTable(flow.Tour!.RegisteredTickets.ToList(), flow.TicketBuffer.Keys.ToList(), "Start_tour_flow_title", "Start_tour_flow_ticket_todo_column", "Start_tour_flow_ticket_done_column", "blue", "green"));
 
                 if (flow.TicketBuffer.Count >= maxTickets || flow.Step != step)
                 {
@@ -317,15 +318,15 @@ namespace Guide_Spectre
         private static void CloseMenu(string? message = null, bool closeMenu = true, bool subMenu = false, bool instant = false)
         {
             if (message != null)
-                AnsiConsole.MarkupLine(message);
+                ConsoleWrapper.Console.MarkupLine(message);
 
             if (!instant)
             {
-                AnsiConsole.MarkupLine(Localization.Get("Guide_close_message"));
+                ConsoleWrapper.Console.MarkupLine(Localization.Get("Guide_close_message"));
                 Thread.Sleep(2000);
             }
 
-            AnsiConsole.Clear();
+            ConsoleWrapper.Console.Clear();
 
             if (subMenu)
                 ShowSubMenu = !closeMenu;
