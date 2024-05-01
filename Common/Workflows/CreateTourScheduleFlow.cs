@@ -13,7 +13,7 @@ namespace Common.Workflows
         public DateTime EndDate { get; private set; }
         public TimeSpan StartTime { get; private set; }
         public TimeSpan EndTime { get; private set; }
-        public int Interval { get; private set; }
+        public int Interval { get; private set; } 
         private Dictionary<DateTime, List<TimeSpan>> Planning { get; set; } = new Dictionary<DateTime, List<TimeSpan>>();
         private List<Tour> ToursToDispose { get; set; } = new List<Tour>();
         private bool Regenerate { get; set; } = true;
