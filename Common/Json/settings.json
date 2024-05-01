@@ -1,10 +1,17 @@
 [
   {
     "Key": "Max_capacity_per_tour",
-    "Value": "13"
+    "Value": "13",
+    "Id": 1
   },
   {
     "Key": "Tour_duration",
-    "Value": "40"
+    "Value": "40",
+    "Id": 2
+  },
+  {
+    "Key": "Tour_default_interval",
+    "Value": "20",
+    "Id": 3
   }
 ]

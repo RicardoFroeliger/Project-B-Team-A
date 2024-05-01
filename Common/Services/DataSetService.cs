@@ -7,12 +7,10 @@ namespace Common.Services
     public class DataSetService : BaseService<DataSet>, IDataSetService
     {
         public ISettingsService Settings { get; }
-        private ILocalizationService Localization { get; }
 
-        public DataSetService(IDepotContext context, ISettingsService settings, ILocalizationService localization)
+        public DataSetService(IDepotContext context, ISettingsService settings)
             : base(context)
         {
-            Localization = localization;
             Settings = settings;
         }
 

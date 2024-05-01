@@ -40,6 +40,7 @@ namespace Management_Spectre
                 .AddTransient<ExportTourDataFlow>()
                 .AddTransient<ImportScheduleFlow>()
                 .AddTransient<ImportTourDataFlow>()
+                .AddTransient<PlanGuidesOnToursFlow>()
                 .BuildServiceProvider();
 
             // Get services
@@ -84,10 +85,10 @@ namespace Management_Spectre
         private static NavigationChoice ExportImportMenu()
         {
             var options = new List<NavigationChoice>() {
-                new(Localization.Get("Management_Import_tour_data"), () => { ImportTourData(); }),
-                new(Localization.Get("Management_export_tour_data"), () => { ExportTourData(); }),
-                new(Localization.Get("Management_Import_planning"), () => { ImportPlanning(); }),
-                new(Localization.Get("Management_export_planning"), () => { ExportPlanning(); }),
+                new(Localization.Get("Management_Import_tour_data"), ImportTourData),
+                new(Localization.Get("Management_export_tour_data"), ExportTourData),
+                new(Localization.Get("Management_Import_planning"), ImportPlanning),
+                new(Localization.Get("Management_export_planning"), ExportPlanning),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
             };
 
@@ -101,6 +102,7 @@ namespace Management_Spectre
                 new(Localization.Get("Management_plan_tours_tomorrow"), () => { PlanTour(DateTime.Today.AddDays(1)); }),
                 new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
                 new(Localization.Get("Management_view_tours"), ViewTours),
+                new(Localization.Get("Management_plan_guides_on_tours"), PlanGuidesOnTours),
                 new(Localization.Get("Management_close"), () => { CloseMenu(); }),
             };
 
@@ -117,6 +119,34 @@ namespace Management_Spectre
             };
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
+        }
+
+        private static void PlanGuidesOnTours()
+        {
+            var flow = ServiceProvider.GetService<PlanGuidesOnToursFlow>()!;
+
+            var start = Prompts.AskDate("Plan_guides_on_tours_flow_start_date", "Plan_guides_on_tours_flow_more_dates");
+            var end = Prompts.AskDate("Plan_guides_on_tours_flow_end_date", "Plan_guides_on_tours_flow_more_dates", startDate: start);
+
+            var setDateSpanResult = flow.SetDateSpan(start, end);
+            if (!setDateSpanResult.Succeeded)
+            {
+                CloseMenu(setDateSpanResult.Message, false);
+                return;
+            }
+
+            // Commit the flow.
+            if (Prompts.AskConfirmation("Plan_guides_on_tours_flow_ask_confirmation"))
+            {
+                var commitResult = flow.Commit();
+                CloseMenu(commitResult.Message, false);
+                return;
+            }
+
+            flow.CreatePreview();
+
+            flow.Rollback();
+            CloseMenu(closeMenu: false);
         }
 
         private static void ImportTourData()
