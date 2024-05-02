@@ -1,7 +1,5 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 
 namespace Common.Workflows
@@ -9,12 +7,14 @@ namespace Common.Workflows
     public class ReservationFlow : Workflow
     {
         public ITourService TourService { get; set; }
+        public IGroupService GroupService { get; set; }
         public Ticket? Ticket { get; private set; }
 
-        public ReservationFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService)
+        public ReservationFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, IGroupService groupService)
             : base(context, localizationService, ticketService)
         {
             TourService = tourService;
+            GroupService = groupService;
         }
 
         public virtual (bool Success, string Message) SetTicket(Ticket? ticket)

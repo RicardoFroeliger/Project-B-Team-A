@@ -3,7 +3,6 @@ using Common.DAL.Models;
 using Common.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System.Collections.Generic;
 
 namespace Common.Tests.Services
 {
@@ -29,11 +28,10 @@ namespace Common.Tests.Services
             var replacementStrings = new List<string> { "replacement" };
 
             var _contextMock = new Mock<IDepotContext>();
-            _contextMock.Setup(context => context.Translations).Returns(GetQueryableMockDbSet(_translations));
+            _contextMock.Setup(context => context.GetDbSet<Translation>()).Returns(GetQueryableMockDbSet(_translations));
+            _contextMock.Setup(x => x.SaveChanges()).Returns(1);
 
             var _localizationService = new LocalizationService(_contextMock.Object);
-
-            _contextMock.Setup(x => x.SaveLocalChanges()).Returns(1);
 
             // Act
             var resultNL = _localizationService.Get("test_key");

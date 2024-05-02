@@ -49,7 +49,7 @@ namespace Common.Tests.Workflows
             var ticket = new Ticket() { Id = testTicketNumber };
 
             // Set up mocks for dependencies  
-            _ticketServiceMock.Setup(x => x.GetTicket(testTicketNumber))
+            _ticketServiceMock.Setup(x => x.GetOne(testTicketNumber))
                 .Returns(ticket);
 
             _ticketServiceMock.Setup(x => x.ValidateTicketNumber(testTicketNumber))
@@ -58,14 +58,14 @@ namespace Common.Tests.Workflows
             _tourServiceMock.Setup(x => x.GetTourForTicket(ticket))
                 .Returns(tour);
 
-            _contextMock.Setup(x => x.Groups.Add(group));
+            _contextMock.Setup(x => x.GetDbSet<Group>()!.Add(group));
 
             _groupServiceMock.Setup(service => service.GetGroupForTicket(ticket)).Returns(group);
 
             // Assume that Localization.Get always returns a valid message  
             _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))
                 .Returns("Test message");
-            
+
             // Act  
             var setTicket = _cancelReservationFlow.SetTicket(ticket);
             var commit = _cancelReservationFlow.Commit();

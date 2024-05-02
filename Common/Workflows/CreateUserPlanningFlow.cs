@@ -1,10 +1,6 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Enums;
-using Common.Services;
 using Common.Services.Interfaces;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Common.Workflows
 {
@@ -30,7 +26,7 @@ namespace Common.Workflows
 
         public (bool Succeeded, string Message) SetPlanningDay(DayOfWeek weekday, TimeSpan startTime, TimeSpan endTime)
         {
-            if ( startTime >= endTime)
+            if (startTime >= endTime)
                 return (false, Localization.Get("flow_invalid_time"));
 
             planning.Add(new Schedule() { Weekday = weekday, StartTime = startTime, EndTime = endTime });

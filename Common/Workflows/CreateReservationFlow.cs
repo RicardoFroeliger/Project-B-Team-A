@@ -1,7 +1,5 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 
 namespace Common.Workflows
@@ -11,8 +9,8 @@ namespace Common.Workflows
         public List<Ticket> GroupTickets { get; } = new List<Ticket>();
         public Tour? Tour { get; private set; }
 
-        public CreateReservationFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService)
-            : base(context, localizationService, ticketService, tourService)
+        public CreateReservationFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, IGroupService groupService)
+            : base(context, localizationService, ticketService, tourService, groupService)
         {
         }
 
@@ -29,7 +27,7 @@ namespace Common.Workflows
 
         public (bool Success, string Message) AddTicket(int ticketNumber)
         {
-            var ticket = TicketService.GetTicket(ticketNumber);
+            var ticket = TicketService.GetOne(ticketNumber);
 
             var validationResult = ValidateTicket(ticket);
             if (!validationResult.Success)
@@ -60,7 +58,7 @@ namespace Common.Workflows
                 GroupTickets = GroupTickets.Select(t => t.Id).ToList()
             };
 
-            Context.Groups.Add(group);
+            GroupService.AddOne(group);
             Tour!.RegisteredTickets.AddRange(group.GroupTickets);
 
             return base.Commit();

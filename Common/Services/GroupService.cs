@@ -4,7 +4,7 @@ using Common.Services.Interfaces;
 
 namespace Common.Services
 {
-    public class GroupService : BaseService, IGroupService
+    public class GroupService : BaseService<Group>, IGroupService
     {
         public ISettingsService Settings { get; }
 
@@ -18,19 +18,7 @@ namespace Common.Services
 
         public Group? GetGroupForTicket(int ticketNumber)
         {
-            return Context.Groups.FirstOrDefault(group => group.GroupTickets.Contains(ticketNumber));
-        }
-
-        public void DeleteGroup(Group group)
-        {
-            Context.Groups.Remove(group);
-            Context.SaveLocalChanges();
-        }
-
-        public void AddGroup(Group group)
-        {
-            Context.Groups.Add(group);
-            Context.SaveLocalChanges();
+            return Table.FirstOrDefault(group => group.GroupTickets.Contains(ticketNumber));
         }
     }
 }

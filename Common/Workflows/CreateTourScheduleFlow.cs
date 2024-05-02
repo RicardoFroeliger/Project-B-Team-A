@@ -1,7 +1,5 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 
 namespace Common.Workflows
@@ -9,6 +7,8 @@ namespace Common.Workflows
     public class CreateTourScheduleFlow : Workflow
     {
         private ISettingsService SettingsService { get; }
+        private ITourService TourService { get; }
+
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public TimeSpan StartTime { get; private set; }
@@ -18,9 +18,10 @@ namespace Common.Workflows
         private List<Tour> ToursToDispose { get; set; } = new List<Tour>();
         private bool Regenerate { get; set; } = true;
 
-        public CreateTourScheduleFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ISettingsService settingsService)
+        public CreateTourScheduleFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, ISettingsService settingsService)
             : base(context, localizationService, ticketService)
         {
+            TourService = tourService;
             SettingsService = settingsService;
         }
 
@@ -106,9 +107,9 @@ namespace Common.Workflows
                 return (false, Localization.Get("Flow_no_planning_to_commit"));
 
             if (ToursToDispose.Any())
-                Context.Tours.RemoveRange(ToursToDispose);
+                TourService.RemoveRange(ToursToDispose);
 
-            Context.Tours.AddRange(planning);
+            TourService.AddRange(planning);
 
             return base.Commit();
         }

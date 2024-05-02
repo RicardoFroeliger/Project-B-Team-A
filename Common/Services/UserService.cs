@@ -1,12 +1,12 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Common.Services
 {
-    public class UserService : BaseService, IUserService
+    public class UserService : BaseService<User>, IUserService
     {
         public ISettingsService Settings { get; }
         private ILocalizationService Localization { get; }
@@ -20,7 +20,7 @@ namespace Common.Services
 
         public (bool Valid, string Message) ValidateUserpass(int userpass)
         {
-            var user = Context.Users.FirstOrDefault(user => user.Id == userpass);
+            var user = Table.FirstOrDefault(user => user.Id == userpass);
 
             if (user == null)
                 return new(false, Localization.Get("User_does_not_exist"));
@@ -28,7 +28,7 @@ namespace Common.Services
             return new(true, Localization.Get("User_is_valid"));
         }
 
-        public (bool Valid, string Message) ValidateUserForRole(int userpass, Role allowedRole) => ValidateUserForRole(GetUser(userpass), allowedRole);
+        public (bool Valid, string Message) ValidateUserForRole(int userpass, Role allowedRole) => ValidateUserForRole(GetOne(userpass), allowedRole);
 
         public (bool Valid, string Message) ValidateUserForRole(User? user, Role allowedRole)
         {
@@ -41,25 +41,15 @@ namespace Common.Services
             return new(true, Localization.Get("User_has_access"));
         }
 
-        public User? GetUser(int userpass)
-        {
-            return Context.Users.Find(userpass);
-        }
-
-        public List<User> GetAllUsers()
-        {
-            return [.. Context.Users];
-        }
-
         public List<User> GetUsersOfRole(Role role)
         {
-            return Context.Users.Where(user => user.Role == (int)role).ToList();
+            return Table.Where(user => user.Role == (int)role).ToList();
         }
 
-        public void AddUser(User user)
+        public override User AddOne(User user)
         {
-            user.Id = Context.Users.OrderByDescending(u => u.Id).First().Id + 100;
-            Context.Users.Add(user);
+            user.Id = Table.OrderByDescending(u => u.Id).First().Id + 100;
+            return base.AddOne(user);
         }
     }
 }

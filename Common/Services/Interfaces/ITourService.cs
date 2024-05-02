@@ -1,9 +1,8 @@
 ﻿using Common.DAL.Models;
-using System;
 
 namespace Common.Services.Interfaces
 {
-    public interface ITourService
+    public interface ITourService : IBaseService<Tour>
     {
         Tour? GetTourForTicket(Ticket ticket);
 
