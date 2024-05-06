@@ -152,7 +152,7 @@ namespace Guide_Spectre
             while (flow.Tour.RegisteredTickets.Any())
             {
                 var ticketNumber = Prompts.AskTicketNumber();
-                GroupService groupService = ServiceProvider.GetService<GroupService>()!;
+                IGroupService groupService = ServiceProvider.GetService<IGroupService>()!;
                 var group = groupService.GetGroupForTicket(ticketNumber)!;
 
                 var deleteGroup = true;
