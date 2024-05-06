@@ -2,10 +2,8 @@
 
 namespace Common.Services.Interfaces
 {
-    public interface ITicketService
+    public interface ITicketService : IBaseService<Ticket>
     {
         (bool Valid, string Message) ValidateTicketNumber(int ticketNumber);
-
-        Ticket? GetTicket(int ticketNumber);
     }
 }

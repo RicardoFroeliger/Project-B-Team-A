@@ -2,14 +2,10 @@
 
 namespace Common.Services.Interfaces
 {
-    public interface IGroupService
+    public interface IGroupService : IBaseService<Group>
     {
         Group? GetGroupForTicket(Ticket ticket);
 
         Group? GetGroupForTicket(int ticketNumber);
-
-        void DeleteGroup(Group group);
-
-        void AddGroup(Group group);
     }
 }

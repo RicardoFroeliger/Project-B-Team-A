@@ -1,7 +1,5 @@
-﻿using Common.DAL;
-using Common.DAL.Interfaces;
+﻿using Common.DAL.Interfaces;
 using Common.DAL.Models;
-using Common.Services;
 using Common.Services.Interfaces;
 
 namespace Common.Workflows
@@ -21,7 +19,7 @@ namespace Common.Workflows
 
         public virtual (bool Succeeded, string Message) Commit()
         {
-            Context.SaveLocalChanges();
+            Context.SaveChanges();
 
             return (true, Localization.Get("Commit_successful"));
         }
@@ -31,7 +29,7 @@ namespace Common.Workflows
             return (true, Localization.Get("Rollback_successful"));
         }
 
-        protected (bool Success, string Message) ValidateTicket(int ticketNumber) => ValidateTicket(TicketService.GetTicket(ticketNumber));
+        protected (bool Success, string Message) ValidateTicket(int ticketNumber) => ValidateTicket(TicketService.GetOne(ticketNumber));
 
         protected (bool Success, string Message) ValidateTicket(Ticket? ticket)
         {

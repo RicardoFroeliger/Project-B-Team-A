@@ -808,5 +808,131 @@
     "Value": "[bold red]Programma sluiten[/]",
     "Locale": "nl-NL",
     "Id": 135
+  },
+  {
+    "Key": "Management_planning",
+    "Value": "Rondleidingen [green]beheren[/]",
+    "Locale": "nl-NL",
+    "Id": 136
+  },
+  {
+    "Key": "Management_users",
+    "Value": "Gebruikers [green]beheren[/]",
+    "Locale": "nl-NL",
+    "Id": 137
+  },
+  {
+    "Key": "Management_user_schedule",
+    "Value": "Werkrooster [green]beheren[/]",
+    "Locale": "nl-NL",
+    "Id": 138
+  },
+  {
+    "Key": "Ask_user_title",
+    "Value": "Kies een [deeppink1]gebruiker[/]:",
+    "Locale": "nl-NL",
+    "Id": 139
+  },
+  {
+    "Key": "Ask_user_more_choices",
+    "Value": "[grey]Meer gebruikers tonen[/]",
+    "Locale": "nl-NL",
+    "Id": 140
+  },
+  {
+    "Key": "Ask_schedule_title",
+    "Value": "Kies de [deeppink1]werkdagen[/] voor deze gebruiker:",
+    "Locale": "nl-NL",
+    "Id": 141
+  },
+  {
+    "Key": "Ask_schedule_instructions",
+    "Value": "Selecteer een werkdag met [blue][[Spatie]][/], ga door met [green][[Enter]][/]",
+    "Locale": "nl-NL",
+    "Id": 142
+  },
+  {
+    "Key": "Day_Monday",
+    "Value": "Maandag",
+    "Locale": "nl-NL",
+    "Id": 143
+  },
+  {
+    "Key": "Day_Tuesday",
+    "Value": "Dinsdag",
+    "Locale": "nl-NL",
+    "Id": 144
+  },
+  {
+    "Key": "Day_Wednesday",
+    "Value": "Woensdag",
+    "Locale": "nl-NL",
+    "Id": 145
+  },
+  {
+    "Key": "Day_Thursday",
+    "Value": "Donderdag",
+    "Locale": "nl-NL",
+    "Id": 146
+  },
+  {
+    "Key": "Day_Friday",
+    "Value": "Vrijdag",
+    "Locale": "nl-NL",
+    "Id": 147
+  },
+  {
+    "Key": "Day_Saturday",
+    "Value": "Zaterdag",
+    "Locale": "nl-NL",
+    "Id": 148
+  },
+  {
+    "Key": "Day_Sunday",
+    "Value": "Zondag",
+    "Locale": "nl-NL",
+    "Id": 149
+  },
+  {
+    "Key": "Create_user_planning_flow_day",
+    "Value": "Wat zijn de werktijden voor [darkorange]{0}[/]:",
+    "Locale": "nl-NL",
+    "Id": 150
+  },
+  {
+    "Key": "Create_user_planning_flow_start_time",
+    "Value": "Kies een [deeppink1]start tijd[/]:",
+    "Locale": "nl-NL",
+    "Id": 151
+  },
+  {
+    "Key": "Create_user_planning_flow_more_times",
+    "Value": "[grey]Meer tijden[/]",
+    "Locale": "nl-NL",
+    "Id": 152
+  },
+  {
+    "Key": "Create_user_planning_flow_end_time",
+    "Value": "Kies een [deeppink1]eind tijd[/]:",
+    "Locale": "nl-NL",
+    "Id": 153
+  },
+  {
+    "Key": "Create_user_planning_flow_ask_confirmation",
+    "Value": "Wilt u de het rooster voor deze gebruiker [green]opslaan[/]?",
+    "Locale": "nl-NL",
+    "Id": 154
+  },
+  {
+    "Key": "Create_user_planning_flow_hours",
+    "Value": "[blue]{0}[/] - [blue]{1}[/] ",
+    "Locale": "nl-NL",
+    "Id": 155
+  },
+  {
+    "Key": "Create_user_planning_flow_ask_repeat_hours",
+    "Value": "Wil je de start en eind tijd hetzelfde maken voor alle werkdagen?",
+    "Locale": "nl-NL",
+    "Id": 156
   }
 ]

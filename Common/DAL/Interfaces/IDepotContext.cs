@@ -6,14 +6,8 @@ namespace Common.DAL.Interfaces
 
     public interface IDepotContext
     {
-        DbSet<User> Users { get; set; }
-        DbSet<Tour> Tours { get; set; }
-        DbSet<Group> Groups { get; set; }
-        DbSet<Ticket> Tickets { get; set; }
-        DbSet<Translation> Translations { get; set; }
-        DbSet<Setting> Settings { get; set; }
-
-        int SaveLocalChanges();
+        DbSet<T>? GetDbSet<T>() where T : DbEntity;
+        int SaveChanges();
     }
 
 }

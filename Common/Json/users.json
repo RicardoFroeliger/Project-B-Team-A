@@ -1,32 +1,320 @@
 [
-    {
-        "Role": 1,
-        "Name": "Jeroen",
-        "Id": 1000100
-    },
-    {
-        "Role": 1,
-        "Name": "Nina",
-        "Id": 1000200
-    },
-    {
-        "Role": 1,
-        "Name": "Marijn",
-        "Id": 1000300
-    },
-    {
-        "Role": 1,
-        "Name": "Salih",
-        "Id": 1000400
-    },
-    {
-        "Role": 2,
-        "Name": "Frans",
-        "Id": 1000500
-    },
-    {
-        "Role": 2,
-        "Name": "Team-A",
-        "Id": 1000600
-    }
+  {
+    "Role": 1,
+    "Name": "Jeroen",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 1
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 2
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 3
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 4
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 5
+      }
+    ],
+    "Id": 1000100
+  },
+  {
+    "Role": 1,
+    "Name": "Nina",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 6
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 7
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 8
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 9
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 10
+      }
+    ],
+    "Id": 1000200
+  },
+  {
+    "Role": 1,
+    "Name": "Marijn",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 11
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 12
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 13
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 14
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 15
+      }
+    ],
+    "Id": 1000300
+  },
+  {
+    "Role": 1,
+    "Name": "Salih",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 16
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 17
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 18
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 19
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 20
+      }
+    ],
+    "Id": 1000400
+  },
+  {
+    "Role": 2,
+    "Name": "Frans",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000500
+  },
+  {
+    "Role": 2,
+    "Name": "Team-A",
+    "Enabled": true,
+    "Planning": [],
+    "Id": 1000600
+  },
+  {
+    "Role": 1,
+    "Name": "Sil",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 21
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 22
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 23
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 24
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 25
+      }
+    ],
+    "Id": 1000700
+  },
+  {
+    "Role": 1,
+    "Name": "Ricardo",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 26
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 27
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 28
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 29
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 30
+      }
+    ],
+    "Id": 1000800
+  },
+  {
+    "Role": 1,
+    "Name": "Joey",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 31
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 32
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 33
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 34
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 35
+      }
+    ],
+    "Id": 1000900
+  },
+  {
+    "Role": 1,
+    "Name": "Thomas",
+    "Enabled": true,
+    "Planning": [
+      {
+        "Weekday": 1,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 36
+      },
+      {
+        "Weekday": 2,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 37
+      },
+      {
+        "Weekday": 3,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 38
+      },
+      {
+        "Weekday": 4,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 39
+      },
+      {
+        "Weekday": 5,
+        "StartTime": "11:00:00",
+        "EndTime": "17:00:00",
+        "Id": 40
+      }
+    ],
+    "Id": 1001000
+  }
 ]
