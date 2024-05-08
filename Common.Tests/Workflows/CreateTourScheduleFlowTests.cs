@@ -47,7 +47,6 @@ namespace Common.Tests.Workflows
 
             // Set up mocks
             _settingsServiceMock.Setup(x => x.GetValueAsInt("Tour_duration")).Returns(40); 
-            _contextMock.Setup(x => x.SaveLocalChanges()).Returns(1);
             
 
             // Act
