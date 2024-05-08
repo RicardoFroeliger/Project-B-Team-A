@@ -136,6 +136,20 @@ namespace Management_Spectre
                 return;
             }
 
+            flow.CreatePreview();
+
+            var previewTable = new Table();
+            previewTable.AddColumn(Localization.Get("Plan_guides_on_tours_flow_tour_column"));
+            previewTable.AddColumn(Localization.Get("Plan_guides_on_tours_flow_guide_column"));
+
+            foreach (var row in flow.Preview)
+                previewTable.AddRow(row.Key.Start.ToString("dd-MM-yyyy HH:mm"), row.Value != null ? $"{row.Value?.Id} {row.Value?.Name}" : "_________");
+
+            var tableHeader = new Rule(Localization.Get("Plan_guides_on_tours_flow_preview_header"));
+            tableHeader.Justification = Justify.Left;
+            ConsoleWrapper.Console.Write(tableHeader);
+            ConsoleWrapper.Console.Write(previewTable);
+
             // Commit the flow.
             if (Prompts.AskConfirmation("Plan_guides_on_tours_flow_ask_confirmation"))
             {
@@ -143,8 +157,6 @@ namespace Management_Spectre
                 CloseMenu(commitResult.Message, false);
                 return;
             }
-
-            flow.CreatePreview();
 
             flow.Rollback();
             CloseMenu(closeMenu: false);
