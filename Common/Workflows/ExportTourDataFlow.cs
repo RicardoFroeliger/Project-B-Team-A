@@ -7,7 +7,6 @@ namespace Common.Workflows
 {
     public class ExportTourDataFlow : Workflow
     {
-        private IUserService UserService { get; }
         private ITourService TourService { get; }
 
         private User? User { get; set; }
@@ -19,10 +18,9 @@ namespace Common.Workflows
 
         public List<string[]> Preview { get; private set; } = new List<string[]>();
 
-        public ExportTourDataFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, IUserService userService, ITourService tourService)
+        public ExportTourDataFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService)
             : base(context, localizationService, ticketService)
         {
-            UserService = userService;
             TourService = tourService;
         }
 

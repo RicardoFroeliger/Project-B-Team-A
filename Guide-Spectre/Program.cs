@@ -4,6 +4,7 @@ using Common.DAL;
 using Common.DAL.Interfaces;
 using Common.DAL.Models;
 using Common.Enums;
+using Common.Helpers;
 using Common.Services;
 using Common.Services.Interfaces;
 using Common.Workflows;
@@ -45,7 +46,7 @@ namespace Guide_Spectre
             var userService = ServiceProvider.GetService<IUserService>()!;
 
             // Setup context
-            ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).LoadContext();
+            try { ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).LoadContext(); } catch (Exception ex) { ConsoleWrapper.Console.MarkupLine(ExceptionHandler.HandleException(ex)); }
 
             // Menu loop
             while (Running)
