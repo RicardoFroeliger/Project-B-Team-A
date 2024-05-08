@@ -16,6 +16,7 @@ namespace Common.Tests.Workflows
         private Mock<IDepotContext> _contextMock;
         private Mock<ILocalizationService> _localizationServiceMock;
         private Mock<ITicketService> _ticketServiceMock;
+        private Mock<ITourService> _tourServiceMock;
         private Mock<ISettingsService> _settingsServiceMock;
         private CreateTourScheduleFlow _createTourScheduleFlow;
 
@@ -25,12 +26,14 @@ namespace Common.Tests.Workflows
             _contextMock = new Mock<IDepotContext>();
             _localizationServiceMock = new Mock<ILocalizationService>();
             _ticketServiceMock = new Mock<ITicketService>();
+            _tourServiceMock = new Mock<ITourService>();
             _settingsServiceMock = new Mock<ISettingsService>();
 
             _createTourScheduleFlow = new CreateTourScheduleFlow(
                 _contextMock.Object,
                 _localizationServiceMock.Object,
                 _ticketServiceMock.Object,
+                _tourServiceMock.Object,
                 _settingsServiceMock.Object);
         }
 

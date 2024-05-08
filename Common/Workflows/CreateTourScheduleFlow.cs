@@ -18,7 +18,7 @@ namespace Common.Workflows
         private List<Tour> ToursToDispose { get; set; } = new List<Tour>();
         private bool Regenerate { get; set; } = true;
 
-        public CreateTourScheduleFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ISettingsService settingsService)
+        public CreateTourScheduleFlow(IDepotContext context, ILocalizationService localizationService, ITicketService ticketService, ITourService tourService, ISettingsService settingsService)
             : base(context, localizationService, ticketService)
         {
             SettingsService = settingsService;
