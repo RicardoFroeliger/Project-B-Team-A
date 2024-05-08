@@ -26,15 +26,30 @@ namespace Common.Tests.Services
                 _mockSettings.Object,
                 _mockLocalization.Object
             );
+
+            _mockLocalization.Setup(x => x.Get(
+                It.Is<string>(i => i == "Ticket_does_not_exist"),
+                It.IsAny<string?>(),
+                It.IsAny<List<string>?>())).Returns("ticket_no_exist");
+
+            _mockLocalization.Setup(x => x.Get(
+                It.Is<string>(i => i == "Ticket_not_valid_today"),
+                It.IsAny<string?>(),
+                It.IsAny<List<string>?>())).Returns("ticket_invalid_today");
+
+            _mockLocalization.Setup(x => x.Get(
+                It.Is<string>(i => i == "Ticket_is_valid"),
+                It.IsAny<string?>(),
+                It.IsAny<List<string>?>())).Returns("ticket_valid");
         }
 
         [TestMethod]
-        [DataRow(12345, 12345, -1, true, false)]
-        [DataRow(12345, 12345, -1, false, true)]
-        [DataRow(12345, 12345, 0, false, true)]
-        [DataRow(12345, 0, 0, false, false)]
+        [DataRow(12345, 12345, -1, true, false, "ticket_invalid_today")]
+        [DataRow(12345, 12345, -1, false, true, "ticket_valid")]
+        [DataRow(12345, 12345, 0, false, true, "ticket_valid")]
+        [DataRow(12345, 0, 0, false, false, "ticket_no_exist")]
 
-        public void TestValidateTicketNumber(int id, int idToCheck, int dateTimeModifier, bool expires, bool expected)
+        public void TestValidateTicketNumber(int id, int idToCheck, int dateTimeModifier, bool expires, bool expected, string expectedMessage)
         {
             // Arrange
             DateTime validOn = DateTime.Now.AddDays(dateTimeModifier);
@@ -53,6 +68,7 @@ namespace Common.Tests.Services
 
             // Assert
             Assert.AreEqual(expected, result.Valid);
+            Assert.AreEqual(expectedMessage, result.Message);
         }
     }
 }
