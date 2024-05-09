@@ -1,62 +1,63 @@
 ﻿using Common.Choices;
 using Common.DAL.Models;
 using Common.Enums;
-using Common.Services.Interfaces;
 using Spectre.Console;
 
 namespace Common.Services
 {
     public class PromptService : IPromptService
     {
-        public ISettingsService Settings { get; }
-        public ILocalizationService Localization { get; }
-        public ITicketService TicketService { get; }
-        public ITourService TourService { get; }
-        public IUserService UserService { get; }
+        private ISettingsService Settings { get; }
+        private ILocalizationService Localization { get; }
+        private ITicketService TicketService { get; }
+        private ITourService TourService { get; }
+        private IUserService UserService { get; }
+        private IAnsiConsole Console { get; }
 
         public PromptService(ISettingsService settings, ILocalizationService localizationService,
-            ITicketService ticketService, ITourService tourService, IUserService userService)
+            ITicketService ticketService, ITourService tourService, IUserService userService, IAnsiConsole console)
         {
             Localization = localizationService;
             TicketService = ticketService;
             UserService = userService;
             TourService = tourService;
             Settings = settings;
+            Console = console;
         }
 
         public List<DayOfWeek> AskSchedule()
         {
-            return ConsoleWrapper.Console.Prompt(
-                new MultiSelectionPrompt<WorkdayChoice>()
+            return Console.Prompt(
+                new MultiSelectionPrompt<NamedChoice<DayOfWeek>>()
                     .Title(Localization.Get("Ask_schedule_title"))
                     .NotRequired() // Not required to have a workday
                     .PageSize(7)
                     .InstructionsText(Localization.Get("Ask_schedule_instructions"))
                     .AddChoices([
-                        new WorkdayChoice(Localization.Get("Day_Monday"), DayOfWeek.Monday),
-                        new WorkdayChoice(Localization.Get("Day_Tuesday"), DayOfWeek.Tuesday),
-                        new WorkdayChoice(Localization.Get("Day_Wednesday"), DayOfWeek.Wednesday),
-                        new WorkdayChoice(Localization.Get("Day_Thursday"), DayOfWeek.Thursday),
-                        new WorkdayChoice(Localization.Get("Day_Friday"), DayOfWeek.Friday),
-                        new WorkdayChoice(Localization.Get("Day_Saturday"), DayOfWeek.Saturday),
-                        new WorkdayChoice(Localization.Get("Day_Sunday"), DayOfWeek.Sunday)
-                    ])).Select(q => q.Day).ToList();
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Monday"), DayOfWeek.Monday),
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Tuesday"), DayOfWeek.Tuesday),
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Wednesday"), DayOfWeek.Wednesday),
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Thursday"), DayOfWeek.Thursday),
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Friday"), DayOfWeek.Friday),
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Saturday"), DayOfWeek.Saturday),
+                        new NamedChoice<DayOfWeek>(Localization.Get("Day_Sunday"), DayOfWeek.Sunday)
+                    ])).Select(q => q.Value).ToList();
         }
 
         public User AskUser(List<User> options)
         {
-            var choice = ConsoleWrapper.Console.Prompt(
-               new SelectionPrompt<UserChoice>()
+            var choice = Console.Prompt(
+               new SelectionPrompt<NamedChoice<User>>()
                    .Title(Localization.Get("Ask_user_title"))
                    .PageSize(10)
                     .MoreChoicesText(Localization.Get("Ask_user_more_choices"))
-                   .AddChoices(options.Select(q => new UserChoice(q.Name, q))));
-            return choice.User;
+                   .AddChoices(options.Select(q => new NamedChoice<User>(q.Name, q))));
+            return choice.Value;
         }
 
         public int AskNumber(string questionKey, string validationErrorKey, int? min = null, int? max = null)
         {
-            return ConsoleWrapper.Console.Prompt(
+            return Console.Prompt(
                 new TextPrompt<int>(Localization.Get(questionKey))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get(validationErrorKey))
@@ -74,7 +75,7 @@ namespace Common.Services
 
         public int AskTicketNumber()
         {
-            return ConsoleWrapper.Console.Prompt(
+            return Console.Prompt(
                 new TextPrompt<int>(Localization.Get("Scan_ticket"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_ticket_number"))
@@ -89,7 +90,7 @@ namespace Common.Services
 
         public int AskTicketNumberOrUserpass()
         {
-            return ConsoleWrapper.Console.Prompt(
+            return Console.Prompt(
                 new TextPrompt<int>(Localization.Get("Scan_ticket_or_userpass"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_ticket_number_or_userpass"))
@@ -107,9 +108,9 @@ namespace Common.Services
                     }));
         }
 
-        public int AskUserpass()
+        public int AskUserId()
         {
-            return ConsoleWrapper.Console.Prompt(
+            return Console.Prompt(
                 new TextPrompt<int>(Localization.Get("Scan_userpass"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_userpass"))
@@ -127,7 +128,7 @@ namespace Common.Services
             var start = startDate ?? DateTime.Today.Date;
             var dateChoices = Enumerable.Range(0, dateRange).Select(offset => new DateChoice(start.AddDays(historical ? -offset : offset)));
 
-            var choice = ConsoleWrapper.Console.Prompt(
+            var choice = Console.Prompt(
                 new SelectionPrompt<DateChoice>()
                     .Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
@@ -149,7 +150,7 @@ namespace Common.Services
                 minutes += timeInterval;
             }
 
-            var choice = ConsoleWrapper.Console.Prompt(
+            var choice = Console.Prompt(
                 new SelectionPrompt<TimeChoice>()
                     .Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
@@ -159,18 +160,18 @@ namespace Common.Services
             return choice.Span;
         }
 
-        public NavigationChoice GetMenu(string titleTranslationKey, string moreOptionsTranslationKey, List<NavigationChoice> navigationChoices, User? user = null)
+        public Action GetMenu(string titleTranslationKey, string moreOptionsTranslationKey, List<NamedChoice<Action>> navigationChoices, User? user = null)
         {
             var replacementList = new List<string>();
             if (user != null)
-                replacementList = new() { user.Name, Localization.Get(((Role)user.Role).ToString()) };
+                replacementList = new() { user.Name, Localization.Get(((RoleType)user.Role).ToString()) };
 
-            return ConsoleWrapper.Console.Prompt(
-                new SelectionPrompt<NavigationChoice>()
+            return Console.Prompt(
+                new SelectionPrompt<NamedChoice<Action>>()
                     .Title(Localization.Get(titleTranslationKey, replacementStrings: replacementList))
                     .PageSize(10)
                     .MoreChoicesText(Localization.Get(moreOptionsTranslationKey))
-                    .AddChoices(navigationChoices));
+                    .AddChoices(navigationChoices)).Value;
         }
 
         public Tour AskTour(string titleTranslationKey, string moreOptionsTranslationKey, int minimumCapacity, int recentTours = 0, int upcomingTours = -1)
@@ -178,34 +179,34 @@ namespace Common.Services
             int maxCapacity = Settings.GetValueAsInt("Max_capacity_per_tour")!.Value;
 
             var tourChoices = TourService.GetToursForToday(minimumCapacity, recentTours, upcomingTours)
-                .Select(tour => new TourChoice(Localization.Get("Select_tour_item", replacementStrings: new() { tour.Start.ToString("HH:mm"), $"[green]({tour.RegisteredTickets.Count}/{maxCapacity})[/]" }), tour));
+                .Select(tour => new NamedChoice<Tour>(Localization.Get("Select_tour_item", replacementStrings: new() { tour.Start.ToString("HH:mm"), $"[green]({tour.RegisteredTickets.Count}/{maxCapacity})[/]" }), tour));
 
-            var choice = ConsoleWrapper.Console.Prompt(
-                new SelectionPrompt<TourChoice>()
+            var choice = Console.Prompt(
+                new SelectionPrompt<NamedChoice<Tour>>()
                     .Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
                     .MoreChoicesText(Localization.Get(moreOptionsTranslationKey))
                     .AddChoices(tourChoices));
 
-            return choice.Tour;
+            return choice.Value;
         }
 
         public bool AskConfirmation(string titleTranslationKey)
         {
-            var choice = ConsoleWrapper.Console.Prompt(
-               new SelectionPrompt<BoolChoice>()
+            var choice = Console.Prompt(
+               new SelectionPrompt<NamedChoice<bool>>()
                    .Title(Localization.Get(titleTranslationKey))
                    .PageSize(10)
-                   .AddChoices(new List<BoolChoice>() {
+                   .AddChoices(new List<NamedChoice<bool>>() {
                         new(Localization.Get("Choice_yes"), true),
                         new(Localization.Get("Choice_no"), false)
                    }));
-            return choice.Choice;
+            return choice.Value;
         }
 
         public string AskUsername()
         {
-            return ConsoleWrapper.Console.Prompt(
+            return Console.Prompt(
                 new TextPrompt<string>(Localization.Get("Ask_username"))
                     .PromptStyle("green")
                     .ValidationErrorMessage(Localization.Get("Invalid_username"))
@@ -215,18 +216,18 @@ namespace Common.Services
                     }));
         }
 
-        public Role AskRole()
+        public RoleType AskRole()
         {
-            return ConsoleWrapper.Console.Prompt(
-                new SelectionPrompt<Role>()
+            return Console.Prompt(
+                new SelectionPrompt<RoleType>()
                     .Title(Localization.Get("Ask_role"))
                     .PageSize(10)
-                    .AddChoices(Role.Guide, Role.Manager));
+                    .AddChoices(RoleType.Guide, RoleType.Manager));
         }
 
         public string AskFilePath(string titleTranslationKey)
         {
-            return ConsoleWrapper.Console.Prompt(
+            return Console.Prompt(
                 new SelectionPrompt<string>().Title(Localization.Get(titleTranslationKey))
                     .PageSize(10)
                     .MoreChoicesText(Localization.Get("Ask_file_more_choices"))

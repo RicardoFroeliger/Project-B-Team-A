@@ -10,8 +10,7 @@ namespace Common.Tests
         public void TestConsoleOutput()
         {
             // Arrange
-            ConsoleWrapper.LoadTestConsole();
-            var testConsole = (TestConsole)ConsoleWrapper.Console;
+            var testConsole = new TestConsole();
 
             // Act
             testConsole.WriteLine("This is a test");
