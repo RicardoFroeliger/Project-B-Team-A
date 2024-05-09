@@ -1,7 +1,6 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
-using Common.Services.Interfaces;
 using Moq;
 using Moq.EntityFrameworkCore;
 
@@ -58,7 +57,7 @@ namespace Common.Tests.Services
                 new Ticket()
                 {
                     Id = id, ValidOn = validOn, Expires = expires
-                } 
+                }
             };
 
             _mockContext.Setup(x => x.GetDbSet<Ticket>()).ReturnsDbSet(tickets);

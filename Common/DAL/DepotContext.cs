@@ -1,5 +1,4 @@
-﻿using Common.DAL.Interfaces;
-using Common.DAL.Models;
+﻿using Common.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -15,7 +14,7 @@ namespace Common.DAL
         private DbSet<Setting> Settings { get; set; }
         private DbSet<DataSet> DataSets { get; set; }
 
-        private bool _isLoaded { get; set; }
+        private bool IsInitialized { get; set; }
 
         private const string UsersPath = @"Json\users.json";
         private const string ToursPath = @"Json\tours.json";
@@ -43,9 +42,9 @@ namespace Common.DAL
             modelBuilder.Entity<DataEntry>().HasKey(b => b.Id);
         }
 
-        public async void LoadContext()
+        public async void Initialize()
         {
-            if (_isLoaded) return;
+            if (IsInitialized) return;
 
             LoadJson(Users, UsersPath);
             LoadJson(Tours, ToursPath);
@@ -55,7 +54,7 @@ namespace Common.DAL
             LoadJson(Settings, SettingsPath);
             LoadJson(DataSets, DataSetsPath);
 
-            _isLoaded = true;
+            IsInitialized = true;
 
             await SaveChangesAsync();
         }
@@ -65,7 +64,7 @@ namespace Common.DAL
         /// </summary>
         public void Purge()
         {
-            if (!_isLoaded) return;
+            if (!IsInitialized) return;
 
             Users.RemoveRange(Users);
             Tours.RemoveRange(Tours);
@@ -75,7 +74,7 @@ namespace Common.DAL
             Settings.RemoveRange(Settings);
             DataSets.RemoveRange(DataSets);
 
-            _isLoaded = false;
+            IsInitialized = false;
         }
 
         public override int SaveChanges()

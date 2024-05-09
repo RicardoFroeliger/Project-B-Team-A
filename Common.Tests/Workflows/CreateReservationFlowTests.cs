@@ -1,7 +1,7 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Services.Interfaces;
-using Common.Workflows;
+using Common.Services;
+using Common.Workflows.Kiosk;
 using Moq;
 using Moq.EntityFrameworkCore;
 

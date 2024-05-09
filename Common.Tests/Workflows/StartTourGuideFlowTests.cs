@@ -1,11 +1,10 @@
-using System.Runtime.CompilerServices;
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
-using Common.Services.Interfaces;
-using Common.Workflows;
-
+using Common.Services;
+using Common.Workflows.Guide;
 using Moq;
+using Spectre.Console;
 using Spectre.Console.Testing;
 
 namespace Common.Tests.Workflows
@@ -20,7 +19,7 @@ namespace Common.Tests.Workflows
         private Mock<ISettingsService> _mockSettingsService;
         private Mock<IUserService> _mockUserService;
         private StartTourGuideFlow _startTourGuideFlow;
-        private TestConsole _console;
+        private IAnsiConsole _console;
 
         [TestInitialize]
         public void TestInitialize()
@@ -31,9 +30,7 @@ namespace Common.Tests.Workflows
             _mockTourService = new Mock<ITourService>();
             _mockSettingsService = new Mock<ISettingsService>();
             _mockUserService = new Mock<IUserService>();
-
-            ConsoleWrapper.LoadTestConsole();
-            _console = (TestConsole)ConsoleWrapper.Console;
+            _console = new TestConsole();
 
             _startTourGuideFlow = new StartTourGuideFlow(
                 _mockContext.Object,

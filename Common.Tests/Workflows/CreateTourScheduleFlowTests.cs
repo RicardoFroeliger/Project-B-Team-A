@@ -1,8 +1,8 @@
 
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Services.Interfaces;
-using Common.Workflows;
+using Common.Services;
+using Common.Workflows.Manager;
 using Moq;
 
 namespace Common.Tests.Workflows
@@ -43,11 +43,11 @@ namespace Common.Tests.Workflows
             TimeSpan startTime = new TimeSpan(11, 0, 0);
             TimeSpan endTime = new TimeSpan(16, 0, 0);
             int interval = 40;
-          
+
 
             // Set up mocks
-            _settingsServiceMock.Setup(x => x.GetValueAsInt("Tour_duration")).Returns(40); 
-            
+            _settingsServiceMock.Setup(x => x.GetValueAsInt("Tour_duration")).Returns(40);
+
 
             // Act
             var setDateSpanResult = _createTourScheduleFlow.SetDateSpan(startDate, endDate);
@@ -55,7 +55,7 @@ namespace Common.Tests.Workflows
             var setIntervalResult = _createTourScheduleFlow.SetInterval(interval);
             var previewChanges = _createTourScheduleFlow.GetPreviewChanges();
             var disposePlanning = _createTourScheduleFlow.DisposePlanning(new Dictionary<DateTime, List<Tour>>());
-           
+
 
             // Assert
             Assert.IsTrue(setDateSpanResult.Success);
@@ -63,7 +63,7 @@ namespace Common.Tests.Workflows
             Assert.IsTrue(setIntervalResult.Success);
             Assert.IsNotNull(previewChanges);
             Assert.IsTrue(disposePlanning.Succeeded);
-            Assert.AreEqual((endDate - startDate).Days + 1, previewChanges.Count); 
+            Assert.AreEqual((endDate - startDate).Days + 1, previewChanges.Count);
         }
 
     }

@@ -1,7 +1,5 @@
-﻿using Common.DAL.Interfaces;
+﻿using Common.DAL;
 using Common.DAL.Models;
-using Common.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Common.Services
 {
