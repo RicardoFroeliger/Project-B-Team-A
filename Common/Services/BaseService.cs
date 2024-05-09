@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Common.Services
 {
-    public class BaseService<T> : IBaseService<T> where T : DbEntity
+    public abstract class BaseService<T> : IBaseService<T> where T : DbEntity
     {
         protected IDepotContext Context { get; }
 

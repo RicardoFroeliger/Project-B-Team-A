@@ -4,7 +4,7 @@ using Common.Services.Interfaces;
 
 namespace Common.Workflows
 {
-    public class Workflow
+    public abstract class Workflow
     {
         public ILocalizationService Localization { get; }
         public IDepotContext Context { get; }
