@@ -19,7 +19,7 @@ namespace Common.Clients
                 new(Localization.Get("Management_users"), () => { UsersMenu(); }),
                 new(Localization.Get("Management_export_import"), () => { ExportImportMenu(); }),
                 new(Localization.Get("Management_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }),
-                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
+                new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }),
             };
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);

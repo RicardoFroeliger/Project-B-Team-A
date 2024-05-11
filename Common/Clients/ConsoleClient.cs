@@ -83,7 +83,7 @@ namespace Common.Clients
             }
         }
 
-        protected void CloseMenu(string? message = null, bool closeSubMenu = false, bool logout = false, int delayInMs = 1500, bool clear = true)
+        protected void CloseMenu(string? message = null, bool closeSubMenu = false, bool logout = false, bool closeClient = false, int delayInMs = 1500, bool clear = true)
         {
             if (message != null)
             {
@@ -100,6 +100,9 @@ namespace Common.Clients
 
                 if (logout)
                     IsAuthenticated = false;
+
+                if (closeClient)
+                    IsRunning = false;
             }
         }
 

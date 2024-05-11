@@ -41,7 +41,7 @@ namespace Common.Clients
             }
 
             options.Add(new(Localization.Get("Guide_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }));
-            options.Add(new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }));
+            options.Add(new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }));
 
             return Prompts.GetMenu("Guide_title", "Guide_menu_more_options", options, User);
         }

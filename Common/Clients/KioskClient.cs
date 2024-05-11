@@ -22,7 +22,7 @@ namespace Common.Clients
             var options = new List<NamedChoice<Action>>() {
                 new(Localization.Get("Kiosk_reservation"), TourReservation),
                 new(Localization.Get("Kiosk_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }),
-                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
+                new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }),
             };
 
             // Menu for reservation
@@ -35,7 +35,7 @@ namespace Common.Clients
                 new(Localization.Get("Kiosk_modification"), TourModification),
                 new(Localization.Get("Kiosk_cancellation"), TourCancellation),
                 new(Localization.Get("Kiosk_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }),
-                new(Localization.Get("Global_exit"), () => { Environment.Exit(1); }),
+                new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }),
             };
 
             // Menu for modification of a reservation
