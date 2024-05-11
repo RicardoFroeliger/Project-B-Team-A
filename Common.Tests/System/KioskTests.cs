@@ -15,7 +15,7 @@ public class KioskTests
     {
         // Set up the client
         var serviceCollection = Setup.ConfigureServices();
-        var testConsole = new TestConsole().Interactive(); // Must be interactive or won't process inputs
+        var testConsole = new TestConsole().Interactive().EmitAnsiSequences(); // Must be interactive or won't process inputs
         serviceCollection.Replace(ServiceDescriptor.Singleton<IAnsiConsole>(testConsole));
         var serviceProvider = serviceCollection.BuildServiceProvider(); 
         ConsoleClient client = new KioskClient(serviceProvider);
