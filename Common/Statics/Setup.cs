@@ -10,7 +10,7 @@ namespace Common.Statics
 {
     public static class Setup
     {
-        public static ServiceProvider ConfigureServices()
+        public static IServiceCollection ConfigureServices()
         {
             return new ServiceCollection()
                 .AddSingleton<IDepotContext, DepotContext>()
@@ -42,10 +42,13 @@ namespace Common.Statics
                 // Guide flows
                 .AddTransient<RemoveTicketTourGuideFlow>()
                 .AddTransient<AddTicketTourGuideFlow>()
-                .AddTransient<StartTourGuideFlow>()
+                .AddTransient<StartTourGuideFlow>();
+        }
 
-                // Frans Builder
-                .BuildServiceProvider();
+        public static ServiceProvider BuildServices()
+        {
+            var services = ConfigureServices();
+            return services.BuildServiceProvider();
         }
     }
 }
