@@ -29,6 +29,7 @@ public class KioskTests
         testConsole.Input.PushKey(ConsoleKey.DownArrow);
         testConsole.Input.PushKey(ConsoleKey.DownArrow);
         testConsole.Input.PushKey(ConsoleKey.Enter);
+        testConsole.Input.PushKey(ConsoleKey.Enter);
         
         // Run the client and let your script be executed
         client.Run();
