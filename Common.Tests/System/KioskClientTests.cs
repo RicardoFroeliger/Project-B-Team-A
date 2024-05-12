@@ -1,25 +1,22 @@
 ﻿using Common.Clients;
-using Common.Statics;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Spectre.Console;
 using Spectre.Console.Testing;
 
 namespace Common.Tests.System;
 
 [TestClass]
-public class KioskTests
+public class KioskClientTests
 {
     [TestMethod]
     [TestCategory("LocalOnly")]
     public void TestCanEnterTicketAndQuit()
     {
         // Set up the client
-        var serviceCollection = Setup.ConfigureServices();
-        var testConsole = new TestConsole().Interactive().EmitAnsiSequences(); // Must be interactive or won't process inputs
-        serviceCollection.Replace(ServiceDescriptor.Singleton<IAnsiConsole>(testConsole));
+        var serviceCollection = Mocks.ConfigureServices();
         var serviceProvider = serviceCollection.BuildServiceProvider(); 
         ConsoleClient client = new KioskClient(serviceProvider);
+        var testConsole = (TestConsole)serviceProvider.GetService<IAnsiConsole>()!;
         
         // Prepare the script for this test case
         // Here you create a "script" where all inputs are stored

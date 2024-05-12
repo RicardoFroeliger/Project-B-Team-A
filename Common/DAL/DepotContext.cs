@@ -120,8 +120,8 @@ namespace Common.DAL
                 return Settings as DbSet<T>;
             if (typeof(T) == typeof(DataSet))
                 return DataSets as DbSet<T>;
-
             throw new ArgumentException("Invalid type");
+            
         }
     }
 }
