@@ -9,7 +9,7 @@ namespace Client
         static void Main(string[] args)
         {
             var clientType = ClientType.Kiosk;
-            var serviceProvider = Setup.ConfigureServices();
+            var serviceProvider = Setup.BuildServices();
 
             if (args.Any())
                 Enum.TryParse(args[0], out clientType);
