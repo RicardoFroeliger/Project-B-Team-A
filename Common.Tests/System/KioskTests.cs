@@ -11,6 +11,7 @@ namespace Common.Tests.System;
 public class KioskTests
 {
     [TestMethod]
+    [TestCategory("LocalOnly")]
     public void TestCanEnterTicketAndQuit()
     {
         // Set up the client
