@@ -13,6 +13,7 @@ public class Mocks
 {
     public static IServiceCollection ConfigureServices()
     {
+
         return new ServiceCollection()
             .AddSingleton<IDepotContext, DepotContext>()
             .AddSingleton<ILocalizationService, LocalizationService>()

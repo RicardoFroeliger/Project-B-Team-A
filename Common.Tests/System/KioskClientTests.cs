@@ -1,4 +1,5 @@
 ﻿using Common.Clients;
+using Common.DAL.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 using Spectre.Console.Testing;
@@ -8,6 +9,28 @@ namespace Common.Tests.System;
 [TestClass]
 public class KioskClientTests
 {
+    private static List<Tour> createTours()
+    {
+        return new List<Tour>()
+        {
+            new Tour()
+            {
+                GuideId = 1000100, 
+                RegisteredTickets = new List<int>() { 81479625, 62839174 },
+                Start = DateTime.Now.AddMinutes(1)
+            },
+            new Tour() { 
+                GuideId = 1000100, 
+                Start = DateTime.Now.AddMinutes(2) 
+            },
+            new Tour()
+            {
+                GuideId = 1000100, 
+                Start = DateTime.Now.AddMinutes(3)
+            }
+        };
+    }
+
     [TestMethod]
     [TestCategory("LocalOnly")]
     public void TestCanEnterTicketAndQuit()
