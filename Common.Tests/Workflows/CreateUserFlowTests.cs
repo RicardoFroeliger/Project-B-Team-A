@@ -63,7 +63,7 @@ namespace Common.Tests.Workflows
         [TestMethod]
         [DataRow(null, true, "username_set")] // Username is empty, should still work
         [DataRow("testUsername", true, "username_set")] // Username is not empty
-        public void TestSetUsername(string username, bool setSucces, string validationMessage)
+        public void TestSetUsername(string username, bool setSuccess, string validationMessage)
         {
             // Arrange
             var name = username;
@@ -74,14 +74,14 @@ namespace Common.Tests.Workflows
             var userNameSet = _createUserFlow.SetUsername(name);
 
             // Assert validation and localization message
-            Assert.AreEqual(setSucces, userNameSet.Succeeded);
+            Assert.AreEqual(setSuccess, userNameSet.Succeeded);
             Assert.AreEqual(validationMessage, userNameSet.Message);
         }
 
         [TestMethod]
         [DataRow(1, true, "role_set")] // Role is 1 - guide
         [DataRow(2, true, "role_set")] // Role is 2 - manager
-        public void TestSetRole(int roleNum, bool setSucces, string validationMessage)
+        public void TestSetRole(int roleNum, bool setSuccess, string validationMessage)
         {
             // Arrange
             Role role = (Common.Enums.Role)roleNum;
@@ -92,7 +92,7 @@ namespace Common.Tests.Workflows
             var roleSet = _createUserFlow.SetRole(role);
 
             // Assert validation and localization message
-            Assert.AreEqual(setSucces, roleSet.Succeeded);
+            Assert.AreEqual(setSuccess, roleSet.Succeeded);
             Assert.AreEqual(validationMessage, roleSet.Message);
         }
 
