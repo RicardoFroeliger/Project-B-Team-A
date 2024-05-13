@@ -1,8 +1,8 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
-using Common.Services.Interfaces;
-using Common.Workflows;
+using Common.Services;
+using Common.Workflows.Manager;
 using Moq;
 using Moq.EntityFrameworkCore;
 
@@ -84,7 +84,7 @@ namespace Common.Tests.Workflows
         public void TestSetRole(int roleNum, bool setSuccess, string validationMessage)
         {
             // Arrange
-            Role role = (Common.Enums.Role)roleNum;
+            RoleType role = (RoleType)roleNum;
 
             _contextMock.Setup(x => x.GetDbSet<User>()).ReturnsDbSet(new List<User>());
 
@@ -100,7 +100,7 @@ namespace Common.Tests.Workflows
         public void Commit_WhenUsernameNotSet()
         {
             // Arrange
-            _createUserFlow.SetRole(Role.Manager);
+            _createUserFlow.SetRole(RoleType.Manager);
 
             // Act
             var result = _createUserFlow.Commit();
@@ -129,7 +129,7 @@ namespace Common.Tests.Workflows
         {
             // Arrange
             _createUserFlow.SetUsername("SomeUsername");
-            _createUserFlow.SetRole(Role.Guide);
+            _createUserFlow.SetRole(RoleType.Guide);
 
             // Act
             var result = _createUserFlow.Commit();

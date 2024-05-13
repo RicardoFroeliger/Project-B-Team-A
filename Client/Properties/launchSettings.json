@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "Kiosk Client": {
+      "commandName": "Project",
+      "commandLineArgs": "Kiosk"
+    },
+    "Guide Client": {
+      "commandName": "Project",
+      "commandLineArgs": "Guide"
+    },
+    "Manager Client": {
+      "commandName": "Project",
+      "commandLineArgs": "Manager"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Master Client": {
+      "commandName": "Project",
+      "commandLineArgs": "Master"
+    }
+  }
+}

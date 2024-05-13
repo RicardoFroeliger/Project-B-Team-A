@@ -1,7 +1,6 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
-using Common.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 

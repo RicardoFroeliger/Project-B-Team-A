@@ -1,11 +1,10 @@
-﻿using Common.DAL.Interfaces;
+﻿using Common.DAL;
 using Common.DAL.Models;
-using Common.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Common.Services
 {
-    public abstract class BaseService<T> : IBaseService<T> where T : DbEntity
+    public class BaseService<T> : IBaseService<T> where T : DbEntity
     {
         protected IDepotContext Context { get; }
 

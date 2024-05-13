@@ -1,8 +1,7 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
-using Common.Services.Interfaces;
 using Moq;
 using Moq.EntityFrameworkCore;
 
@@ -23,8 +22,8 @@ namespace Common.Tests.Services
             _mockSettings = new Mock<ISettingsService>();
             _mockLocalization = new Mock<ILocalizationService>();
             _service = new UserService(
-                _mockContext.Object, 
-                _mockSettings.Object, 
+                _mockContext.Object,
+                _mockSettings.Object,
                 _mockLocalization.Object
             );
         }
@@ -50,10 +49,10 @@ namespace Common.Tests.Services
         }
 
         [TestMethod]
-        [DataRow(1, Role.Manager, Role.Manager, true)]   // User must be at least manager, is manager - validates
-        [DataRow(2, Role.Manager, Role.Visitor, true)]   // User must be at least manager, is visitor - validates
-        [DataRow(3, Role.Visitor, Role.Manager, false)]  // User must be at least manager, is visitor - doesn't validate
-        public void TestValidateUserForRole(int id, Role actualRole, Role expectedRole, bool expectedReturn)
+        [DataRow(1, RoleType.Manager, RoleType.Manager, true)]   // User must be at least manager, is manager - validates
+        [DataRow(2, RoleType.Manager, RoleType.Guest, true)]   // User must be at least manager, is visitor - validates
+        [DataRow(3, RoleType.Guest, RoleType.Manager, false)]  // User must be at least manager, is visitor - doesn't validate
+        public void TestValidateUserForRole(int id, RoleType actualRole, RoleType expectedRole, bool expectedReturn)
         {
             // Arrange
             var user = new User { Id = id, Role = (int)actualRole };
@@ -102,14 +101,14 @@ namespace Common.Tests.Services
             // Arrange
             var users = new List<User>
             {
-                new User { Id = 1, Role = (int)Role.Manager },
-                new User { Id = 2, Role = (int)Role.Guide }
+                new User { Id = 1, Role = (int)RoleType.Manager },
+                new User { Id = 2, Role = (int)RoleType.Guide }
             };
 
             _mockContext.Setup(x => x.GetDbSet<User>()).ReturnsDbSet(users);
 
             // Act
-            var result = _service.GetUsersOfRole(Role.Guide);
+            var result = _service.GetUsersOfRole(RoleType.Guide);
 
             // Assert
             Assert.AreEqual(1, result.Count);

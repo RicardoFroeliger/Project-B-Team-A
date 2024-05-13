@@ -1,4 +1,4 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
 using Microsoft.EntityFrameworkCore;

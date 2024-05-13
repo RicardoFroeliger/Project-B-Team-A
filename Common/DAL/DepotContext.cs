@@ -1,5 +1,4 @@
-﻿using Common.DAL.Interfaces;
-using Common.DAL.Models;
+﻿using Common.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -15,7 +14,7 @@ namespace Common.DAL
         private DbSet<Setting> Settings { get; set; }
         private DbSet<DataSet> DataSets { get; set; }
 
-        private bool _isLoaded { get; set; }
+        private bool IsInitialized { get; set; }
 
         private const string UsersPath = @"Json\users.json";
         private const string ToursPath = @"Json\tours.json";
@@ -43,9 +42,9 @@ namespace Common.DAL
             modelBuilder.Entity<DataEntry>().HasKey(b => b.Id);
         }
 
-        public async void LoadContext()
+        public async void Initialize()
         {
-            if (_isLoaded) return;
+            if (IsInitialized) return;
 
             LoadJson(Users, UsersPath);
             LoadJson(Tours, ToursPath);
@@ -55,7 +54,7 @@ namespace Common.DAL
             LoadJson(Settings, SettingsPath);
             LoadJson(DataSets, DataSetsPath);
 
-            _isLoaded = true;
+            IsInitialized = true;
 
             await SaveChangesAsync();
         }
@@ -65,7 +64,7 @@ namespace Common.DAL
         /// </summary>
         public void Purge()
         {
-            if (!_isLoaded) return;
+            if (!IsInitialized) return;
 
             Users.RemoveRange(Users);
             Tours.RemoveRange(Tours);
@@ -75,7 +74,7 @@ namespace Common.DAL
             Settings.RemoveRange(Settings);
             DataSets.RemoveRange(DataSets);
 
-            _isLoaded = false;
+            IsInitialized = false;
         }
 
         public override int SaveChanges()
@@ -105,24 +104,16 @@ namespace Common.DAL
             }
         }
 
-        public DbSet<T>? GetDbSet<T>() where T : DbEntity
+        public DbSet<T>? GetDbSet<T>() where T : DbEntity => typeof(T) switch
         {
-            if (typeof(T) == typeof(User))
-                return Users as DbSet<T>;
-            if (typeof(T) == typeof(Tour))
-                return Tours as DbSet<T>;
-            if (typeof(T) == typeof(Group))
-                return Groups as DbSet<T>;
-            if (typeof(T) == typeof(Ticket))
-                return Tickets as DbSet<T>;
-            if (typeof(T) == typeof(Translation))
-                return Translations as DbSet<T>;
-            if (typeof(T) == typeof(Setting))
-                return Settings as DbSet<T>;
-            if (typeof(T) == typeof(DataSet))
-                return DataSets as DbSet<T>;
-
-            throw new ArgumentException("Invalid type");
-        }
+            var type when type == typeof(User) => Users as DbSet<T>,
+            var type when type == typeof(Tour) => Tours as DbSet<T>,
+            var type when type == typeof(Group) => Groups as DbSet<T>,
+            var type when type == typeof(Ticket) => Tickets as DbSet<T>,
+            var type when type == typeof(Translation) => Translations as DbSet<T>,
+            var type when type == typeof(Setting) => Settings as DbSet<T>,
+            var type when type == typeof(DataSet) => DataSets as DbSet<T>,
+            _ => throw new ArgumentException("Invalid type"),
+        };
     }
 }

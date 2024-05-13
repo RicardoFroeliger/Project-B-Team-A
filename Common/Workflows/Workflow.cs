@@ -1,6 +1,6 @@
-﻿using Common.DAL.Interfaces;
+﻿using Common.DAL;
 using Common.DAL.Models;
-using Common.Services.Interfaces;
+using Common.Services;
 
 namespace Common.Workflows
 {
