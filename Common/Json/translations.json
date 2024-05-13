@@ -31,7 +31,7 @@
   },
   {
     "Key": "Kiosk_close",
-    "Value": "Menu [red]afsluiten[/]",
+    "Value": "[red]Sluiten[/]",
     "Locale": "nl-NL",
     "Id": 6
   },
@@ -145,7 +145,7 @@
   },
   {
     "Key": "Guide_close",
-    "Value": "Ga terug",
+    "Value": "[red]Uitloggen[/]",
     "Locale": "nl-NL",
     "Id": 25
   },
@@ -205,7 +205,7 @@
   },
   {
     "Key": "Management_close",
-    "Value": "Menu [red]afsluiten[/]",
+    "Value": "[red]Uitloggen[/]",
     "Locale": "nl-NL",
     "Id": 35
   },
@@ -456,7 +456,7 @@
     "Id": 76
   },
   {
-    "Key": "flow_tour_is_valid",
+    "Key": "Flow_tour_is_valid",
     "Value": "[green]Rondleiding is valide.[/]",
     "Locale": "nl-NL",
     "Id": 77
@@ -937,38 +937,332 @@
   },
   {
     "Key": "Master_run_kiosk_client",
-    "Value": "Master_run_kiosk_client | nl-NL",
+    "Value": "Start Kiosk",
     "Locale": "nl-NL",
     "Id": 157
   },
   {
     "Key": "Master_run_guide_client",
-    "Value": "Master_run_guide_client | nl-NL",
+    "Value": "Start Gids",
     "Locale": "nl-NL",
     "Id": 158
   },
   {
     "Key": "Master_run_manager_client",
-    "Value": "Master_run_manager_client | nl-NL",
+    "Value": "Start Beheer",
     "Locale": "nl-NL",
     "Id": 159
   },
   {
     "Key": "Master_title",
-    "Value": "Master_title | nl-NL",
+    "Value": "Test / Debug hoofdmenu\nDit menu is enkel voor ontwikkel doeleinden.",
     "Locale": "nl-NL",
     "Id": 160
   },
   {
     "Key": "Master_menu_more_options",
-    "Value": "Master_menu_more_options | nl-NL",
+    "Value": "Meer clients",
     "Locale": "nl-NL",
     "Id": 161
   },
   {
     "Key": "Management_export_import",
-    "Value": "Management_export_import | nl-NL",
+    "Value": "Data import / export",
     "Locale": "nl-NL",
     "Id": 162
+  },
+  {
+    "Key": "Management_Import_tour_data",
+    "Value": "Importeer rondleiding data",
+    "Locale": "nl-NL",
+    "Id": 163
+  },
+  {
+    "Key": "Management_export_tour_data",
+    "Value": "Exporteer rondleiding data",
+    "Locale": "nl-NL",
+    "Id": 164
+  },
+  {
+    "Key": "Management_Import_planning",
+    "Value": "Importeren planning",
+    "Locale": "nl-NL",
+    "Id": 165
+  },
+  {
+    "Key": "Management_export_planning",
+    "Value": "Exporteren planning",
+    "Locale": "nl-NL",
+    "Id": 166
+  },
+  {
+    "Key": "Management_plan_guides_on_tours",
+    "Value": "Gidsen inplannen",
+    "Locale": "nl-NL",
+    "Id": 167
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_tour_column",
+    "Value": "Rondleiding",
+    "Locale": "nl-NL",
+    "Id": 168
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_guide_column",
+    "Value": "Gids",
+    "Locale": "nl-NL",
+    "Id": 169
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_preview_header",
+    "Value": "Voorbeeld weergave gidsenplanning",
+    "Locale": "nl-NL",
+    "Id": 170
+  },
+  {
+    "Key": "Import_tour_data_flow_no_files_to_import",
+    "Value": "Geen bestanden om te importeren",
+    "Locale": "nl-NL",
+    "Id": 171
+  },
+  {
+    "Key": "Import_tour_data_flow_preview_header",
+    "Value": "Voorbeeld weergave import",
+    "Locale": "nl-NL",
+    "Id": 172
+  },
+  {
+    "Key": "Ask_file_more_choices",
+    "Value": "Meer bestanden",
+    "Locale": "nl-NL",
+    "Id": 173
+  },
+  {
+    "Key": "Ticket_does_not_exist",
+    "Value": "Ticket bestaat niet",
+    "Locale": "nl-NL",
+    "Id": 174
+  },
+  {
+    "Key": "Ticket_not_valid_today",
+    "Value": "Ticket is niet geldig vandaag",
+    "Locale": "nl-NL",
+    "Id": 175
+  },
+  {
+    "Key": "Flow_tour_no_space_for_tickets_in_tour",
+    "Value": "Er is geen plek meer in deze rondleiding",
+    "Locale": "nl-NL",
+    "Id": 176
+  },
+  {
+    "Key": "Flow_tour_is_valid",
+    "Value": "Rondleiding is geldig",
+    "Locale": "nl-NL",
+    "Id": 177
+  },
+  {
+    "Key": "Flow_no_tickets_to_add",
+    "Value": "Geen tickets om toe te voegen",
+    "Locale": "nl-NL",
+    "Id": 178
+  },
+  {
+    "Key": "Flow_tour_no_tickets_in_tour",
+    "Value": "Geen reserveringen in rondleiding",
+    "Locale": "nl-NL",
+    "Id": 179
+  },
+  {
+    "Key": "Flow_no_tickets_to_remove",
+    "Value": "Geen tickets on te verwijderen",
+    "Locale": "nl-NL",
+    "Id": 180
+  },
+  {
+    "Key": "Flow_no_tickets_scanned",
+    "Value": "Geen tickets gescant",
+    "Locale": "nl-NL",
+    "Id": 181
+  },
+  {
+    "Key": "Flow_tour_not_found",
+    "Value": "Rondleiding niet gevonden",
+    "Locale": "nl-NL",
+    "Id": 182
+  },
+  {
+    "Key": "Flow_no_tour",
+    "Value": "Geen rondleiding",
+    "Locale": "nl-NL",
+    "Id": 183
+  },
+  {
+    "Key": "Flow_no_group",
+    "Value": "Geen groep",
+    "Locale": "nl-NL",
+    "Id": 184
+  },
+  {
+    "Key": "Flow_ticket_already_added",
+    "Value": "Ticket reeds toegevoegd",
+    "Locale": "nl-NL",
+    "Id": 185
+  },
+  {
+    "Key": "Flow_no_new_tour",
+    "Value": "Geen nieuwe rondleiding geselecteerd",
+    "Locale": "nl-NL",
+    "Id": 186
+  },
+  {
+    "Key": "Flow_date_start_in_past",
+    "Value": "Start datum ligt in het verleden",
+    "Locale": "nl-NL",
+    "Id": 187
+  },
+  {
+    "Key": "Flow_date_end_before_start",
+    "Value": "Einddatum ligt voor startdatum",
+    "Locale": "nl-NL",
+    "Id": 188
+  },
+  {
+    "Key": "Flow_time_end_before_start",
+    "Value": "Eindtijd ligt voor starttijd",
+    "Locale": "nl-NL",
+    "Id": 189
+  },
+  {
+    "Key": "Flow_interval_invalid",
+    "Value": "Interval ongeldig",
+    "Locale": "nl-NL",
+    "Id": 190
+  },
+  {
+    "Key": "Flow_interval_too_large",
+    "Value": "Te grote interval",
+    "Locale": "nl-NL",
+    "Id": 191
+  },
+  {
+    "Key": "Flow_planning_marked_for_disposal",
+    "Value": "Planning gemarkeerd voor verwijdering",
+    "Locale": "nl-NL",
+    "Id": 192
+  },
+  {
+    "Key": "Flow_no_planning_to_commit",
+    "Value": "Er is geen planning om op te slaan",
+    "Locale": "nl-NL",
+    "Id": 193
+  },
+  {
+    "Key": "Flow_username_set",
+    "Value": "Gebruikersnaam ingesteld",
+    "Locale": "nl-NL",
+    "Id": 194
+  },
+  {
+    "Key": "Flow_role_set",
+    "Value": "Rol ingesteld",
+    "Locale": "nl-NL",
+    "Id": 195
+  },
+  {
+    "Key": "Flow_username_not_set",
+    "Value": "Gebruikersnaam niet ingesteld",
+    "Locale": "nl-NL",
+    "Id": 196
+  },
+  {
+    "Key": "Flow_role_not_set",
+    "Value": "Rol niet ingesteld",
+    "Locale": "nl-NL",
+    "Id": 197
+  },
+  {
+    "Key": "Flow_user_null",
+    "Value": "Gebruiker bestaat niet",
+    "Locale": "nl-NL",
+    "Id": 198
+  },
+  {
+    "Key": "Flow_invalid_time",
+    "Value": "Ongeldige tijd",
+    "Locale": "nl-NL",
+    "Id": 199
+  },
+  {
+    "Key": "Flow_invalid_start_date",
+    "Value": "Ongeldige startdatum",
+    "Locale": "nl-NL",
+    "Id": 200
+  },
+  {
+    "Key": "Flow_invalid_end_date",
+    "Value": "Ongeldige einddatum",
+    "Locale": "nl-NL",
+    "Id": 201
+  },
+  {
+    "Key": "Flow_invalid_file_path",
+    "Value": "Ongeldige bestandslocatie",
+    "Locale": "nl-NL",
+    "Id": 202
+  },
+  {
+    "Key": "Flow_preview_created",
+    "Value": "Voorbeeld aangemaakt",
+    "Locale": "nl-NL",
+    "Id": 203
+  },
+  {
+    "Key": "Flow_no_preview_data",
+    "Value": "Er is geen voorbeeld data",
+    "Locale": "nl-NL",
+    "Id": 204
+  },
+  {
+    "Key": "Flow_invalid_user",
+    "Value": "Gebruiker ongeldig",
+    "Locale": "nl-NL",
+    "Id": 205
+  },
+  {
+    "Key": "Flow_set_valid",
+    "Value": "Gelukt",
+    "Locale": "nl-NL",
+    "Id": 206
+  },
+  {
+    "Key": "Flow_invalid_start_less_than_end",
+    "Value": "Start is minder dan einde",
+    "Locale": "nl-NL",
+    "Id": 207
+  },
+  {
+    "Key": "Flow_duplicate_set",
+    "Value": "Deze dataset is al geimporteerd",
+    "Locale": "nl-NL",
+    "Id": 208
+  },
+  {
+    "Key": "Flow_invalid_start_more_than_end",
+    "Value": "Start ligt voorbij einde",
+    "Locale": "nl-NL",
+    "Id": 209
+  },
+  {
+    "Key": "Flow_ticket_invalid",
+    "Value": "Ticket ongeldig",
+    "Locale": "nl-NL",
+    "Id": 210
+  },
+  {
+    "Key": "Global_return",
+    "Value": "Terug",
+    "Locale": "nl-NL",
+    "Id": 211
   }
 ]

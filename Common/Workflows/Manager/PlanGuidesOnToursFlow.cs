@@ -32,12 +32,12 @@ namespace Common.Workflows.Manager
         public (bool Succeeded, string Message) SetDateSpan(DateTime start, DateTime end)
         {
             if (start > end)
-                return (false, Localization.Get("flow_invalid_start_more_than_end"));
+                return (false, Localization.Get("Flow_invalid_start_more_than_end"));
 
             Start = start;
             End = end;
 
-            return (true, Localization.Get("flow_set_valid"));
+            return (true, Localization.Get("Flow_set_valid"));
         }
 
         public void CreatePreview()

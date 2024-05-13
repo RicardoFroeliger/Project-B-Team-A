@@ -34,7 +34,7 @@ namespace Common.Clients
                 ClientType.Manager => GetClient<ManagerClient>(clientType),
                 _ => throw new ArgumentOutOfRangeException(nameof(clientType), clientType, null)
             };
-
+            client.RunsContained();
             client.Run();
         }
     }
