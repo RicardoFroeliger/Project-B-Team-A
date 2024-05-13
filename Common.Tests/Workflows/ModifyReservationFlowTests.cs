@@ -1,14 +1,9 @@
-using Common.DAL.Interfaces;
+using Common.DAL;
 using Common.DAL.Models;
-using Common.Enums;
 using Common.Services;
-using Common.Services.Interfaces;
-using Common.Workflows;
-
 using Moq;
 using Moq.EntityFrameworkCore;
-using Spectre.Console.Testing;
-using System.Net.Sockets;
+using Common.Workflows.Kiosk;
 
 namespace Common.Tests.Workflows
 {
