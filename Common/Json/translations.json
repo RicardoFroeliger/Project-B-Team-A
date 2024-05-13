@@ -1,7 +1,7 @@
 [
   {
     "Key": "Scan_ticket",
-    "Value": "Scan uw [darkorange]ticket[/]:",
+    "Value": "Scan uw [darkorange]bezoekersticket[/]:",
     "Locale": "nl-NL",
     "Id": 1
   },
@@ -19,13 +19,13 @@
   },
   {
     "Key": "Kiosk_modification",
-    "Value": "Reservering [darkorange]wijzigen[/]",
+    "Value": "Bestaande reservering [darkorange]wijzigen[/]",
     "Locale": "nl-NL",
     "Id": 4
   },
   {
     "Key": "Kiosk_cancellation",
-    "Value": "Reservering [red]verwijderen[/]",
+    "Value": "Bestaande reservering [red]verwijderen[/]",
     "Locale": "nl-NL",
     "Id": 5
   },
@@ -109,13 +109,13 @@
   },
   {
     "Key": "Scan_userpass",
-    "Value": "Scan uw [darkorange]pas[/]:",
+    "Value": "Scan uw [darkorange]personeelspas[/]:",
     "Locale": "nl-NL",
     "Id": 19
   },
   {
     "Key": "Invalid_userpass",
-    "Value": "[red]Ongeldige pas[/]",
+    "Value": "[red]Ongeldige personeelspas[/]",
     "Locale": "nl-NL",
     "Id": 20
   },
@@ -439,7 +439,7 @@
   },
   {
     "Key": "Guide_start_tour",
-    "Value": "Rondleiding [green]starten[/]",
+    "Value": "[green]Begin[/] rondleiding en voeg deelnemers toe",
     "Locale": "nl-NL",
     "Id": 74
   },
@@ -559,7 +559,7 @@
   },
   {
     "Key": "Scan_ticket_or_userpass",
-    "Value": "Scan [darkorange]bezoekersticket[/] of [darkorange]pas[/]:",
+    "Value": "Scan [darkorange]bezoekersticket[/] of de [darkorange]personeelspas[/] om de rondleiding te starten:",
     "Locale": "nl-NL",
     "Id": 94
   },
