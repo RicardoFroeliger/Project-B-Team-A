@@ -15,6 +15,10 @@
     "WSL": {
       "commandName": "WSL2",
       "distributionName": ""
+    },
+    "Master Client": {
+      "commandName": "Project",
+      "commandLineArgs": "Master"
     }
   }
 }

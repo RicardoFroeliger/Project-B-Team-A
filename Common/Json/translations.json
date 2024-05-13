@@ -331,7 +331,7 @@
   },
   {
     "Key": "Management_close_message",
-    "Value": "[grey]<- U gaat terug naar het hoofdmenu.[/]",
+    "Value": "[grey]\u003C- U gaat terug naar het hoofdmenu.[/]",
     "Locale": "nl-NL",
     "Id": 56
   },
@@ -499,7 +499,7 @@
   },
   {
     "Key": "Guide_close_message",
-    "Value": "[grey]<- U gaat terug naar het hoofdmenu.[/]",
+    "Value": "[grey]\u003C- U gaat terug naar het hoofdmenu.[/]",
     "Locale": "nl-NL",
     "Id": 84
   },
@@ -619,7 +619,7 @@
   },
   {
     "Key": "Kiosk_close_message",
-    "Value": "[grey]<- U gaat terug naar het hoofdmenu.[/]",
+    "Value": "[grey]\u003C- U gaat terug naar het hoofdmenu.[/]",
     "Locale": "nl-NL",
     "Id": 104
   },
@@ -934,5 +934,41 @@
     "Value": "Wil je de start en eind tijd hetzelfde maken voor alle werkdagen?",
     "Locale": "nl-NL",
     "Id": 156
+  },
+  {
+    "Key": "Master_run_kiosk_client",
+    "Value": "Master_run_kiosk_client | nl-NL",
+    "Locale": "nl-NL",
+    "Id": 157
+  },
+  {
+    "Key": "Master_run_guide_client",
+    "Value": "Master_run_guide_client | nl-NL",
+    "Locale": "nl-NL",
+    "Id": 158
+  },
+  {
+    "Key": "Master_run_manager_client",
+    "Value": "Master_run_manager_client | nl-NL",
+    "Locale": "nl-NL",
+    "Id": 159
+  },
+  {
+    "Key": "Master_title",
+    "Value": "Master_title | nl-NL",
+    "Locale": "nl-NL",
+    "Id": 160
+  },
+  {
+    "Key": "Master_menu_more_options",
+    "Value": "Master_menu_more_options | nl-NL",
+    "Locale": "nl-NL",
+    "Id": 161
+  },
+  {
+    "Key": "Management_export_import",
+    "Value": "Management_export_import | nl-NL",
+    "Locale": "nl-NL",
+    "Id": 162
   }
 ]

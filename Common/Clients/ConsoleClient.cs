@@ -6,6 +6,7 @@ using Common.Services;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
+using System;
 
 namespace Common.Clients
 {
@@ -62,7 +63,11 @@ namespace Common.Clients
             while (IsRunning)
             {
                 bool hasAccess;
-                if (ClientType != ClientType.Kiosk)
+                if (ClientType == ClientType.Master)
+                {
+                    hasAccess = true;
+                }
+                else if (ClientType != ClientType.Kiosk)
                 {
                     var userId = Prompts.AskUserId();
                     User = UserService.GetOne(userId);
@@ -109,6 +114,19 @@ namespace Common.Clients
         protected T GetFlow<T>() where T : Workflow
         {
             return ServiceProvider.GetService<T>()!;
+        }
+
+        protected T GetClient<T>(ClientType clientType) where T : ConsoleClient
+        {
+            ConsoleClient client = clientType switch
+            {
+                ClientType.Manager => new ManagerClient(ServiceProvider),
+                ClientType.Kiosk => new KioskClient(ServiceProvider),
+                ClientType.Guide => new GuideClient(ServiceProvider),
+                _ => throw new ArgumentOutOfRangeException($"{clientType} has no associated client to instantiate.")
+            };
+
+            return (client as T)!;
         }
 
         protected abstract Action ShowMainMenu();

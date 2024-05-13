@@ -104,24 +104,16 @@ namespace Common.DAL
             }
         }
 
-        public DbSet<T>? GetDbSet<T>() where T : DbEntity
+        public DbSet<T>? GetDbSet<T>() where T : DbEntity => typeof(T) switch
         {
-            if (typeof(T) == typeof(User))
-                return Users as DbSet<T>;
-            if (typeof(T) == typeof(Tour))
-                return Tours as DbSet<T>;
-            if (typeof(T) == typeof(Group))
-                return Groups as DbSet<T>;
-            if (typeof(T) == typeof(Ticket))
-                return Tickets as DbSet<T>;
-            if (typeof(T) == typeof(Translation))
-                return Translations as DbSet<T>;
-            if (typeof(T) == typeof(Setting))
-                return Settings as DbSet<T>;
-            if (typeof(T) == typeof(DataSet))
-                return DataSets as DbSet<T>;
-
-            throw new ArgumentException("Invalid type");
-        }
+            var type when type == typeof(User) => Users as DbSet<T>,
+            var type when type == typeof(Tour) => Tours as DbSet<T>,
+            var type when type == typeof(Group) => Groups as DbSet<T>,
+            var type when type == typeof(Ticket) => Tickets as DbSet<T>,
+            var type when type == typeof(Translation) => Translations as DbSet<T>,
+            var type when type == typeof(Setting) => Settings as DbSet<T>,
+            var type when type == typeof(DataSet) => DataSets as DbSet<T>,
+            _ => throw new ArgumentException("Invalid type"),
+        };
     }
 }
