@@ -22,6 +22,9 @@ namespace Common.Clients
         protected bool ShowSubmenu { get; set; } = false;
         protected bool Contained { get; set; } = false;
 
+        // Encapsulate DateTime.Now for easier testing
+        protected IDateTimeService DateTime { get; }
+
         // Used in the client for general purposes
         protected ILocalizationService Localization { get; }
         protected IPromptService Prompts { get; }
@@ -48,6 +51,8 @@ namespace Common.Clients
             TicketService = serviceProvider.GetService<ITicketService>()!;
             UserService = serviceProvider.GetService<IUserService>()!;
             TourService = serviceProvider.GetService<ITourService>()!;
+
+            DateTime = serviceProvider.GetService<IDateTimeService>()!;
 
             // Setup context
             try

@@ -22,6 +22,7 @@ namespace Common.Statics
                 .AddSingleton<IGroupService, GroupService>()
                 .AddSingleton<IUserService, UserService>()
                 .AddSingleton<IDataSetService, DataSetService>()
+                .AddSingleton<IDateTimeService, DateTimeService>()
 
                 // Uses existing instance
                 .AddSingleton<IAnsiConsole>(AnsiConsole.Console)

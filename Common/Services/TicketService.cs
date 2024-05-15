@@ -8,8 +8,8 @@ namespace Common.Services
         public ISettingsService Settings { get; }
         private ILocalizationService Localization { get; }
 
-        public TicketService(IDepotContext context, ISettingsService settings, ILocalizationService localization)
-            : base(context)
+        public TicketService(IDepotContext context, ISettingsService settings, ILocalizationService localization, IDateTimeService dateTime)
+            : base(context, dateTime)
         {
             Localization = localization;
             Settings = settings;
