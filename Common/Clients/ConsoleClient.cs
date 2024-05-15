@@ -6,6 +6,7 @@ using Common.Services;
 using Common.Workflows;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
+using System;
 
 namespace Common.Clients
 {
@@ -19,6 +20,7 @@ namespace Common.Clients
         protected bool IsRunning { get; set; } = true;
         protected bool IsAuthenticated { get; set; } = false;
         protected bool ShowSubmenu { get; set; } = false;
+        protected bool Contained { get; set; } = false;
 
         // Used in the client for general purposes
         protected ILocalizationService Localization { get; }
@@ -53,8 +55,8 @@ namespace Common.Clients
                 ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).Initialize();
             }
             catch (Exception ex) { Console.MarkupLine(ExceptionHandler.HandleException(ex)); }
-
-            Console.MarkupLine($"[green]{clientType} Client Initialized.[/]");
+            
+            //Console.MarkupLine($"[green]{clientType} Client Initialized.[/]");
         }
 
         public virtual void Run()
@@ -62,12 +64,15 @@ namespace Common.Clients
             while (IsRunning)
             {
                 bool hasAccess;
-                if (ClientType != ClientType.Kiosk)
+                if (ClientType == ClientType.Master)
+                {
+                    hasAccess = true;
+                }
+                else if (ClientType != ClientType.Kiosk)
                 {
                     var userId = Prompts.AskUserId();
                     User = UserService.GetOne(userId);
                     hasAccess = UserService.ValidateUserForClient(User, ClientType).Valid;
-                    Console.Clear();
                 }
                 else
                 {
@@ -75,6 +80,7 @@ namespace Common.Clients
                     Ticket = TicketService.GetOne(ticketId);
                     hasAccess = Ticket != null;
                 }
+                Console.Clear();
 
                 IsAuthenticated = hasAccess;
 
@@ -111,6 +117,21 @@ namespace Common.Clients
             return ServiceProvider.GetService<T>()!;
         }
 
+        protected T GetClient<T>(ClientType clientType) where T : ConsoleClient
+        {
+            ConsoleClient client = clientType switch
+            {
+                ClientType.Manager => new ManagerClient(ServiceProvider),
+                ClientType.Kiosk => new KioskClient(ServiceProvider),
+                ClientType.Guide => new GuideClient(ServiceProvider),
+                _ => throw new ArgumentOutOfRangeException($"{clientType} has no associated client to instantiate.")
+            };
+
+            return (client as T)!;
+        }
+
         protected abstract Action ShowMainMenu();
+
+        public void RunsContained() => Contained = true;
     }
 }

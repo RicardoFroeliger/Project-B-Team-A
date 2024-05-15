@@ -46,7 +46,7 @@ namespace Common.Workflows.Guide
             if (!tour!.RegisteredTickets.Any())
                 return (false, Localization.Get("Flow_tour_no_tickets_in_tour"));
 
-            return (true, Localization.Get("flow_tour_is_valid"));
+            return (true, Localization.Get("Flow_tour_is_valid"));
         }
 
         public override (bool Succeeded, string Message) Commit()

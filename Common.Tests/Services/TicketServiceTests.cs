@@ -29,15 +29,18 @@ namespace Common.Tests.Services
             _mockLocalization.Setup(x => x.Get(
                 It.Is<string>(i => i == "Ticket_does_not_exist"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("ticket_no_exist");
 
             _mockLocalization.Setup(x => x.Get(
                 It.Is<string>(i => i == "Ticket_not_valid_today"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("ticket_invalid_today");
 
             _mockLocalization.Setup(x => x.Get(
                 It.Is<string>(i => i == "Ticket_is_valid"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("ticket_valid");
         }

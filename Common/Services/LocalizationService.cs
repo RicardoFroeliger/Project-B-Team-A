@@ -10,7 +10,7 @@ namespace Common.Services
         {
         }
 
-        public string Get(string key, string locale = "nl-NL", List<string>? replacementStrings = null)
+        public string Get(string key, string locale = "nl-NL", string? defaultValue = null, List<string>? replacementStrings = null)
         {
             if (string.IsNullOrEmpty(key))
             {
@@ -22,7 +22,7 @@ namespace Common.Services
             bool useReplacementString = true;
             if (translation == null)
             {
-                translation = Create(key, locale, replacementStrings);
+                translation = Create(key, locale, defaultValue, replacementStrings);
                 useReplacementString = false;
             }
 
@@ -42,13 +42,13 @@ namespace Common.Services
             return stringValue;
         }
 
-        private Translation Create(string key, string locale, List<string>? replacementStrings)
+        private Translation Create(string key, string locale, string? defaultValue, List<string>? replacementStrings)
         {
             var translation = new Translation
             {
                 Key = key,
                 Locale = locale,
-                Value = $"{key} | {locale}"
+                Value = defaultValue ?? $"{key} | {locale}"
             };
 
             for (int i = 0; i < replacementStrings?.Count; i++)

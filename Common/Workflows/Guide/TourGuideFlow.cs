@@ -26,7 +26,7 @@ namespace Common.Workflows.Guide
 
             Tour = tour;
 
-            return (true, Localization.Get("flow_tour_is_valid"));
+            return (true, Localization.Get("Flow_tour_is_valid"));
         }
 
         public override (bool Succeeded, string Message) Commit()

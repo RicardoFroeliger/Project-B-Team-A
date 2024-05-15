@@ -16,6 +16,7 @@ namespace Client
 
             ConsoleClient client = clientType switch
             {
+                ClientType.Master => new MasterClient(serviceProvider),
                 ClientType.Manager => new ManagerClient(serviceProvider),
                 ClientType.Kiosk => new KioskClient(serviceProvider),
                 ClientType.Guide => new GuideClient(serviceProvider),

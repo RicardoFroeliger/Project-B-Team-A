@@ -9,28 +9,6 @@ namespace Common.Tests.System;
 [TestClass]
 public class KioskClientTests
 {
-    private static List<Tour> createTours()
-    {
-        return new List<Tour>()
-        {
-            new Tour()
-            {
-                GuideId = 1000100, 
-                RegisteredTickets = new List<int>() { 81479625, 62839174 },
-                Start = DateTime.Now.AddMinutes(1)
-            },
-            new Tour() { 
-                GuideId = 1000100, 
-                Start = DateTime.Now.AddMinutes(2) 
-            },
-            new Tour()
-            {
-                GuideId = 1000100, 
-                Start = DateTime.Now.AddMinutes(3)
-            }
-        };
-    }
-
     [TestMethod]
     [TestCategory("LocalOnly")]
     public void TestCanEnterTicketAndQuit()
@@ -39,6 +17,7 @@ public class KioskClientTests
         var serviceCollection = Mocks.ConfigureServices();
         var serviceProvider = serviceCollection.BuildServiceProvider(); 
         ConsoleClient client = new KioskClient(serviceProvider);
+        client.RunsContained();
         var testConsole = (TestConsole)serviceProvider.GetService<IAnsiConsole>()!;
         
         // Prepare the script for this test case

@@ -19,7 +19,7 @@ namespace Common.Workflows.Manager
             User = user;
 
             if (User == null)
-                return (false, Localization.Get("flow_user_null"));
+                return (false, Localization.Get("Flow_user_null"));
 
             return (true, "");
         }
@@ -27,7 +27,7 @@ namespace Common.Workflows.Manager
         public (bool Succeeded, string Message) SetPlanningDay(DayOfWeek weekday, TimeSpan startTime, TimeSpan endTime)
         {
             if (startTime >= endTime)
-                return (false, Localization.Get("flow_invalid_time"));
+                return (false, Localization.Get("Flow_invalid_time"));
 
             planning.Add(new Schedule() { Weekday = weekday, StartTime = startTime, EndTime = endTime });
 

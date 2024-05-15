@@ -1,0 +1,1383 @@
+commit 5c93a079ec507bdc3435b6a9327556d074586618
+Merge: 92c4625 75d8dfe
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Mon May 13 12:22:27 2024 +0200
+
+    Merge branch 'main' of https://github.com/Tukurai/Project-B
+
+commit 92c462535ed0d61d91ec595a54f02647feee02e5
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Mon May 13 12:22:19 2024 +0200
+
+    Masterclient
+
+commit 75d8dfe3013bcf883e5bfedd0dae0c8edb080dbe
+Merge: da8d9a4 051383a
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sun May 12 13:01:51 2024 +0200
+
+    Merge pull request #142 from Tukurai/90-opzetje-maken-voor-systeemtesten-integratietesten
+    
+    First application of a system test (with example)
+
+commit 051383a840e365eb866594f0de34c00437a86b9d
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sun May 12 12:49:48 2024 +0200
+
+    Added the "LocalOnly" category for tests that will break in de CI/CD pipeline of Github Actions because the console won't be in interactive mode.
+    
+    Tests will still run locally.
+
+commit da8d9a436ceefca19134a86ff1670ceddb2f3b9c
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sun May 12 12:48:45 2024 +0200
+
+    Update dotnet.yml
+    
+    Changed the test runner to ignore the "LocalOnly" category so we don't clash with the system tests that need an interactive console.
+
+commit 48d782d215007e2c9f24eca6244d710dceafacc1
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat May 11 23:54:00 2024 +0200
+
+    Potential Fix by emitting ANSI Sequences to the console.
+
+commit fab88a74a7fb33d29901268ae03d4a3da9823436
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat May 11 23:48:58 2024 +0200
+
+    Fixed some unexpected imports of interfaces
+
+commit 20685473b68cff15984e3b7c5857f2f46627a5ec
+Merge: 8fb49ec 686dc55
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat May 11 23:46:51 2024 +0200
+
+    Merge branch 'refs/heads/main' into 90-opzetje-maken-voor-systeemtesten-integratietesten
+
+commit 8fb49ec24176c447727fe3bf07838a5a5135fce4
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat May 11 23:44:51 2024 +0200
+
+    Potential fix for "No Input Available" exception
+
+commit 686dc5539ffb1fc55a00b5baecbbee24be2e4db9
+Merge: ec3addf 6a07114
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sat May 11 22:56:17 2024 +0200
+
+    Merge pull request #138 from Tukurai/115-unittest-voor-tourservice
+    
+    Finished TourServiceTests.cs
+
+commit ec3addf6999bb0bc2a468934df58e3e3c6030ade
+Merge: ebbf0ff ae20876
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sat May 11 22:56:05 2024 +0200
+
+    Merge pull request #140 from Tukurai/136-gebruikersacceptatie-testen
+    
+    Gebruikersacceptatie test aanpassingen 20240508
+
+commit 5f55f624fa47a3eb738e6800d945df2d2b0ed368
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat May 11 22:50:32 2024 +0200
+
+    First application of a system test (with example)
+
+commit ebbf0ff9d82369568b98a362038a2472b7c5f528
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sat May 11 21:51:48 2024 +0200
+
+    Clients aangepast.
+
+commit acb20eac016ea19ddfab9e371a16b7f67d0b8656
+Merge: d36c14e 5d0b3a5
+Author: Tukurai <info@toxi.us>
+Date:   Thu May 9 16:19:47 2024 +0200
+
+    Merge pull request #141 from Tukurai/patch-09-fireball-mode
+    
+    Massive refactoring with team. Condensed 3 clients into one.
+
+commit 5d0b3a57bebd99a98459bd0c871b31ac855d40ec
+Merge: bf96079 d36c14e
+Author: Tukurai <info@toxi.us>
+Date:   Thu May 9 16:06:27 2024 +0200
+
+    Merge branch 'main' into patch-09-fireball-mode
+
+commit bf96079a0c05bfacd6ff0d2f864bfbcab794b9b1
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu May 9 16:03:12 2024 +0200
+
+    Massive refactoring with team. Condensed 3 clients into one.
+
+commit ae20876508b9f678e7cacde9ceacf19083cb7b70
+Author: NeensHR <1072577@hr.nl>
+Date:   Thu May 9 12:39:37 2024 +0200
+
+    Gebruikersacceptatie test aanpassingen 20240508
+
+commit d36c14eee358eea90543b8e0f2f74eb9166c1101
+Merge: 332f2b9 40feb47
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Thu May 9 12:17:01 2024 +0200
+
+    Merge pull request #133 from Tukurai/109-unittest-voor-createuserflow
+    
+    Unittest CreateUserFlow
+
+commit 40feb47ca8e457d1fd875463bf791f4350d24c73
+Author: NeensHR <1072577@hr.nl>
+Date:   Thu May 9 11:55:18 2024 +0200
+
+    Updated unittest for CreateUserFlow
+
+commit 332f2b9122f402bfcd352adfb02348f51c8f7109
+Merge: d2944dd 3da81bd
+Author: Tukurai <info@toxi.us>
+Date:   Thu May 9 11:40:27 2024 +0200
+
+    Merge pull request #139 from Tukurai/128-importeren-en-exporteren-van-statistieken
+    
+    128 importeren en exporteren van statistieken
+
+commit 6a07114b5c57d3fcf80d6c7ec7ccd15ae2c1091e
+Author: salihkilic <info@importantpeople.nl>
+Date:   Wed May 8 21:55:18 2024 +0200
+
+    Finished TourServiceTests.cs
+
+commit d2944ddda8f91a09faf6325f616f76fe7342327e
+Merge: 2e66617 3d13207
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Wed May 8 21:25:55 2024 +0200
+
+    Merge pull request #129 from Tukurai/110-unittest-voor-createtourscheduleflow
+    
+    Unittest voor CreateTourScheduleFlow
+
+commit 3d132075e91bae93ab26e639e6f97e4521494521
+Author: NeensHR <1072577@hr.nl>
+Date:   Wed May 8 21:23:59 2024 +0200
+
+    Fixed problem again
+
+commit 60c98547f14d9d4608c002b7c5a55a9fecf1f4b1
+Merge: 9ce85ec 46bd267
+Author: NeensHR <1072577@hr.nl>
+Date:   Wed May 8 21:08:10 2024 +0200
+
+    Merge branch '110-unittest-voor-createtourscheduleflow' of https://github.com/Tukurai/Project-B into 110-unittest-voor-createtourscheduleflow
+
+commit 9ce85ec884e638a1e9e24e7858cde0c76874735d
+Author: NeensHR <1072577@hr.nl>
+Date:   Wed May 8 21:08:03 2024 +0200
+
+    Fixed problem with arguments in initialize of workflow.
+
+commit 2e6661798b743edf46718e24098b38fdad92d08c
+Merge: b331db2 d0b1194
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Wed May 8 21:01:33 2024 +0200
+
+    Merge pull request #132 from Tukurai/106-unittest-voor-starttourguideflow
+    
+    Created Unit Tests for StartTourGuideFlow.cs
+
+commit b331db2ed4fb7d94f78e425f2592638a79195695
+Merge: cd1c8b1 48c5d1b
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Wed May 8 21:00:24 2024 +0200
+
+    Merge pull request #131 from Tukurai/116-unittest-voor-ticketservice
+    
+    Added unit test for ticketservice.
+
+commit 48c5d1b16b434c0874838044db3aac4b5fff7b31
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Wed May 8 20:57:04 2024 +0200
+
+    Localization mock toegevoegd
+
+commit 3da81bdce9ab3c0a8580ca4c2e4ba75a992478af
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 8 19:54:42 2024 +0200
+
+    Fireball.
+
+commit 270d6db8f45470b9cc99886e927f745d63265886
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 8 10:45:33 2024 +0200
+
+    plannen flow
+
+commit cd1c8b1e3318b119b190132b14b5f9030bd7043a
+Merge: df27745 fb0e9ff
+Author: NeensHR <1072577@hr.nl>
+Date:   Mon May 6 14:47:17 2024 +0200
+
+    Merge branch 'main' of https://github.com/Tukurai/Project-B
+
+commit df27745ddb726dc5c11cbc6b9bbd3f75e8bce6d0
+Author: NeensHR <1072577@hr.nl>
+Date:   Mon May 6 14:47:09 2024 +0200
+
+    Bugfix IGroupservice
+
+commit fb0e9ff69c0c6e39c54cfa309845cffdd77845dd
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon May 6 14:46:49 2024 +0200
+
+    very good samenwerking Neena
+
+commit 3ef91f103bca37f48f4e22a4c2b0c650e8252572
+Author: NeensHR <1072577@hr.nl>
+Date:   Sun May 5 16:05:41 2024 +0200
+
+    Unittest CreateUserFlow
+
+commit 46bd267d2d4bb63446cdb1840dd1865377ae3490
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sun May 5 13:46:20 2024 +0200
+
+    Very minor changes to see if build now functions
+
+commit d0b1194b89a770eeddfedf9122f016710aaa2260
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sun May 5 13:00:42 2024 +0200
+
+    Created Unit Tests for StartTourGuideFlow.cs
+
+commit 347ec01c25f8cc1ef19b8a5f5836c0961fd99a29
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sat May 4 22:15:49 2024 +0200
+
+    Added unit test for ticketservice.
+
+commit 2d7e81d790457dc88ff5ed6d46360d7faef104a1
+Merge: 20e829c 42a32f6
+Author: Tukurai <info@toxi.us>
+Date:   Thu May 2 09:00:35 2024 +0200
+
+    Merge pull request #130 from Tukurai/DataEntries
+    
+    Even terug naar main
+
+commit 42a32f6c52287a5bd9ab3324bad87d4dc2f399bc
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 1 22:49:53 2024 +0200
+
+    Updated tests. Ignoring testadduser for now.
+
+commit 484f69d84fba78848bbcb12dbde494ae7670447b
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 1 21:32:54 2024 +0200
+
+    Test fix
+
+commit 7ff47733b5661f8aac97b2398949de156dd322a9
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 1 21:14:33 2024 +0200
+
+    *Klein poepje*
+
+commit 8dfee1ded40fefff26cee3c1eb0aebff04b532e8
+Author: NeensHR <1072577@hr.nl>
+Date:   Wed May 1 21:09:57 2024 +0200
+
+    Unittest voor CreateTourScheduleFlow
+
+commit ab5df605a7ebca604abfc63733f145c0bb917e93
+Merge: 9661ba8 20e829c
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 1 21:08:02 2024 +0200
+
+    Merge main to branch
+
+commit 9661ba8df37269562fe7583f63de993a16e1b038
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 1 21:05:31 2024 +0200
+
+    update
+
+commit 20e829c4d918a33f847798781abdf647a238aa82
+Merge: 60c5499 5963a9d
+Author: Tukurai <info@toxi.us>
+Date:   Wed May 1 20:52:51 2024 +0200
+
+    Merge pull request #125 from Tukurai/124-prototype-voor-testconsole
+    
+    124-prototype-voor-testconsole
+
+commit 5963a9da4bb0f9b32ef4f01bb004141fb197e330
+Merge: b9ced74 60c5499
+Author: Tukurai <info@toxi.us>
+Date:   Wed May 1 20:52:44 2024 +0200
+
+    Merge branch 'main' into 124-prototype-voor-testconsole
+
+commit 60c5499defd813e31fb9e7b425e1ec19e431275a
+Merge: 6289f08 1f987b6
+Author: Tukurai <info@toxi.us>
+Date:   Wed May 1 20:50:11 2024 +0200
+
+    Merge pull request #126 from Tukurai/117-unittest-voor-settingservice
+    
+    Added Unit Tests for SettingsService.cs and added Moq.EntityFramework…
+
+commit d4facc7018bb447de533325b9d5c53acdd1337cf
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed May 1 19:35:58 2024 +0200
+
+    Kleine wijziging.
+
+commit d4cad2f8e784f9b71d33b8828de0e36fd4414c3b
+Author: Tukurai <info@toxi.us>
+Date:   Tue Apr 30 16:32:40 2024 +0200
+
+    data entry
+
+commit 6289f0874a65e889f33c0e00bcf59ce68ee821ca
+Merge: 68aa17d dc66cbc
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Tue Apr 30 09:43:30 2024 +0200
+
+    Merge branch 'main' of https://github.com/Tukurai/Project-B
+
+commit 68aa17d25b600c86fa3b8abae6c68783bdf0f84b
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Tue Apr 30 09:43:20 2024 +0200
+
+    update users / dataset name
+
+commit dc66cbc4efae893018af36128ce32eae8e421fc3
+Merge: 3d81196 6536c09
+Author: NeensHR <145992272+NeensHR@users.noreply.github.com>
+Date:   Mon Apr 29 13:18:08 2024 +0200
+
+    Merge pull request #127 from Tukurai/114-unittest-voor-userservice
+    
+    Added Unit Tests for UserService.cs
+
+commit 6536c09adef391287d5b98d2b0bebf8832216dc4
+Author: salihkilic <info@importantpeople.nl>
+Date:   Mon Apr 29 13:09:04 2024 +0200
+
+    Added Unit Tests for UserService.cs
+
+commit 1f987b68df9f0d5de7a1a2e6424d2dad986f9842
+Author: salihkilic <info@importantpeople.nl>
+Date:   Mon Apr 29 10:06:51 2024 +0200
+
+    Added Unit Tests for SettingsService.cs and added Moq.EntityFrameworkCore as a dependency for better DbSet<SomeType> Mocking.
+
+commit 3d81196de6e9e11e6956451794cf67c0509bc8a1
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Apr 28 23:42:30 2024 +0200
+
+    update logging
+
+commit ac014e2372e0ec74191b9dfeb2f65df927ec9cfe
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Apr 28 15:28:37 2024 +0200
+
+    Added translations and fixed time selector.
+
+commit b9ced74ddfa05f5dde2e60c80feaee136ed76f6a
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sun Apr 28 10:26:49 2024 +0200
+
+    Changed usages of AnsiConsole to ConsoleWrapper.Console
+
+commit f18a49ea80c752399e2906812c7ad4134ab89e91
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sun Apr 28 10:13:27 2024 +0200
+
+    First prototype and test case for TestConsole
+
+commit 5db94da961192014c87ab4649e1d0a13b8f5d45e
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Apr 28 01:16:03 2024 +0200
+
+    Create planning on user.
+
+commit 4623d304d0f9dc120e05663811ccc8a12e1749d8
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Tue Apr 23 22:40:56 2024 +0200
+
+    fixes
+
+commit 1a66d2e3ed1444c1b941bf34ca42e145b0fa2171
+Author: Jeroen Faas <Jeroen.Faas@timetell.nl>
+Date:   Tue Apr 23 16:07:48 2024 +0200
+
+    fix
+
+commit 44fd3aa7da9890d8d6fa36b63b4c31983a3a7164
+Author: Tukurai <info@toxi.us>
+Date:   Tue Apr 23 14:42:57 2024 +0200
+
+    rollback
+
+commit c24702f278b2f01632995171c042663808361aba
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Tue Apr 23 00:24:15 2024 +0200
+
+    Groepering opties en create schedule optie.
+
+commit de616fda2205f67e2e2ed441f427d111c40cea5b
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Apr 22 20:53:59 2024 +0200
+
+    update program Mains
+
+commit ce31f486d9b46f9046ede9238539b5643da54155
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Apr 22 16:07:22 2024 +0200
+
+    Iedereen heeft de main branche verkloot, inclusief Ditmar.
+
+commit 2a530468e1c82637e5e5bf6b9b8173cac3531f27
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Mon Apr 22 11:57:21 2024 +0200
+
+    Planning properties added tot tour and user.
+
+commit e64a7811e6f88f437455508999d4546f0bac5981
+Merge: eb2df4b c03aa41
+Author: Tukurai <info@toxi.us>
+Date:   Sat Apr 20 22:15:59 2024 +0200
+
+    Merge pull request #123 from Tukurai/119-unittest-voor-localizationsevice
+    
+    119 unittest voor localizationsevice
+
+commit c03aa416be3082792e5c50ff5cd1528194bf7949
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sat Apr 20 17:10:55 2024 +0200
+
+    Dit valideert iig
+
+commit c6a383670b95ee06730d323c1a39d64c7ee1ee9d
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sat Apr 20 16:43:34 2024 +0200
+
+    Test voor Localization
+
+commit eb2df4bc5478c316e435cdd4dd3b4a4f5e2861ce
+Merge: b6da0b6 2ac0ede
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sat Apr 20 15:25:01 2024 +0200
+
+    Merge pull request #122 from Tukurai/113-unittest-voor-cancelreservationflow
+    
+    113 unittest voor cancelreservationflow
+
+commit 2ac0ede3fe21a4259212c012795d2bebde599d81
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat Apr 20 15:20:58 2024 +0200
+
+    Finished unittests in CancelReservationFlowTests.cs
+
+commit b20dae0c5e2ffc63b69829f1fcb0896f232b5579
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat Apr 20 15:03:05 2024 +0200
+
+    Intermediate commit for CancelReservationFlowTests.cs
+
+commit b6da0b6aa7ad2ec7e57f9a02e8a657cb80c92173
+Merge: 883d274 9e25e7a
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sat Apr 20 14:30:01 2024 +0200
+
+    Merge pull request #121 from Tukurai/111-unittest-voor-createreservationflow
+    
+    Created unittest for createresevationflow
+
+commit 9e25e7abb261b4713dfb63e092ce0fd0e100eca2
+Author: NeensHR <1072577@hr.nl>
+Date:   Sat Apr 20 14:29:14 2024 +0200
+
+    Fixed: double solution
+
+commit d40ed4541965113689ccc7cfe696443d706f3ac3
+Author: NeensHR <1072577@hr.nl>
+Date:   Sat Apr 20 14:25:46 2024 +0200
+
+    Created unittest for createresevationflow
+
+commit 883d2746c030f4d5aeaecba8697cf373851111f9
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat Apr 20 13:42:52 2024 +0200
+
+    Added unit test for GroupService.cs and changed some instances of DbContext being used over IDepotContext.
+
+commit c5f8095e1f7baecc0f7193712bcf56808e0d4179
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Fri Apr 19 14:41:08 2024 +0200
+
+    Interface for depot
+
+commit 4d70673e5cf48587cddde7b9bd4b56a2f22e6371
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Fri Apr 19 00:58:14 2024 +0200
+
+    Refactoring for interfaces and mocking.
+
+commit 0135c5848b0f93c0774c32cbd418f2c06543bbac
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Apr 18 23:50:14 2024 +0200
+
+    Removed unused folders from csproj
+
+commit a9cb4701ed0e85bcb8aa7fc2427b02ee4e8f595a
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Apr 18 23:49:24 2024 +0200
+
+    Code cleanup
+
+commit d6e93975b641fcbf08eaba55fbc4804c80179893
+Merge: b35a3b2 b505518
+Author: NeensHR <145992272+NeensHR@users.noreply.github.com>
+Date:   Thu Apr 18 15:20:06 2024 +0200
+
+    Merge pull request #105 from Tukurai/Spectre
+    
+    Spectre is now our new version of the app.
+
+commit b5055181fc42fe3645c4bc4347feb0e1514f4d6b
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Apr 18 15:10:37 2024 +0200
+
+    Spectre is now our new version of the app.
+
+commit b35a3b20dfdfe2fc758ea696e4830d1659553e04
+Merge: 053f81f b101a88
+Author: Tukurai <info@toxi.us>
+Date:   Fri Apr 12 14:43:12 2024 +0200
+
+    Merge pull request #94 from Tukurai/84-createusersflowcs-unittests-schrijven
+    
+    Tests geschreven
+
+commit 053f81f3c5c1bc0ce7a03c3549b0012a3987c45e
+Merge: 9e6040d 4a2ce95
+Author: Tukurai <info@toxi.us>
+Date:   Fri Apr 12 14:42:48 2024 +0200
+
+    Merge pull request #98 from Tukurai/82-cancelreservationflowcs-unittests-schrijven2
+    
+    Added Unit Tests for CancelReservationFlowTests.cs
+
+commit 9e6040d1d4c9abd18a764440c3e375e7a2aeb9d3
+Author: Tukurai <info@toxi.us>
+Date:   Fri Apr 12 14:31:38 2024 +0200
+
+    Create dotnet.yml
+
+commit 4a2ce955ced3c9aab3e210f02da25a00e6b50101
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sun Apr 7 12:32:36 2024 +0200
+
+    Added Unit Tests for CancelReservationFlowTests.cs
+
+commit 242dae10681236d75b84564571d5c39271bb3eb3
+Merge: f2f00c9 1ec6db5
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sun Apr 7 11:13:36 2024 +0200
+
+    Merge pull request #97 from Tukurai/85-starttourflowcs-unittests-schrijven
+    
+    85 starttourflowcs unittests schrijven
+
+commit f2f00c9c3d9a364bd351b1adc72a5e6065b68f39
+Merge: 30f8aa6 83d8470
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sat Apr 6 12:57:43 2024 +0200
+
+    Merge pull request #93 from Tukurai/80-rondleidingen-voor-de-volgende-dag-niet-weergeven-afdelingshoofd
+    
+    Alleen de rondleidingen van vandaag worden nu weergeven.
+
+commit 1ec6db58d43b15a119c37e47a9dd54657d0707d8
+Author: salihkilic <info@importantpeople.nl>
+Date:   Sat Apr 6 12:50:17 2024 +0200
+
+    Finished Unit Tests and refactored code to make several test cases green again after failing.
+
+commit 30f8aa696954188a230ec0c70ed6b250f90a432f
+Merge: d9762fd fe3996e
+Author: Tukurai <info@toxi.us>
+Date:   Thu Apr 4 03:54:29 2024 +0200
+
+    Merge pull request #96 from Tukurai/patch-08-ticket-mode
+    
+    Updated ticket Ids
+
+commit fe3996ee1a0d4dd579c99571f8b08f81d94f0c8b
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Apr 4 03:54:04 2024 +0200
+
+    Updated ticket Ids
+
+commit e17714ce330aa692d512c6f42cba0004166ea295
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Apr 3 23:13:32 2024 +0200
+
+    Fixed some database context issues.
+
+commit d9762fdb7b70ba737fab276d77a8127e7361007c
+Merge: 908f6ce 8555afc
+Author: Tukurai <info@toxi.us>
+Date:   Wed Apr 3 22:55:37 2024 +0200
+
+    Merge pull request #95 from Tukurai/patch-07-retard-mode
+    
+    update
+
+commit 8555afc4cbeeaa9344410cb94894970f57af1d08
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Apr 3 22:54:03 2024 +0200
+
+    update
+
+commit b101a883287431f676c0cf17e2f5ebdef09c46be
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Wed Apr 3 22:38:48 2024 +0200
+
+    Tests geschreven
+
+commit 83d84704c90be60cd179a571b209ce32dba8611e
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Wed Apr 3 21:39:47 2024 +0200
+
+    Alleen de rondleidingen van vandaag worden nu weergeven.
+
+commit 908f6ce3b1b35b4e37b25793c9d3335b453d260d
+Merge: af569e2 815b779
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Wed Apr 3 20:51:57 2024 +0200
+
+    Merge pull request #92 from Tukurai/81-createreservationflowcs-unittests-schrijven
+    
+    CreateReservationFlow Unittests toegevoegd.
+
+commit 04b616dd3ec577c1814b2d1fe57605e111ee1bcf
+Author: salihkilic <info@importantpeople.nl>
+Date:   Tue Apr 2 17:02:19 2024 +0200
+
+    Small changes to unit tests
+
+commit 705f3cf28021b24ac5902a61bc4c665922eb394c
+Author: salihkilic <info@importantpeople.nl>
+Date:   Tue Apr 2 16:58:31 2024 +0200
+
+    First Unit Tests for Validate() and AddTicket()
+
+commit af569e2b361468202b4ecb513179a6b38b4406c3
+Merge: fa57107 794a739
+Author: NeensHR <145992272+NeensHR@users.noreply.github.com>
+Date:   Tue Apr 2 10:11:45 2024 +0200
+
+    Merge pull request #91 from Tukurai/76-er-moet-duidelijker-aangegeven-worden-welke-ticket-nog-gescand-moet-worden-bij-reserveren-van-meerdere-tickets
+    
+    Ticket count toegevoegd bij het reserveren van meerdere tickets.
+
+commit 815b7793d8c2932ec90a73f88b98a4f6f205787f
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Mon Apr 1 21:37:25 2024 +0200
+
+    CreateReservationFlow Unittests toegevoegd.
+
+commit 794a739aec9a1138d35b603a66d7b08e76ef8d9f
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Mon Apr 1 20:44:28 2024 +0200
+
+    Ticket count toegevoegd bij het reserveren van meerdere tickets.
+
+commit fa57107cc58ac68fdbcebf8492b2d9522e50c2cd
+Merge: 161dc7a 8cff555
+Author: Tukurai <info@toxi.us>
+Date:   Mon Mar 25 20:17:23 2024 +0100
+
+    Merge pull request #75 from Tukurai/07-Malborge-mode
+    
+    fix gobo
+
+commit 8cff555c67f8728fe38d27741812658c6a94e638
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Mar 25 20:17:03 2024 +0100
+
+    fix gobo
+
+commit 161dc7a78d364df97cbbca2b8432e759bf794553
+Merge: aa9c861 01c81b9
+Author: Tukurai <info@toxi.us>
+Date:   Mon Mar 25 20:05:23 2024 +0100
+
+    Merge pull request #74 from Tukurai/07-Malborge-mode
+    
+    Thumorr
+
+commit 01c81b9affeafa932e07ebea35b54a89acd258bb
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Mar 25 20:05:08 2024 +0100
+
+    Thumorr
+
+commit aa9c8613e4dd3d56be43ebaac7408746b45913f8
+Merge: ffc7c80 25c5e89
+Author: Tukurai <info@toxi.us>
+Date:   Mon Mar 25 19:43:56 2024 +0100
+
+    Merge pull request #73 from Tukurai/patch-06-ooze-mode
+    
+    extra fixes
+
+commit 25c5e89bc28ffb97c53f644e171a75445bb64fd8
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Mar 25 19:43:36 2024 +0100
+
+    extra fixes
+
+commit ffc7c8086262e18f7854079430006d4d17d37052
+Merge: 04503c9 bc6a157
+Author: Tukurai <info@toxi.us>
+Date:   Mon Mar 25 18:15:46 2024 +0100
+
+    Merge pull request #72 from Tukurai/patch-06-ooze-mode
+    
+    Patch 06 ooze mode
+
+commit bc6a157681521b88f0da639d936fe2aa8ff973e1
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Mar 25 18:12:13 2024 +0100
+
+    Aanpassingen
+
+commit 7f5734cb00b8fbd204fd5534655cda6682f81d17
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Mon Mar 25 01:27:19 2024 +0100
+
+    Finished workflows for all consoles. Untested!!!
+
+commit 1818403e355e68ffa2903ee7bb815df223fdbfa7
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Fri Mar 22 00:44:26 2024 +0100
+
+    Progress
+
+commit 9952b24494f4bca7964dd73b73a77246d78ad61b
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Mar 20 01:00:26 2024 +0100
+
+    Update state of code.
+
+commit b7988983c910590b975720a972ceea3ffae91a3f
+Author: Jeroen Faas <info@toxi.us>
+Date:   Mon Mar 18 21:39:19 2024 +0100
+
+    initial workflow
+
+commit 04503c9d56d5454b7c347582f3802ff4daf7be77
+Merge: ccf1369 431ad82
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Sun Mar 17 22:32:26 2024 +0100
+
+    Merge pull request #69 from Tukurai/60-als-gids-wil-ik-een-tour-kunnen-starten
+    
+    60 als gids wil ik een tour kunnen starten
+
+commit 431ad823b98ab481f7467186aa1ff0a2ed93dc5e
+Author: salihkilic <info@importantpeople.nl>
+Date:   Fri Mar 15 15:51:47 2024 +0100
+
+    Improved flow of tour start for guides
+
+commit abf8bec1aa796eeb0c8370344e23b9fb645bcf2c
+Author: salihkilic <info@importantpeople.nl>
+Date:   Fri Mar 15 15:49:39 2024 +0100
+
+    Small fixes
+
+commit d3b4b40b814f16029c22a5ab2ecf52c75c076bea
+Author: salihkilic <info@importantpeople.nl>
+Date:   Fri Mar 15 15:47:28 2024 +0100
+
+    Added functionality for guides to start a tour.
+
+commit ccf13690ee2d807becebe5091a8c434b9341eb16
+Merge: e5f2ed0 77278af
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Thu Mar 14 15:11:49 2024 +0100
+
+    Merge pull request #68 from Tukurai/Patch-05-Slime-Mode
+    
+    Fixes voor nummertjes.
+
+commit 77278af57011623a1ecb632021fdd5ebf661d166
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Mar 14 15:07:52 2024 +0100
+
+    Fixes voor nummertjes.
+
+commit e5f2ed01b3abb63f74fed36065f503580ef7697c
+Merge: 54026a7 217469c
+Author: Salih Kiliç <info@importantpeople.nl>
+Date:   Thu Mar 14 14:48:52 2024 +0100
+
+    Merge pull request #67 from Tukurai/Patch-04-Hobgoblin-Mode
+    
+    Voorbereiding op #61
+
+commit 217469cef6b8732cdc1040ba8f220202666b5177
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Mar 14 14:39:41 2024 +0100
+
+    Voorbereiding op #61
+
+commit 54026a7f148a2d809cf24d4772ab6dea8efdb578
+Merge: bc7b16e 2b6d396
+Author: Tukurai <info@toxi.us>
+Date:   Wed Mar 13 23:34:22 2024 +0100
+
+    Merge pull request #66 from Tukurai/59-groepsreservering-aanmaken
+    
+    59 groepsreservering aanmaken
+
+commit 2b6d396fabe33650aec525ad0d876e59f7dadf07
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Wed Mar 13 23:31:16 2024 +0100
+
+    Issue #59, groeps reserveringen
+
+commit d8f1ff75b8894fa71f04d9308d316de7bc9e64a0
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Wed Mar 13 22:31:37 2024 +0100
+
+    Issue #56 - Kiosk flow
+
+commit bc7b16e8b38c2f79196b6f915f31f532590a84dc
+Merge: cf0ce34 a031a43
+Author: Tukurai <info@toxi.us>
+Date:   Tue Mar 12 23:35:50 2024 +0100
+
+    Merge pull request #55 from Tukurai/Patch-03-GoBlIn-MoDe
+    
+    Global changes to make the code easier to work with.
+
+commit a031a43fcc9c69a76046119d84aec6e275b77371
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Tue Mar 12 09:01:05 2024 +0100
+
+    Global changes to make the code easier to work with.
+    - Queue gone,
+    - Groups supported,
+    - Roles used in user,
+    - Localization
+    - Globals
+
+commit cf0ce34bc7019157bcfeddff7ab326fe4ee5e9bc
+Merge: 7c22b26 6027d70
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 23:03:22 2024 +0100
+
+    Merge pull request #54 from Tukurai/Patch-02-tia-maria
+    
+    Final changes.
+
+commit 6027d70f30c9bbd23c882277840bc9e48a9134f2
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 23:02:14 2024 +0100
+
+    Final changes.
+
+commit 7c22b264cd5d87c3592de16e76d788d8173346b3
+Merge: e497ab1 97eb829
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 22:51:06 2024 +0100
+
+    Merge pull request #53 from Tukurai/patch-01-Edit-reservering
+    
+    Patch 01 edit reservering
+
+commit 97eb8293d2c8932296006082bc625b532c8cb0a2
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 22:49:34 2024 +0100
+
+    Flow updates
+
+commit 5732e4630a72406fa6257bd5c47434285dffe2e4
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 22:47:06 2024 +0100
+
+    Edit Reservering
+
+commit e497ab1a33b801b45d5968c3599c02fd229205a9
+Merge: f6a3d4d e380b42
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 22:35:09 2024 +0100
+
+    Merge pull request #51 from Tukurai/24-als-bezoeker-wil-ik-mijn-rondleiding-bekijken-zodat-ik-de-details-van-mijn-reservering-kan-zien
+    
+    Rebase from main added frame for editing reservations
+
+commit e380b42e3b1c270c0d6163607ac26a85f8f766bc
+Merge: 2c1e715 f6a3d4d
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 22:34:29 2024 +0100
+
+    Merge branch 'main' into 24-als-bezoeker-wil-ik-mijn-rondleiding-bekijken-zodat-ik-de-details-van-mijn-reservering-kan-zien
+
+commit f6a3d4d2c03e18354a2050aed4e4e726baca50ad
+Merge: 0b91229 df49f24
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Sun Mar 10 22:17:59 2024 +0100
+
+    Merge pull request #52 from Tukurai/23-als-bezoeker-wil-ik-mijn-rondleiding-annuleren-zodat-ik-de-plek-voor-anderen-kan-vrijmaken-als-ik-niet-kan-komen
+    
+    23 als bezoeker wil ik mijn rondleiding annuleren zodat ik de plek voor anderen kan vrijmaken als ik niet kan komen
+
+commit df49f2478e242309c09a2f26d0c70c8b4505ca79
+Merge: 3c4a0c7 0b91229
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 22:13:14 2024 +0100
+
+    Mergel.
+
+commit 3c4a0c7423b1182eaa9659b97d09d8cdf88b56b1
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 22:10:34 2024 +0100
+
+    Aangepaste path voor obj.
+
+commit 2117f36c76dc33751fead13dba667133ee04fc4e
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 22:05:33 2024 +0100
+
+    Git good scrub
+
+commit e69c6387f34787cd8fc267e946db00b1a99e8762
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 21:53:37 2024 +0100
+
+    Geen rondleidingen vandaag.
+
+commit e8bfc31b5387df2e960c80105c347d7ef528a281
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 21:49:08 2024 +0100
+
+    Nogmaals.
+
+commit 4d75d2eaaade167ad5ed9a466431853071d7ebb1
+Merge: 8855b2c 95ca9cb
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 21:46:25 2024 +0100
+
+    Merge
+
+commit 8855b2c0ef145847a9ecb8a6759c508768b17fbd
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 21:44:51 2024 +0100
+
+    26 + 23 + 24, in een sushi roll opgelost.
+
+commit 2c1e715bed960680000116e9333484da5e1acfbb
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sun Mar 10 21:41:29 2024 +0100
+
+    Rebase from main added frame for editing reservations
+
+commit 95ca9cbd7bdc358ecb0fb27975c55ea2879cc90e
+Merge: fd73656 b508009
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sun Mar 10 20:36:18 2024 +0100
+
+    Rebase from main
+
+commit fd7365604769eb9e79f60f6930cc11e08c101012
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 15:23:48 2024 +0100
+
+    changes tbhv feature
+
+commit 0b91229b6f3d6d69e7fa5f428b192365a6984102
+Merge: 96c8e2c 8d7e594
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 20:21:43 2024 +0100
+
+    Merge pull request #50 from Tukurai/25-als-bezoeker-wil-ik-een-groepsreservering-maken-zodat-ik-een-bezoek-met-mijn-vrienden-of-familie-kan-plannen-nice-to-have
+    
+    Ticket reservations complete, fixed UserInput bug
+
+commit 8d7e594c04c45e3bdab5c628245758f51f5237f5
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sun Mar 10 18:58:51 2024 +0100
+
+    Ticket reservations complete, fixed UserInput bug
+
+commit 96c8e2c0bb17d61b53a92df5918a1d05c361eb4b
+Merge: 0886414 7cc2926
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Sun Mar 10 17:53:09 2024 +0100
+
+    Merge pull request #45 from Tukurai/25-als-bezoeker-wil-ik-een-groepsreservering-maken-zodat-ik-een-bezoek-met-mijn-vrienden-of-familie-kan-plannen-nice-to-have
+    
+    25 als bezoeker wil ik een groepsreservering maken zodat ik een bezoek met mijn vrienden of familie kan plannen nice to have
+
+commit 7cc29260dff2fb937410624dee830b207babcfd7
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sun Mar 10 17:38:10 2024 +0100
+
+    Added console text colors
+
+commit 0886414a52278496450f26c609469c147f70dc47
+Merge: 3c3f4bf d63fc03
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 17:17:14 2024 +0100
+
+    Merge pull request #49 from Tukurai/00-Supporting-features
+    
+    cleanup
+
+commit d63fc034329945c3ab2ef5d78a231eef1afb5bde
+Author: Jeroen Faas <info@toxi.us>
+Date:   Sun Mar 10 17:16:24 2024 +0100
+
+    cleanup
+
+commit 600b4950dcd01156ac51506ac2bfa442c0bb55d2
+Author: Jeroen Faas <info@toxi.us>
+Date:   Sun Mar 10 16:58:41 2024 +0100
+
+    unbreak my heart
+
+commit 570af1dd2751b89b024691aee147a4dbd06ac7fd
+Merge: cec517b b9823f0
+Author: Jeroen Faas <info@toxi.us>
+Date:   Sun Mar 10 16:57:53 2024 +0100
+
+    stage
+
+commit cec517b3e05337132ae1a768459a2a138fa1c5bd
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sat Mar 9 14:51:38 2024 +0100
+
+    Added existing reservation check
+
+commit e468e21391178c49e7366a339b7de6a4f22e30f7
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sat Mar 9 14:26:48 2024 +0100
+
+    Ticket registratie met DAL toegevoegd
+
+commit b50800941055aeeae0a6e2b7070df21798073f9c
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 15:23:48 2024 +0100
+
+    changes tbhv feature
+
+commit 3c3f4bf82af0f78f6b1b84fa82b6144d11a6cff3
+Merge: a210a67 d039404
+Author: NeensHR <145992272+NeensHR@users.noreply.github.com>
+Date:   Sun Mar 10 14:56:36 2024 +0100
+
+    Merge pull request #48 from Tukurai/28-als-gids-wil-ik-mensen-aan-een-rondleiding-toevoegen-zodat-ik-de-deelnemers-aan-de-rondleiding-kan-beheren
+    
+    Add en remove toegevoegd
+
+commit d039404049c6ef3c3d961eaf1385b7248a430edf
+Author: NeensHR <1072577@hr.nl>
+Date:   Sun Mar 10 14:54:21 2024 +0100
+
+    Add en remove toegevoegd
+
+commit a210a67e428a177afca1a5cbc2200d69b9350635
+Merge: 002d741 5fd227c
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 12:47:02 2024 +0100
+
+    Merge pull request #47 from Tukurai/00-Supporting-features
+    
+    Optimizations, added default users and tours.
+
+commit 5fd227c44b738f6481f7dab96c5dad88f8742365
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sun Mar 10 12:45:53 2024 +0100
+
+    Optimizations, added default users and tours.
+
+commit 002d741f0ee458e9c31a35db459456054e9a2390
+Merge: 833d787 e4b06c4
+Author: Tukurai <info@toxi.us>
+Date:   Sun Mar 10 11:11:20 2024 +0100
+
+    Merge pull request #46 from Tukurai/27-als-gids-wil-ik-de-rondleidingen-bekijken-zodat-ik-me-erop-kan-voorbereiden
+    
+    Functie afgerond. diverse zaken verbetered.
+
+commit e4b06c42af0310608e0c65733348bf6644b0d270
+Author: Jeroen Faas <info@toxi.us>
+Date:   Sat Mar 9 17:30:56 2024 +0100
+
+    Functie afgerond. diverse zaken verbetered.
+
+commit b9823f0a02b257deac46e5c3aeb6de7042c21cee
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sat Mar 9 14:51:38 2024 +0100
+
+    Added existing reservation check
+
+commit 95d985f22aaaa8132c262b4f20ebb431aa5fb8b1
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sat Mar 9 14:26:48 2024 +0100
+
+    Ticket registratie met DAL toegevoegd
+
+commit 833d787862d83b04104de94ab837c289d79b3b69
+Merge: f0df92a e1a05e4
+Author: Tukurai <info@toxi.us>
+Date:   Sat Mar 9 10:35:27 2024 +0100
+
+    Merge pull request #43 from Tukurai/27-als-gids-wil-ik-de-rondleidingen-bekijken-zodat-ik-me-erop-kan-voorbereiden
+    
+    27 als gids wil ik de rondleidingen bekijken zodat ik me erop kan voorbereiden
+
+commit e1a05e468a58b84dc565da704ab0ab948920af20
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Sat Mar 9 10:33:04 2024 +0100
+
+    Added DAL reference to kiosk, formatted json file.
+
+commit b8cfe6206cf8f6f538ab402d2b950a05867c0f34
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sat Mar 9 10:22:06 2024 +0100
+
+    Global fixes
+
+commit c6cf86bb78ffd5091864eb200d1be42e842312af
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sat Mar 9 10:19:47 2024 +0100
+
+    kleine changes
+
+commit 4012074dfe298cc54e0059676829eaa90abb113e
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Sat Mar 9 10:18:30 2024 +0100
+
+    Work in progress aan pagingmenu
+
+commit 609f9418d8a65907aefc548e5b155e4d2bc01f2d
+Merge: 6e9ede6 0819edc
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Mar 6 20:28:32 2024 +0100
+
+    Merge branch '27-als-gids-wil-ik-de-rondleidingen-bekijken-zodat-ik-me-erop-kan-voorbereiden' of https://github.com/Tukurai/Project-B into 27-als-gids-wil-ik-de-rondleidingen-bekijken-zodat-ik-me-erop-kan-voorbereiden
+
+commit 6e9ede689271f5c127a82bb77f6d77bacbf01092
+Author: NeensHR <1072577@hr.nl>
+Date:   Wed Mar 6 15:41:43 2024 +0100
+
+    Gids check tours
+
+commit f0df92a842b9c2f7d9ca645925796b2091bb091a
+Merge: de78dad b74dfc2
+Author: Tukurai <info@toxi.us>
+Date:   Wed Mar 6 20:27:40 2024 +0100
+
+    Merge pull request #42 from Tukurai/37-maken-van-depotdal
+    
+    37 maken van depotdal
+
+commit b74dfc2c1ba5140c02820d9e91bede5a8bb144d4
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Mar 6 20:15:59 2024 +0100
+
+    Fixes
+
+commit 0819edcd8b9330d8ed1d20657145e08b7f7b763c
+Author: NeensHR <1072577@hr.nl>
+Date:   Wed Mar 6 15:41:43 2024 +0100
+
+    Gids check tours
+
+commit de78dad8619156467c43841e0b72d5ab2ba7552b
+Merge: 68e927a 6a11c6c
+Author: Tukurai <info@toxi.us>
+Date:   Wed Mar 6 14:53:12 2024 +0100
+
+    Merge pull request #41 from Tukurai/37-maken-van-depotdal
+    
+    37 maken van depotdal
+
+commit 8e5666719a3a054ef687224dc76156be27f90696
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Mar 6 14:43:52 2024 +0100
+
+    DepotContext werkt ook nu.
+
+commit 6a11c6caaa00de319a210187fdfc3351a8a780b2
+Author: salihkilic <info@importantpeople.nl>
+Date:   Wed Mar 6 14:42:26 2024 +0100
+
+    Updated JsonDataProvider.cs to make use of baseclass instead of default implementation of interface.
+    
+    Also added example in Depot.DAL Program.cs
+
+commit 48b3f5048d38b2bead7174cd18e5ad27f46ada4a
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Wed Mar 6 13:56:06 2024 +0100
+
+    Update op DAL werkt niet volledig.
+
+commit 4cf61c75335c6a3268716b06ae2e4b6427c8056d
+Author: salihkilic <info@importantpeople.nl>
+Date:   Tue Mar 5 22:21:44 2024 +0100
+
+    Small changes after review, involving duplicate enum definitions and an unneeded Jetbrains annotations library.
+
+commit ba29eea8325bd73df7a04226d75f3b9493c36b7f
+Author: salihkilic <info@importantpeople.nl>
+Date:   Tue Mar 5 19:26:54 2024 +0100
+
+    Abstract setup of DataProvider and first implementation of Json loading and saving from/to file.
+
+commit 0de69890d0ecd8dcfa134b51a10b1fd46febd6a7
+Merge: 42920bd d5a3580
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Fri Mar 1 18:49:39 2024 +0100
+
+    Merge branch '37-maken-van-depotdal' of https://github.com/Tukurai/Project-B into 37-maken-van-depotdal
+
+commit 42920bd2c192866aa6389378fd3bca19f48e2a01
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Fri Mar 1 08:45:06 2024 +0100
+
+    Added some structure to the DAL
+
+commit d5a35809ef0f3fedc9e7db7c96029001cf48a353
+Author: salihkilic <info@importantpeople.nl>
+Date:   Fri Mar 1 08:17:14 2024 +0100
+
+    Added some basic models to be used in other parts of the project
+
+commit 68e927a2e201d8492d312d2eed8d8bccedf923b3
+Merge: 0a59842 b88b714
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Thu Feb 29 20:57:25 2024 +0100
+
+    Merge pull request #38 from Tukurai/23-als-bezoeker-wil-ik-mijn-rondleiding-annuleren-zodat-ik-de-plek-voor-anderen-kan-vrijmaken-als-ik-niet-kan-komen
+    
+    23 als bezoeker wil ik mijn rondleiding annuleren zodat ik de plek voor anderen kan vrijmaken als ik niet kan komen
+
+commit b88b7146648f4a5c29bbc953b4389f3fe3aef051
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Thu Feb 29 20:17:41 2024 +0100
+
+    Removed System.Threading
+
+commit fc3f7bef412163089ca259ab252d3051117e3de6
+Merge: ac2f79e 44f0023
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Thu Feb 29 20:12:58 2024 +0100
+
+    Merge branch '23-als-bezoeker-wil-ik-mijn-rondleiding-annuleren-zodat-ik-de-plek-voor-anderen-kan-vrijmaken-als-ik-niet-kan-komen' of https://github.com/Tukurai/Project-B into 23-als-bezoeker-wil-ik-mijn-rondleiding-annuleren-zodat-ik-de-plek-voor-anderen-kan-vrijmaken-als-ik-niet-kan-komen
+
+commit ac2f79e8e2618e420e0f78d25b16f11e3183e2e8
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Thu Feb 29 20:12:50 2024 +0100
+
+    Added cancel reservation, no data manipulation yet
+
+commit 04aa78edac6614b8d09063dc93bd2f655154f1ef
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Thu Feb 29 20:12:25 2024 +0100
+
+    Added cancel reservation (no data manipulation yet)
+
+commit 44f002378d42ca5bae04576a9a65ecf1368407c6
+Author: Extrasolar99 <itsyaboyextrasolar@gmail.com>
+Date:   Thu Feb 29 20:10:37 2024 +0100
+
+    Added cancel reservation (no data manipulation yet)
+
+commit 0a598424a09a17ec305ea41a5233a1886b4a3619
+Merge: c4d6e59 cec3e86
+Author: Tukurai <info@toxi.us>
+Date:   Thu Feb 29 14:30:28 2024 +0100
+
+    Merge pull request #36 from Tukurai/25-als-bezoeker-wil-ik-een-groepsreservering-maken-zodat-ik-een-bezoek-met-mijn-vrienden-of-familie-kan-plannen-nice-to-have
+    
+    25 als bezoeker wil ik een groepsreservering maken zodat ik een bezoek met mijn vrienden of familie kan plannen nice to have
+
+commit cec3e86a71433cb4692ac964870c6022743cd360
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Feb 29 14:27:09 2024 +0100
+
+    Extra menu voorbeeld toegevoegd, en de sub menu navigatie gefixt.
+
+commit dc6a5715881edd4494821c509b90d75e44288d24
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Feb 29 01:36:16 2024 +0100
+
+    Initiele versie zonder data storage.
+
+commit 7a4961755c37f43dd7203205fccdf2838bb990fa
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Feb 29 01:17:20 2024 +0100
+
+    Navigation loop added.
+
+commit 3b4ff56deb9cede67788cb83eee5dbb1ef7c0d57
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Thu Feb 29 00:33:17 2024 +0100
+
+    Refactored some names to prevent issues in console.
+
+commit c4d6e59864a11ad47912432c18b446f8a8a4731c
+Merge: 5dd3956 ce687b8
+Author: Extrasolar <99403041+Extrasolar99@users.noreply.github.com>
+Date:   Tue Feb 27 22:40:24 2024 +0100
+
+    Merge pull request #35 from Tukurai/34-aanmaken-depot-solution
+    
+    Aanmaken Depot Solution #34
+
+commit ce687b8424ae435a0eb10c7f144c2e6bbf024850
+Author: Jeroen Faas <jeroen@espersolutions.nl>
+Date:   Tue Feb 27 22:36:50 2024 +0100
+
+    Aanmaken Depot Solution #34
+    Gehele ticket behandeld.
+
+commit 5dd39562dcd6fa977a3699c17266b2aedaac33a6
+Author: Tukurai <info@toxi.us>
+Date:   Tue Feb 13 12:29:22 2024 +0100
+
+    Update README.md
+
+commit 9623161fb59343c271167a9342cc33a325189bcd
+Author: Tukurai <info@toxi.us>
+Date:   Mon Feb 12 15:49:59 2024 +0100
+
+    Update README.md
+
+commit 52ec288bb79d4206890901966057ca368a96fac1
+Author: Tukurai <info@toxi.us>
+Date:   Mon Feb 12 15:49:42 2024 +0100
+
+    Update README.md
+
+commit 6e47c3462f830d74b3c5875c131384359f1d2535
+Author: Tukurai <info@toxi.us>
+Date:   Tue Feb 6 14:39:50 2024 +0100
+
+    Update .gitignore
+
+commit bb46678440976892b22b861629126bf688d338b3
+Author: Tukurai <info@toxi.us>
+Date:   Tue Feb 6 14:39:36 2024 +0100
+
+    Initial commit

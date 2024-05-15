@@ -19,8 +19,10 @@ namespace Common.Clients
                 new(Localization.Get("Management_users"), () => { UsersMenu(); }),
                 new(Localization.Get("Management_export_import"), () => { ExportImportMenu(); }),
                 new(Localization.Get("Management_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }),
-                new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }),
             };
+
+            if (Contained)
+                options.Add(new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }));
 
             return Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User);
         }
@@ -36,7 +38,7 @@ namespace Common.Clients
                     new(Localization.Get("Management_export_tour_data"), ExportTourData),
                     new(Localization.Get("Management_Import_planning"), ImportPlanning),
                     new(Localization.Get("Management_export_planning"), ExportPlanning),
-                    new(Localization.Get("Management_close"), () => { CloseMenu(closeSubMenu: true); }),
+                    new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu: true); }),
                 };
 
                 Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User).Invoke();
@@ -55,7 +57,7 @@ namespace Common.Clients
                     new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
                     new(Localization.Get("Management_view_tours"), ViewTours),
                     new(Localization.Get("Management_plan_guides_on_tours"), PlanGuidesOnTours),
-                    new(Localization.Get("Management_close"), () => { CloseMenu(closeSubMenu: true); }),
+                    new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu: true); }),
                 };
 
                 Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User).Invoke();
@@ -72,8 +74,10 @@ namespace Common.Clients
                     new(Localization.Get("Management_user_creation"), CreateUser),
                     new(Localization.Get("Management_user_schedule"), CreateSchedule),
                     new(Localization.Get("Management_view_users"), ViewUsers),
-                    new(Localization.Get("Management_close"), () => { CloseMenu(closeSubMenu: true); }),
                 };
+
+                if (Contained)
+                    options.Add(new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu: true); }));
 
                 Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User).Invoke();
             } while (ShowSubmenu);

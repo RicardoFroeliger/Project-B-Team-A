@@ -27,13 +27,13 @@ namespace Common.Workflows.Manager
         public (bool Succeeded, string Message) CreatePreview()
         {
             if (Start == null)
-                return (false, Localization.Get("flow_invalid_start_date"));
+                return (false, Localization.Get("Flow_invalid_start_date"));
 
             if (End == null)
-                return (false, Localization.Get("flow_invalid_end_date"));
+                return (false, Localization.Get("Flow_invalid_end_date"));
 
             if (string.IsNullOrWhiteSpace(FilePath))
-                return (false, Localization.Get("flow_invalid_file_path"));
+                return (false, Localization.Get("Flow_invalid_file_path"));
 
             var tours = TourService.GetToursForTimespan(Start.Value, End.Value);
 
@@ -62,13 +62,13 @@ namespace Common.Workflows.Manager
                 Preview.Add(dataRow);
             }
 
-            return (true, Localization.Get("flow_preview_created"));
+            return (true, Localization.Get("Flow_preview_created"));
         }
 
         public override (bool Succeeded, string Message) Commit()
         {
             if (Preview.Count == 0)
-                return (false, Localization.Get("flow_no_preview_data"));
+                return (false, Localization.Get("Flow_no_preview_data"));
 
             using (StreamWriter writer = new StreamWriter(FilePath, false, Encoding.UTF8))
                 Preview.ForEach(row => writer.WriteLine(string.Join(';', row)));
@@ -79,22 +79,22 @@ namespace Common.Workflows.Manager
         public (bool Succeeded, string Message) SetUser(User? user)
         {
             if (user == null)
-                return (false, Localization.Get("flow_invalid_user"));
+                return (false, Localization.Get("Flow_invalid_user"));
 
             User = user;
 
-            return (true, Localization.Get("flow_set_valid"));
+            return (true, Localization.Get("Flow_set_valid"));
         }
 
         public (bool Succeeded, string Message) SetDateSpan(DateTime start, DateTime end)
         {
             if (start < end)
-                return (false, Localization.Get("flow_invalid_start_less_than_end"));
+                return (false, Localization.Get("Flow_invalid_start_less_than_end"));
 
             Start = start;
             End = end;
 
-            return (true, Localization.Get("flow_set_valid"));
+            return (true, Localization.Get("Flow_set_valid"));
         }
     }
 }

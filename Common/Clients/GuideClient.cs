@@ -41,7 +41,9 @@ namespace Common.Clients
             }
 
             options.Add(new(Localization.Get("Guide_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }));
-            options.Add(new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }));
+
+            if (Contained)
+                options.Add(new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }));
 
             return Prompts.GetMenu("Guide_title", "Guide_menu_more_options", options, User);
         }
@@ -79,7 +81,7 @@ namespace Common.Clients
                 new(Localization.Get("Guide_start_tour"), () => { GuideStartTour(tour); }),
                 new(Localization.Get("Guide_add_ticket"), () => { GuideAddTicket(tour); }),
                 new(Localization.Get("Guide_remove_ticket"), () => { GuideRemoveTicket(tour); }),
-                new(Localization.Get("Guide_close"), () => { CloseMenu(closeSubMenu:true); }),
+                new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu:true); }),
             };
 
                 Prompts.GetMenu("Guide_submenu_title", "Guide_menu_more_options", options).Invoke();
