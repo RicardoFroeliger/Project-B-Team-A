@@ -22,7 +22,9 @@ namespace Common.Statics
                 .AddSingleton<IGroupService, GroupService>()
                 .AddSingleton<IUserService, UserService>()
                 .AddSingleton<IDataSetService, DataSetService>()
-                .AddSingleton(AnsiConsole.Console)
+
+                // Uses existing instance
+                .AddSingleton<IAnsiConsole>(AnsiConsole.Console)
 
                 // Manager flows
                 .AddTransient<CreateUserFlow>()

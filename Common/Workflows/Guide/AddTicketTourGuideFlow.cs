@@ -47,7 +47,7 @@ namespace Common.Workflows.Guide
             if (tour!.RegisteredTickets.Count >= maxCapacity)
                 return (false, Localization.Get("Flow_tour_no_space_for_tickets_in_tour"));
 
-            return (true, Localization.Get("flow_tour_is_valid"));
+            return (true, Localization.Get("Flow_tour_is_valid"));
         }
 
         public override (bool Succeeded, string Message) Commit()

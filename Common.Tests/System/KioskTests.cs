@@ -20,6 +20,7 @@ public class KioskTests
         serviceCollection.Replace(ServiceDescriptor.Singleton<IAnsiConsole>(testConsole));
         var serviceProvider = serviceCollection.BuildServiceProvider(); 
         ConsoleClient client = new KioskClient(serviceProvider);
+        client.RunsContained();
         
         // Prepare the script for this test case
         // Here you create a "script" where all inputs are stored

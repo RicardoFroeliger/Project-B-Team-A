@@ -22,8 +22,10 @@ namespace Common.Clients
             var options = new List<NamedChoice<Action>>() {
                 new(Localization.Get("Kiosk_reservation"), TourReservation),
                 new(Localization.Get("Kiosk_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }),
-                new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }),
             };
+
+            if (Contained)
+                options.Add(new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }));
 
             // Menu for reservation
             return Prompts.GetMenu("Kiosk_title", "Kiosk_menu_more_options", options);
@@ -35,8 +37,10 @@ namespace Common.Clients
                 new(Localization.Get("Kiosk_modification"), TourModification),
                 new(Localization.Get("Kiosk_cancellation"), TourCancellation),
                 new(Localization.Get("Kiosk_close"), () => { CloseMenu(closeSubMenu: true, logout: true); }),
-                new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }),
             };
+
+            if (Contained)
+                options.Add(new(Localization.Get("Global_exit"), () => { CloseMenu(closeSubMenu: true, logout: true, closeClient: true); }));
 
             // Menu for modification of a reservation
             return Prompts.GetMenu("Kiosk_title", "Kiosk_menu_more_options", options);

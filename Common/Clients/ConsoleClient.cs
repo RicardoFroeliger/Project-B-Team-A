@@ -20,6 +20,7 @@ namespace Common.Clients
         protected bool IsRunning { get; set; } = true;
         protected bool IsAuthenticated { get; set; } = false;
         protected bool ShowSubmenu { get; set; } = false;
+        protected bool Contained { get; set; } = false;
 
         // Used in the client for general purposes
         protected ILocalizationService Localization { get; }
@@ -54,8 +55,8 @@ namespace Common.Clients
                 ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).Initialize();
             }
             catch (Exception ex) { Console.MarkupLine(ExceptionHandler.HandleException(ex)); }
-
-            Console.MarkupLine($"[green]{clientType} Client Initialized.[/]");
+            
+            //Console.MarkupLine($"[green]{clientType} Client Initialized.[/]");
         }
 
         public virtual void Run()
@@ -72,7 +73,6 @@ namespace Common.Clients
                     var userId = Prompts.AskUserId();
                     User = UserService.GetOne(userId);
                     hasAccess = UserService.ValidateUserForClient(User, ClientType).Valid;
-                    Console.Clear();
                 }
                 else
                 {
@@ -80,6 +80,7 @@ namespace Common.Clients
                     Ticket = TicketService.GetOne(ticketId);
                     hasAccess = Ticket != null;
                 }
+                Console.Clear();
 
                 IsAuthenticated = hasAccess;
 
@@ -130,5 +131,7 @@ namespace Common.Clients
         }
 
         protected abstract Action ShowMainMenu();
+
+        public void RunsContained() => Contained = true;
     }
 }

@@ -24,23 +24,23 @@ namespace Common.Workflows.Manager
         public (bool Succeeded, string Message) CreatePreview()
         {
             if (string.IsNullOrWhiteSpace(FilePath))
-                return (false, Localization.Get("flow_invalid_file_path"));
+                return (false, Localization.Get("Flow_invalid_file_path"));
 
             string line;
             using (StreamReader reader = new StreamReader(FilePath))
                 while ((line = reader.ReadLine()!) != null)
                     Preview.Add(line.Split(';'));
 
-            return (true, Localization.Get("flow_preview_created"));
+            return (true, Localization.Get("Flow_preview_created"));
         }
 
         public override (bool Succeeded, string Message) Commit()
         {
             if (User == null)
-                return (false, Localization.Get("flow_invalid_user"));
+                return (false, Localization.Get("Flow_invalid_user"));
 
             if (Preview.Count() < 1)
-                return (false, Localization.Get("flow_no_preview_data"));
+                return (false, Localization.Get("Flow_no_preview_data"));
 
             var dataEntries = new List<DataEntry>();
 
@@ -70,7 +70,7 @@ namespace Common.Workflows.Manager
 
             var duplicateSet = DataSetService.GetByFromToDate(dataSet.From, dataSet.To);
             if (duplicateSet != null)
-                return (false, Localization.Get("flow_duplicate_set"));
+                return (false, Localization.Get("Flow_duplicate_set"));
 
             DataSetService.AddOne(dataSet);
 
@@ -80,21 +80,21 @@ namespace Common.Workflows.Manager
         public (bool Succeeded, string Message) SetUser(User? user)
         {
             if (user == null)
-                return (false, Localization.Get("flow_invalid_user"));
+                return (false, Localization.Get("Flow_invalid_user"));
 
             User = user;
 
-            return (true, Localization.Get("flow_set_valid"));
+            return (true, Localization.Get("Flow_set_valid"));
         }
 
         public (bool Succeeded, string Message) SetFilePath(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
-                return (false, Localization.Get("flow_invalid_file_path"));
+                return (false, Localization.Get("Flow_invalid_file_path"));
 
             FilePath = filePath;
 
-            return (true, Localization.Get("flow_set_valid"));
+            return (true, Localization.Get("Flow_set_valid"));
         }
     }
 }
