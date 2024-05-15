@@ -5,8 +5,8 @@ namespace Common.Services
 {
     public class LocalizationService : BaseService<Translation>, ILocalizationService
     {
-        public LocalizationService(IDepotContext context)
-            : base(context)
+        public LocalizationService(IDepotContext context, IDateTimeService dateTime)
+            : base(context, dateTime)
         {
         }
 

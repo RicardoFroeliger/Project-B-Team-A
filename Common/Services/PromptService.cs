@@ -12,10 +12,11 @@ namespace Common.Services
         private ITicketService TicketService { get; }
         private ITourService TourService { get; }
         private IUserService UserService { get; }
+        private IDateTimeService DateTime { get; }
         private IAnsiConsole Console { get; }
 
         public PromptService(ISettingsService settings, ILocalizationService localizationService,
-            ITicketService ticketService, ITourService tourService, IUserService userService, IAnsiConsole console)
+            ITicketService ticketService, ITourService tourService, IUserService userService, IAnsiConsole console, IDateTimeService dateTime)
         {
             Localization = localizationService;
             TicketService = ticketService;
@@ -23,6 +24,7 @@ namespace Common.Services
             TourService = tourService;
             Settings = settings;
             Console = console;
+            DateTime = dateTime;
         }
 
         public List<DayOfWeek> AskSchedule()

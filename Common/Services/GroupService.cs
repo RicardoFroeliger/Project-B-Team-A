@@ -7,8 +7,8 @@ namespace Common.Services
     {
         public ISettingsService Settings { get; }
 
-        public GroupService(IDepotContext context, ISettingsService settings)
-            : base(context)
+        public GroupService(IDepotContext context, ISettingsService settings, IDateTimeService dateTime)
+            : base(context, dateTime)
         {
             Settings = settings;
         }

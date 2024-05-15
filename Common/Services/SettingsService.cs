@@ -5,7 +5,8 @@ namespace Common.Services
 {
     public class SettingsService : BaseService<Setting>, ISettingsService
     {
-        public SettingsService(IDepotContext context) : base(context) { }
+        public SettingsService(IDepotContext context, IDateTimeService dateTime)
+            : base(context, dateTime) { }
 
         public int? GetValueAsInt(string setting)
         {

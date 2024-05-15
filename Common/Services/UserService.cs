@@ -9,8 +9,8 @@ namespace Common.Services
         public ISettingsService Settings { get; }
         private ILocalizationService Localization { get; }
 
-        public UserService(IDepotContext context, ISettingsService settings, ILocalizationService localization)
-            : base(context)
+        public UserService(IDepotContext context, ISettingsService settings, ILocalizationService localization, IDateTimeService dateTime)
+            : base(context, dateTime)
         {
             Localization = localization;
             Settings = settings;

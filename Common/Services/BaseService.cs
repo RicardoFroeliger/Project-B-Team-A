@@ -7,12 +7,14 @@ namespace Common.Services
     public class BaseService<T> : IBaseService<T> where T : DbEntity
     {
         protected IDepotContext Context { get; }
+        protected IDateTimeService DateTime { get; }
 
         protected DbSet<T> Table => Context.GetDbSet<T>()!;
 
-        public BaseService(IDepotContext context)
+        public BaseService(IDepotContext context, IDateTimeService dateTime)
         {
             Context = context;
+            DateTime = dateTime;
         }
 
         public T? GetOne(int entityId)
