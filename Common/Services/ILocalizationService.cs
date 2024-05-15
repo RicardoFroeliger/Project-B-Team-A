@@ -2,6 +2,6 @@
 {
     public interface ILocalizationService
     {
-        string Get(string key, string locale = "nl-NL", List<string>? replacementStrings = null);
+        string Get(string key, string locale = "nl-NL", string? defaultValue = null, List<string>? replacementStrings = null);
     }
 }
