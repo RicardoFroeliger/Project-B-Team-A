@@ -44,46 +44,55 @@ namespace Common.Tests.Workflows
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_ticket_not_in_tour"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("ticket_not_in_tour");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_ticket_already_added_to_list"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("ticket_already_added");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_tour_no_space_for_tickets_in_tour"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("no_space_in_tour");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_ticket_added_to_list"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("great_success");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_next_step"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("next_step");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_no_tickets_scanned"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("no_ticket_scanned");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_ticket_invalid"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("ticket_invalid");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_no_tickets_scanned"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("no_ticket_scanned");
 
             _mockLocalizationService.Setup(x => x.Get(
                 It.Is<string>(i => i == "Commit_successful"),
                 It.IsAny<string?>(),
+                It.IsAny<string>(),
                 It.IsAny<List<string>?>())).Returns("great_commit_success");
 
 

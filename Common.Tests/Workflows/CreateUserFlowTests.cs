@@ -36,24 +36,30 @@ namespace Common.Tests.Workflows
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_username_set"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("username_set");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_role_set"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("role_set");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_username_not_set"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("username_not_set");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_role_not_set"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("role_not_set");
+
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Commit_successful"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("succes");
 

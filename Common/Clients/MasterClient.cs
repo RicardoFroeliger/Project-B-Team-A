@@ -46,7 +46,7 @@ namespace Common.Clients
 
         private void CreateSprintLogs()
         {
-            using (var repo = new Repository(@"https://github.com/Tukurai/Project-B.git", new RepositoryOptions() { Identity = new Identity("Tukurai", "Info@toxi.us") }))
+            using (var repo = new Repository(@"Tukurai\Project-B.git", new RepositoryOptions() { Identity = new Identity("Tukurai", "Info@toxi.us") }))
             {
                 foreach (var branch in repo.Refs)
                 {

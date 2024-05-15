@@ -58,7 +58,7 @@ namespace Common.Tests.Workflows
             _contextMock.Setup(x => x.SaveChanges()).Returns(1);
 
             // Assume that Localization.Get always returns a valid message  
-            _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))
+            _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))
                 .Returns("Test message");
 
             // Act  

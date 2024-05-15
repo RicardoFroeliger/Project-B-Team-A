@@ -57,7 +57,7 @@ namespace Common.Tests.Workflows
                 .Returns(new Group() { GroupTickets = { testTicketNumber } });
 
             // Assume that Localization.Get always returns a valid message  
-            _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))
+            _localizationServiceMock.Setup(x => x.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()))
                 .Returns("Test message");
 
             // Act
