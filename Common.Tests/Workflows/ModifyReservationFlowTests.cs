@@ -37,40 +37,48 @@ namespace Common.Tests.Workflows
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_no_tour"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("no_tour");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_tour_departed"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("tour_departed");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_no_group"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("no_group");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_not_group_owner"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("not_group_owner");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_same_tour"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("same_tour");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_new_tour_set"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("new_tour_set");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Flow_no_new_tour"),
                 It.IsAny<string?>(),
+                It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("no_new_tour");
 
             _localizationServiceMock.Setup(x => x.Get(
                 It.Is<string>(i => i == "Commit_successful"),
+                It.IsAny<string?>(),
                 It.IsAny<string?>(),
                 It.IsAny<List<string>?>())).Returns("succes");
 
