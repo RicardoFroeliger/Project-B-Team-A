@@ -8,6 +8,8 @@ namespace Common.DAL
     {
         DbSet<T>? GetDbSet<T>() where T : DbEntity;
         int SaveChanges();
+        void Initialize();
+        void Purge();
     }
 
 }

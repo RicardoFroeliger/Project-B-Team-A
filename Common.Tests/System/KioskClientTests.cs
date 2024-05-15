@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 using Spectre.Console.Testing;
 
-namespace Common.Tests.System;
+namespace Common.Tests;
 
 [TestClass]
 public class KioskClientTests
@@ -14,11 +14,11 @@ public class KioskClientTests
     public void TestCanEnterTicketAndQuit()
     {
         // Set up the client
-        var serviceCollection = Mocks.ConfigureServices();
+        var serviceCollection = TestServices.ConfigureServices();
         var serviceProvider = serviceCollection.BuildServiceProvider(); 
         ConsoleClient client = new KioskClient(serviceProvider);
-        client.RunsContained();
         var testConsole = (TestConsole)serviceProvider.GetService<IAnsiConsole>()!;
+        client.RunsContained();
         
         // Prepare the script for this test case
         // Here you create a "script" where all inputs are stored

@@ -7,15 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 using Spectre.Console.Testing;
 
-namespace Common.Tests.System;
+namespace Common.Tests;
 
-public class Mocks
+public static class TestServices
 {
     public static IServiceCollection ConfigureServices()
     {
 
         return new ServiceCollection()
-            .AddSingleton<IDepotContext, DepotContext>()
+            .AddSingleton<IDepotContext, TestDepotContext>()
             .AddSingleton<ILocalizationService, LocalizationService>()
             .AddSingleton<ISettingsService, SettingsService>()
             .AddSingleton<IPromptService, PromptService>()
@@ -24,6 +24,9 @@ public class Mocks
             .AddSingleton<IGroupService, GroupService>()
             .AddSingleton<IUserService, UserService>()
             .AddSingleton<IDataSetService, DataSetService>()
+            .AddSingleton<IDateTimeService, TestDateTimeService>()
+            
+            // Test Console
             .AddSingleton((IAnsiConsole) new TestConsole().Interactive().EmitAnsiSequences())
 
             // Manager flows
