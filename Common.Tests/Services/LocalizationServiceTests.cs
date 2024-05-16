@@ -2,6 +2,7 @@ using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
 namespace Common.Tests.Services
@@ -9,6 +10,9 @@ namespace Common.Tests.Services
     [TestClass]
     public class LocalizationServiceTests
     {
+        private ServiceProvider testServiceProvider = TestServices.BuildServices();
+        private IDateTimeService testDateTimeService;
+        
         [TestMethod]
         public void TestGet()
         {
@@ -31,7 +35,8 @@ namespace Common.Tests.Services
             _contextMock.Setup(context => context.GetDbSet<Translation>()).Returns(GetQueryableMockDbSet(_translations));
             _contextMock.Setup(x => x.SaveChanges()).Returns(1);
 
-            var _localizationService = new LocalizationService(_contextMock.Object);
+            testDateTimeService = testServiceProvider.GetService<IDateTimeService>()!;
+            var _localizationService = new LocalizationService(_contextMock.Object, testDateTimeService);
 
             // Act
             var resultNL = _localizationService.Get("test_key");

@@ -2,6 +2,7 @@ using Common.DAL;
 using Common.DAL.Models;
 using Common.Enums;
 using Common.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.EntityFrameworkCore;
 
@@ -10,6 +11,8 @@ namespace Common.Tests.Services
     [TestClass]
     public class UserServiceTests
     {
+        private ServiceProvider testServiceProvider = TestServices.BuildServices();
+        private IDateTimeService testDateTimeService;
         private Mock<IDepotContext> _mockContext;
         private Mock<ISettingsService> _mockSettings;
         private Mock<ILocalizationService> _mockLocalization;
@@ -18,13 +21,16 @@ namespace Common.Tests.Services
         [TestInitialize]
         public void TestInitialize()
         {
+            
             _mockContext = new Mock<IDepotContext>();
             _mockSettings = new Mock<ISettingsService>();
             _mockLocalization = new Mock<ILocalizationService>();
+            testDateTimeService = testServiceProvider.GetService<IDateTimeService>()!;
             _service = new UserService(
                 _mockContext.Object,
                 _mockSettings.Object,
-                _mockLocalization.Object
+                _mockLocalization.Object,
+                testDateTimeService
             );
         }
 

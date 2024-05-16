@@ -1,6 +1,7 @@
 using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.EntityFrameworkCore;
 
@@ -9,7 +10,8 @@ namespace Common.Tests.Services
     [TestClass]
     public class TourServiceTests
     {
-        
+        private ServiceProvider testServiceProvider = TestServices.BuildServices();
+        private IDateTimeService DateTime;
         private Mock<IDepotContext> _mockContext;
         private Mock<ISettingsService> _mockSettings;
         private TourService _service;
@@ -19,9 +21,11 @@ namespace Common.Tests.Services
         {
             _mockContext = new Mock<IDepotContext>();
             _mockSettings = new Mock<ISettingsService>();
+            DateTime = testServiceProvider.GetService<IDateTimeService>()!;
             _service = new TourService(
                 _mockContext.Object, 
-                _mockSettings.Object
+                _mockSettings.Object,
+                DateTime
                 );
         }
         

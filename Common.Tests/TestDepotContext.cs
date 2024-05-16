@@ -43,11 +43,11 @@ namespace Common.Tests
         public async void Initialize()
         {
             if (IsInitialized) return;
-
+            
             LoadJson(Translations, TranslationsPath);
             LoadJson(Settings, SettingsPath);
             LoadJson(DataSets, DataSetsPath);
-
+            
             IsInitialized = true;
 
             await SaveChangesAsync();
@@ -107,6 +107,16 @@ namespace Common.Tests
         {
             GetDbSet<T>()!.AddRange(data);
             var changes = SaveChanges();
+        }
+        
+        public void CleanSlateContext()
+        {
+            // Remove any persistent data from the in-memory database
+            // This way we don't contaminate between tests.
+            Users.RemoveRange(Users);
+            Tours.RemoveRange(Tours);
+            Groups.RemoveRange(Groups);
+            Tickets.RemoveRange(Tickets);
         }
     }
 }
