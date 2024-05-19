@@ -74,6 +74,7 @@ namespace Common.Clients
                     new(Localization.Get("Management_user_creation"), CreateUser),
                     new(Localization.Get("Management_user_schedule"), CreateSchedule),
                     new(Localization.Get("Management_view_users"), ViewUsers),
+                    new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu:true); }),
                 };
 
                 if (Contained)
