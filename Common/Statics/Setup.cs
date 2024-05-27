@@ -31,6 +31,7 @@ namespace Common.Statics
                 .AddTransient<CreateUserFlow>()
                 .AddTransient<CreateUserPlanningFlow>()
                 .AddTransient<CreateTourScheduleFlow>()
+                .AddTransient<CreateSingleTourScheduleFlow>()
                 .AddTransient<ExportScheduleFlow>()
                 .AddTransient<ExportTourDataFlow>()
                 .AddTransient<ImportScheduleFlow>()

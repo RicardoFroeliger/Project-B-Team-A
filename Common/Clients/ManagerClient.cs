@@ -36,8 +36,6 @@ namespace Common.Clients
                 var options = new List<NamedChoice<Action>>() {
                     new(Localization.Get("Management_Import_tour_data"), ImportTourData),
                     new(Localization.Get("Management_export_tour_data"), ExportTourData),
-                    new(Localization.Get("Management_Import_planning"), ImportPlanning),
-                    new(Localization.Get("Management_export_planning"), ExportPlanning),
                     new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu: true); }),
                 };
 
@@ -55,6 +53,7 @@ namespace Common.Clients
                     new(Localization.Get("Management_plan_tours_today"), () => { PlanTour(DateTime.Today); }),
                     new(Localization.Get("Management_plan_tours_tomorrow"), () => { PlanTour(DateTime.Today.AddDays(1)); }),
                     new(Localization.Get("Management_plan_tours_in_future"), () => { PlanTour(); }),
+                    new(Localization.Get("Management_plan_single_tour", "Enkele rondleiding plannen"), () => { PlanSingleTour(); }),
                     new(Localization.Get("Management_view_tours"), ViewTours),
                     new(Localization.Get("Management_plan_guides_on_tours"), PlanGuidesOnTours),
                     new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu: true); }),
@@ -207,16 +206,6 @@ namespace Common.Clients
             CloseMenu();
         }
 
-        private void ImportPlanning()
-        {
-
-        }
-
-        private void ExportPlanning()
-        {
-
-        }
-
         private void CreateSchedule()
         {
             var flow = GetFlow<CreateUserPlanningFlow>()!;
@@ -343,6 +332,32 @@ namespace Common.Clients
             Console.WriteLine(Localization.Get("View_tour_press_any_key_to_continue"));
 
             Console.Input.ReadKey(false);
+            CloseMenu();
+        }
+
+        private void PlanSingleTour()
+        {
+            var flow = GetFlow<CreateSingleTourScheduleFlow>();
+
+            var date = Prompts.AskDate("Create_tour_flow_date", "Create_tour_flow_more_dates");
+
+            flow.SetDate(date);
+
+            var time = Prompts.AskTime("Create_tour_flow_time", "Create_tour_flow_more_times");
+
+            flow.SetTime(time);
+
+            Console.MarkupLine(Localization.Get("Create_tour_flow_tour_to_create", replacementStrings: new List<string>() { }));
+
+            // Commit the flow.
+            if (Prompts.AskConfirmation("Create_tour_flow_ask_confirmation"))
+            {
+                var commitResult = flow.Commit();
+                CloseMenu(commitResult.Message);
+                return;
+            }
+
+            flow.Rollback();
             CloseMenu();
         }
 
