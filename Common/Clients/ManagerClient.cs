@@ -77,9 +77,6 @@ namespace Common.Clients
                     new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu:true); }),
                 };
 
-                if (Contained)
-                    options.Add(new(Localization.Get("Global_return"), () => { CloseMenu(closeSubMenu: true); }));
-
                 Prompts.GetMenu("Management_title", "Management_menu_more_options", options, User).Invoke();
             } while (ShowSubmenu);
         }
