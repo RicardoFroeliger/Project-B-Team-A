@@ -1264,5 +1264,47 @@
     "Value": "Terug",
     "Locale": "nl-NL",
     "Id": 211
+  },
+  {
+    "Key": "Tools_menu",
+    "Value": "Project tools",
+    "Locale": "nl-NL",
+    "Id": 212
+  },
+  {
+    "Key": "Import_tour_data_flow_file_path",
+    "Value": "Welke file wil je importeren?",
+    "Locale": "nl-NL",
+    "Id": 213
+  },
+  {
+    "Key": "Import_tour_data_flow_ask_confirmation",
+    "Value": "Wil je deze data importeren?",
+    "Locale": "nl-NL",
+    "Id": 214
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_start_date",
+    "Value": "Start datum:",
+    "Locale": "nl-NL",
+    "Id": 215
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_more_dates",
+    "Value": "Meer datums",
+    "Locale": "nl-NL",
+    "Id": 216
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_end_date",
+    "Value": "Eind datum:",
+    "Locale": "nl-NL",
+    "Id": 217
+  },
+  {
+    "Key": "Plan_guides_on_tours_flow_ask_confirmation",
+    "Value": "Wil je deze planning opslaan?",
+    "Locale": "nl-NL",
+    "Id": 218
   }
 ]
