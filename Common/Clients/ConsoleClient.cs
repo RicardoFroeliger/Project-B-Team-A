@@ -57,7 +57,7 @@ namespace Common.Clients
             // Setup context
             try
             {
-                ((DepotContext)ServiceProvider.GetService<IDepotContext>()!).Initialize();
+                ServiceProvider.GetService<IDepotContext>()!.Initialize();
             }
             catch (Exception ex) { Console.MarkupLine(ExceptionHandler.HandleException(ex)); }
             

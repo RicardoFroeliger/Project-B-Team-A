@@ -1,6 +1,7 @@
 using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.EntityFrameworkCore;
 
@@ -9,6 +10,8 @@ namespace Common.Tests.Services
     [TestClass]
     public class TicketServiceTests
     {
+        private ServiceProvider testServiceProvider = TestServices.BuildServices();
+        private IDateTimeService testDateTimeService;
         private Mock<IDepotContext> _mockContext;
         private Mock<ISettingsService> _mockSettings;
         private Mock<ILocalizationService> _mockLocalization;
@@ -20,10 +23,12 @@ namespace Common.Tests.Services
             _mockContext = new Mock<IDepotContext>();
             _mockSettings = new Mock<ISettingsService>();
             _mockLocalization = new Mock<ILocalizationService>();
+            testDateTimeService = testServiceProvider.GetService<IDateTimeService>()!;
             _service = new TicketService(
                 _mockContext.Object,
                 _mockSettings.Object,
-                _mockLocalization.Object
+                _mockLocalization.Object,
+                testDateTimeService
             );
 
             _mockLocalization.Setup(x => x.Get(

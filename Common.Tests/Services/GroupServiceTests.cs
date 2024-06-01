@@ -2,6 +2,7 @@ using Common.DAL;
 using Common.DAL.Models;
 using Common.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
 namespace Common.Tests.Service
@@ -9,16 +10,21 @@ namespace Common.Tests.Service
     [TestClass]
     public class GroupServiceTests
     {
+        private ServiceProvider testServiceProvider = TestServices.BuildServices();
+        private IDateTimeService testDateTimeService;
         private Mock<IDepotContext> _contextMock;
         private Mock<ISettingsService> _settingsServiceMock;
         private GroupService _groupService;
+
+        
 
         [TestInitialize]
         public void TestInitialize()
         {
             _contextMock = new Mock<IDepotContext>();
             _settingsServiceMock = new Mock<ISettingsService>();
-            _groupService = new GroupService(_contextMock.Object, _settingsServiceMock.Object);
+            testDateTimeService = testServiceProvider.GetService<IDateTimeService>()!;
+            _groupService = new GroupService(_contextMock.Object, _settingsServiceMock.Object, testDateTimeService);
         }
 
         public Group CreateTestGroup(int ticketOwnerID, List<int>? groupMembers = null)
